@@ -1,0 +1,15 @@
+#Qa_environment_demo
+Environment:
+  url_qa : "https://g.demo.hengtiansoft.com/#/login"
+  url_uat : "https://login.uat.valid8me.com/#/login"
+
+DB:
+  host : 10.17.15.245
+  username : root
+  password : Hengtian@123
+  port : 3306
+  database : valid8me
+
+Bussiness_acc:
+  Admin_email : admin@horizon8.com
+  Admin_pwd : horizon8

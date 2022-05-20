@@ -1,0 +1,6 @@
+[32m2022-05-20 11:15:53[0m logging.py |[1m INFO | ❓ Find 2 elements through: xpath=//input[@placeholder="Your email"]. 登录页面邮箱输入框[0m
+[32m2022-05-20 11:15:54[0m logging.py |[1m INFO | ✅ send_keys('admin@horizon8.com').[0m
+[32m2022-05-20 11:15:54[0m logging.py |[1m INFO | ❓ Find 2 elements through: xpath=//input[@placeholder="Your password"]. 登录页面密码输入框[0m
+[32m2022-05-20 11:15:56[0m logging.py |[1m INFO | ✅ send_keys('Ht@12345').[0m
+[32m2022-05-20 11:15:56[0m logging.py |[1m INFO | 🔍 Find element: xpath=//span[contains(text(),"Login")]. 登录按钮[0m
+[32m2022-05-20 11:15:57[0m logging.py |[1m INFO | ✅ click().[0m
