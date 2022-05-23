@@ -1,0 +1,35 @@
+{
+  "uid" : "83edc06c07f9ae9e47eb6dd1b683e4e2",
+  "name" : "packages",
+  "children" : [ {
+    "name" : "smoke_test",
+    "children" : [ {
+      "name" : "test_ST030",
+      "uid" : "bf67ef8969a8ffc0",
+      "parentUid" : "8ab1cf2f459ee240fb247e9e0b4e98fc",
+      "status" : "passed",
+      "time" : {
+        "start" : 1653296279034,
+        "stop" : 1653296279034,
+        "duration" : 0
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "test_ST031",
+      "uid" : "6c9df5c0d9ff2d9d",
+      "parentUid" : "8ab1cf2f459ee240fb247e9e0b4e98fc",
+      "status" : "passed",
+      "time" : {
+        "start" : 1653296283463,
+        "stop" : 1653296283463,
+        "duration" : 0
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "8ab1cf2f459ee240fb247e9e0b4e98fc"
+  } ]
+}
