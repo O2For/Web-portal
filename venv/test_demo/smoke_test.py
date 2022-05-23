@@ -1,4 +1,4 @@
-from PageObject.login_page import Login_page
+
 from selenium import webdriver
 from Common.config import YamlOperation
 from time import sleep
@@ -16,6 +16,7 @@ class TestCase:
     @pytest.fixture(scope='function', autouse=True)
     @allure.feature('LOGIN_')
     def test_login(self,drivers):
+        from PageObject.login_page import Login_page
         page=Login_page(drivers)
 
         page.open(data.Environment.url_qa)
