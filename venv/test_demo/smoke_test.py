@@ -33,10 +33,6 @@ class TestCase:
     def test_ST031(self,drivers):
         pass
 if __name__ == '__main__':
-    #os.chdir(os.path.abspath('..')+'/test_demo')
-    #pytest.main(['-v','--alluredir=report/ST_jsonfile','smoke_test.py'])
-       os.chdir(os.path.abspath('..')+'/test_demo')
-    #pytest.main(['-v','--alluredir=report/ST_jsonfile','smoke_test.py'])
+    os.chdir(os.path.abspath('..')+'/test_demo')
     pytest.main(["-v", "-s", "--alluredir", "temp",'smoke_test.py'])
-
     os.system("allure generate ./temp -o ./report --clean")
