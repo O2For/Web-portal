@@ -14,8 +14,8 @@ from Common.config import YamlOperation
 
 #os.chdir(os.path.abspath('..') + '/Data')
     #读取yaml数据文件
-#data = YamlOperation(os.getcwd() + "\Data\data.yaml")
-data = YamlOperation("../Data/data.yaml")
+data = YamlOperation(os.getcwd() + "\Data\data.yaml")
+#data = YamlOperation("../Data/data.yaml")
 
 #Case1
 class TestCase:
@@ -41,8 +41,9 @@ class TestCase:
 if __name__ == '__main__':
     #os.chdir(os.path.abspath('..')+'./venv./test_demo')
     #pytest.main(['-v','--alluredir=report/ST_jsonfile','smoke_test.py'])
-    #pytest.main(["-v", "-s", "--alluredir", "temp",'./test_demo/smoke_test.py'])
-    pytest.main(["-v", "-s", "--alluredir", "../temp", '../test_demo/smoke_test.py'])
+    pytest.main(["-v", "-s", "--alluredir", "temp",'./test_demo/smoke_test.py'])
+    #pytest.main(["-v", "-s", "--alluredir", "../temp", '../test_demo/smoke_test.py'])
 
-    os.system("allure generate ../temp -o ../report --clean")
+    #os.system("allure generate ../temp -o ../report --clean")
+    os.system("allure generate ./temp -o ./report --clean")
     #pytest - -alluredir = allure - results - -clean - alluredir
