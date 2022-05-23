@@ -1,17 +1,19 @@
-
+import os
+import sys
+sys.path.append(os.getcwd())
 from selenium import webdriver
 
 from time import sleep
 import pytest
 import allure
 import re
-import os
+
 #数据准备导入路径
 from Common.config import YamlOperation
 
-os.chdir(os.path.abspath('..') + '/Data')
+#os.chdir(os.path.abspath('..') + '/Data')
     #读取yaml数据文件
-data = YamlOperation(os.getcwd() + "/data.yaml")
+data = YamlOperation(os.getcwd() + "\Data\data.yaml")
 
 
 #Case1
@@ -36,9 +38,9 @@ class TestCase:
     def test_ST031(self,drivers):
         pass
 if __name__ == '__main__':
-    os.chdir(os.path.abspath('..')+'/test_demo')
+    #os.chdir(os.path.abspath('..')+'./venv./test_demo')
     #pytest.main(['-v','--alluredir=report/ST_jsonfile','smoke_test.py'])
-    pytest.main(["-v", "-s", "--alluredir", "temp",'smoke_test.py'])
+    pytest.main(["-v", "-s", "--alluredir", "temp",'./test_demo/smoke_test.py'])
 
     os.system("allure generate ./temp -o ./report --clean")
     #pytest - -alluredir = allure - results - -clean - alluredir
