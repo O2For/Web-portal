@@ -1,6 +1,5 @@
-
 from selenium import webdriver
-from Common.config import YamlOperation
+
 from time import sleep
 import pytest
 import allure
@@ -9,10 +8,12 @@ import os
 #数据准备导入路径
 os.chdir(os.path.abspath('..') + '/Data')
     #读取yaml数据文件
-data = YamlOperation(os.getcwd() + "/data.yaml")
+
 
 #Case1
 class TestCase:
+    from Common.config import YamlOperation
+    data = YamlOperation(os.getcwd() + "/data.yaml")
     @pytest.fixture(scope='function', autouse=True)
     @allure.feature('LOGIN_')
     def test_login(self,drivers):
