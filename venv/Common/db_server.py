@@ -3,10 +3,14 @@ import pymysql
 import os
 import sys
 from Common.config import YamlOperation
-sys.path.append(os.getcwd())
-os.chdir(os.path.abspath('..') + '/Data')
+#sys.path.append(os.getcwd())
+#上jenkins
+#os.chdir(os.path.abspath('..') + '/Data')
 
-data = YamlOperation(os.getcwd() + "\data.yaml")
+#data = YamlOperation(os.getcwd() + "\data.yaml")
+
+#普通路径
+#data = YamlOperation("../Data/data.yaml")
 
 class DbMysql(object):
 

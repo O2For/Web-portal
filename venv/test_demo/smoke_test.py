@@ -19,13 +19,17 @@ from Common.db_server import DbMysql
 
 # 数据准备导入路径
 from Common.config import YamlOperation
-#上jenkins要注释
-#os.chdir(os.path.abspath('..') + '/Data')
+
+#----------------------------------------------
+#上jenkins要打开
+#两个点点pychram 可以用。      一个点点 jenkins可以用
+os.chdir(os.path.abspath('.') + '/Data')
 # 读取yaml数据文件
-#data = YamlOperation(os.getcwd() + "\data.yaml")
+data = YamlOperation(os.getcwd() + "\data.yaml")
 
-
-data = YamlOperation("../Data/data.yaml")
+#------------------------------------------------
+#普通 pycharm 路径
+#data = YamlOperation("../Data/data.yaml")
 
 # Case1
 class TestCase:
@@ -153,6 +157,7 @@ class TestCase:
                                 page_.next_.click()
                                 page_.accept_but.click()# s生成账号 成功
                                 sleep(3)
+                                page_.accept_but.click()
                                 with allure.step("输入受邀请人个人信息"):
                                     pro_email_check_infro=subscript_p.User_Profile(1,data.Invitaion__bus_email.email1,
                                                              None,data.Email_type.snapmail,data.Invitaion__bus_email.job)

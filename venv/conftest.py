@@ -19,7 +19,7 @@ def drivers(request):
     request.addfinalizer(fn)
     return driver
 
-
+'''
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item):
     """
@@ -52,3 +52,5 @@ def _capture_screenshot():
     with open(screen_path, 'rb') as f:
         imagebase64 = base64.b64encode(f.read())
     return imagebase64.decode()
+
+'''
