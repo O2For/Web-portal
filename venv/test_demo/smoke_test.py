@@ -22,10 +22,10 @@ from Common.config import YamlOperation
 #上jenkins要注释
 #os.chdir(os.path.abspath('..') + '/Data')
 # 读取yaml数据文件
-data = YamlOperation(os.getcwd() + "\data.yaml")
+#data = YamlOperation(os.getcwd() + "\data.yaml")
 
 
-# data = YamlOperation("../Data/data.yaml")
+data = YamlOperation("../Data/data.yaml")
 
 # Case1
 class TestCase:
