@@ -10,6 +10,7 @@ import os
 # f= open(yamlPath,'r',encoding='utf-8')
 #
 # cont=f.read()
+'''封装yaml 调用函数'''
 class YamlOperation(dict):
     def __init__(self, file_path=None, content=None):
         super().__init__()
