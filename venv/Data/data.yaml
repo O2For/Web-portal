@@ -1,11 +1,14 @@
 #Qa_environment_demo
 Environment:
   url_qa : "https://g.demo.hengtiansoft.com/#/login"
+  url_cur_qa : "https://g.demo.hengtiansoft.com:8444/#/login"
   url_uat : "https://login.uat.valid8me.com/#/login"
+  url_cur_uat : "https://customer.uat.valid8me.com/#/login"
+  test_mail : "https://www.snapmail.cc/#/"
 
 DB:
   host : 10.17.15.245
-  username : root
+  user : root
   password : Hengtian@123
   port : 3306
   database : valid8me
@@ -14,3 +17,26 @@ Bussiness_acc:
   Admin_email : admin@horizon8.com
   Admin_pwd : horizon8
   mormail : 123@snapmail.cc
+
+Email_type:
+  mfk : "@mfk.app"
+  snapmail : "@snapmail.cc"
+Invitaion__bus_email:
+  email1 : bus_13
+  password : Ht@12345
+  job : job
+
+Verfiy_code:
+  email_code : 666666
+  phone_code : 888888
+
+
+corp_user_infor:
+  corp_email : autotest1@snapmail.cc
+  password : Ht@12345
+
+indi_user_infor:
+  ind_email : autotest1@snapmail.cc
+  password : Ht@12345
+  fst : aut_ind
+  lst : test1
