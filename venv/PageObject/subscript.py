@@ -19,8 +19,8 @@ class subscript(Page):
         frst_name = Element(xpath="//input[@type='text']", index=3, timeout=3,describe="first_name 输入框")
         middle_name = Element(xpath="//input[@type='text']", index=4,timeout=3, describe="mname_name 输入框")
         surname_name = Element(xpath="//input[@type='text']", index=5,timeout=3, describe="suname_name 输入框")
-        role = Element(xpath="//label[contains(text(),'Role')]/following-sibling::div[1]",index=0,timeout=3,describe="用户角色")
-        pro_email = Element(xpath="//label[contains(text(),'Role')]/../following-sibling::div[1]/div",index=0,timeout=3,describe="用户email")
+        role = Element(xpath="//label[contains(text(),'Role')]/following-sibling::div[1]",timeout=3,describe="用户角色")
+        pro_email = Element(xpath="//label[contains(text(),'Email')]/following-sibling::div[1]/SPAN/SPAN",timeout=3,describe="用户email")
 
         job_title = Element(xpath="//label[contains(text(),'Job Title')]/following-sibling::div//input",  timeout=3,describe="job 输入框")
         save_btu= Element(xpath="//span[contains(text(),'Save')]",timeout=3,describe="保存按钮")
@@ -48,4 +48,11 @@ class subscript(Page):
             time.sleep(3)
             save_btu.click()
             pass
+'''
+    def golobe_search_(self,email):
+        '''已经注册过的用户进行联结'''
+        connect_btu =  Element(xpath="//button/span[contains(text(),'Connect')]",describe="联结按钮")
+        con_title = Element()
+
+'''
 

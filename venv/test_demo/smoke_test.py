@@ -23,7 +23,7 @@ from Common.config import YamlOperation
 #----------------------------------------------
 #上jenkins要打开
 #两个点点pychram 可以用。      一个点点 jenkins可以用
-os.chdir(os.path.abspath('.') + '/Data')
+os.chdir(os.path.abspath('..') + '/Data')
 # 读取yaml数据文件
 data = YamlOperation(os.getcwd() + "\data.yaml")
 
@@ -158,6 +158,7 @@ class TestCase:
                                 page_.accept_but.click()# s生成账号 成功
                                 sleep(3)
                                 page_.accept_but.click()
+                                sleep(3)
                                 with allure.step("输入受邀请人个人信息"):
                                     pro_email_check_infro=subscript_p.User_Profile(1,data.Invitaion__bus_email.email1,
                                                              None,data.Email_type.snapmail,data.Invitaion__bus_email.job)
@@ -187,7 +188,7 @@ class TestCase:
 if __name__ == '__main__':
     # os.chdir(os.path.abspath('..')+'./venv./test_demo')
     # pytest.main(['-v','--alluredir=report/ST_jsonfile','smoke_test.py'])
-    pytest.main(["-vs", "--alluredir", "temp", '../test_demo/smoke_test.py'])
+    pytest.main(["-v", "--alluredir", "temp", '../test_demo/smoke_test.py'])
     # pytest.main(["-v", "-s", "--alluredir", "../temp", '../test_demo/smoke_test.py'])
 
     # os.system("allure generate ../temp -o ../report --clean")
