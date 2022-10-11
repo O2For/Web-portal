@@ -50,7 +50,7 @@ class subscript(Page):
             pass
 '''
     def golobe_search_(self,email):
-        '''已经注册过的用户进行联结'''
+       
         connect_btu =  Element(xpath="//button/span[contains(text(),'Connect')]",describe="联结按钮")
         con_title = Element()
 

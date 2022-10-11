@@ -2,7 +2,7 @@ import os
 import sys
 #校验路径
 sys.path.append(os.getcwd())
-print(sys.path.append(os.getcwd()))
+print(sys.path)
 from selenium import webdriver
 #POB
 from PageObject.login_page import Login_page
@@ -23,7 +23,7 @@ from Common.config import YamlOperation
 #----------------------------------------------
 #上jenkins要打开
 #两个点点pychram 可以用。      一个点点 jenkins可以用
-os.chdir(os.path.abspath('..') + '/Data')
+os.chdir(os.path.abspath('.') + '/Data')
 # 读取yaml数据文件
 data = YamlOperation(os.getcwd() + "\data.yaml")
 
@@ -59,8 +59,7 @@ class TestCase:
     def test_login(self, drivers):#登录
 
         page_ = Login_page(drivers)
-
-        page_.open(data.Environment.url_qa)
+        page_.get(data.Environment.url_qa)
         page_.email_input.send_keys(data.Bussiness_acc.Admin_email)
         page_.password_input.send_keys(data.Bussiness_acc.Admin_pwd)
         page_.login_button.click()
