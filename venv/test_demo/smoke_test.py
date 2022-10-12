@@ -2,7 +2,7 @@ import os
 import sys
 #校验路径
 sys.path.append(os.getcwd())
-print(sys.path)
+
 from selenium import webdriver
 #POB
 from PageObject.login_page import Login_page
@@ -23,7 +23,7 @@ from Common.config import YamlOperation
 #----------------------------------------------
 #上jenkins要打开
 #两个点点pychram 可以用。      一个点点 jenkins可以用
-os.chdir(os.path.abspath('.') + '/Data')
+os.chdir(os.path.abspath('..') + '/Data')
 # 读取yaml数据文件
 data = YamlOperation(os.getcwd() + "\data.yaml")
 
@@ -55,7 +55,8 @@ class TestCase:
         print("数据初始化成功！  ！")
 
     @pytest.fixture(scope='function', autouse=True)
-    @allure.feature('LOGIN_')
+    
+    @allure.story('LOGIN_')
     def test_login(self, drivers):#登录
 
         page_ = Login_page(drivers)
@@ -65,6 +66,7 @@ class TestCase:
         page_.login_button.click()
 
     @allure.feature('Verify that the status for Connection case is displayed correctly.')
+
     @pytest.mark.skip()
     def test_ST030(self, drivers):
         pass
@@ -79,7 +81,9 @@ class TestCase:
         page_ = invitation_page(drivers)
         with allure.step("open invitation page"):
             page_.system_mune.click()
+
             page_.invitation_mune.click()
+
             sleep(3)
 
             with allure.step("invite ar_fst_email bus free user"):
@@ -166,28 +170,10 @@ class TestCase:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 if __name__ == '__main__':
     # os.chdir(os.path.abspath('..')+'./venv./test_demo')
     # pytest.main(['-v','--alluredir=report/ST_jsonfile','smoke_test.py'])
-    pytest.main(["-v", "--alluredir", "temp", '../test_demo/smoke_test.py'])
+    pytest.main(['-vs','../test_demo/smoke_test.py', "--alluredir=./temp", ])
     # pytest.main(["-v", "-s", "--alluredir", "../temp", '../test_demo/smoke_test.py'])
 
     # os.system("allure generate ../temp -o ../report --clean")

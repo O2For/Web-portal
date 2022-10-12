@@ -1,7 +1,8 @@
 import pytest
 from selenium import webdriver
 import base64
-
+import pytest
+import allure
 from py.xml import html
 
 driver = None
@@ -18,6 +19,32 @@ def drivers(request):
 
     request.addfinalizer(fn)
     return driver
+
+
+@pytest.hookimpl(hookwrapper=True, tryfirst=True)
+#此是用例最终结果的截图
+def pytest_runtest_makereport(item, call):
+
+    """
+       获取每个用例状态的钩子函数
+       :param item: 测试用例
+       :param call: 测试步骤
+       :return:
+       #仅仅获取用例call 执行结果是失败的情况, 不包含 setup/teardown
+       #然后执行  when="call" ，返回call测试用例的执行结果。
+        # 添加allure报告截图
+        # 如果当前webdriverr版本中有该方法，则使用
+       """
+
+    # 获取钩子方法的调用结果
+    outcome = yield
+    rep = outcome.get_result()
+    if rep.when == "call" and rep.failed:
+        print('调用失败截图用具')
+        if hasattr(driver, "get_screenshot_as_png"):
+
+             allure.attach(driver.get_screenshot_as_png(), "shithis a hh", allure.attachment_type.PNG)
+
 
 '''
 @pytest.hookimpl(hookwrapper=True)
