@@ -19,7 +19,7 @@ from Common.db_server import DbMysql
 # 数据准备导入路径
 from Common.config import YamlOperation
 #上jenkins要注释
-os.chdir(os.path.abspath('..') + '/Data')
+os.chdir(os.path.abspath('.') + '/Data')
 # 读取yaml数据文件
 data = YamlOperation(os.getcwd() + "\data.yaml")
 

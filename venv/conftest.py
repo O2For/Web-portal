@@ -61,9 +61,7 @@ def pytest_assume_fail(lineno, entry):
             try:
                 for k, v in i.frame.f_locals.items():
                     if hasattr(v, 'driver'):
-                        print(driver.get_screenshot_as_png())
                         with allure.step('断言失败'):
-
                             allure.attach(driver.get_screenshot_as_png(), "截图", allure.attachment_type.PNG)
                             break
             except Exception:
