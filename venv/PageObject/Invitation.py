@@ -4,7 +4,7 @@ from selenium import webdriver
 class invitation_page(Page):
     system_mune= Element(xpath="//div[contains(text(),'System')]", index=0, timeout=2, describe="invtaion_menu")
 
-    invitation_mune=Element(xpath="//li[contains(text(), 'Invitationa')]",index=0,timeout=2,describe="invtaion_menu")
+    invitation_mune=Element(xpath="//li[contains(text(), 'Invitation')]",index=0,timeout=2,describe="invtaion_menu")
     create_button=Element(xpath="//span[contains(text(),'Create')]", index=0, timeout=2, describe="点击新增用户按钮")
 
     free_email =  Element(xpath="//textarea[@class='el-textarea__inner']",index=2,timeout=1,describe="input invite email")

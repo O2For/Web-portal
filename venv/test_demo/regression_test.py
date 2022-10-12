@@ -2,7 +2,6 @@ import os
 import sys
 #校验路径
 sys.path.append(os.getcwd())
-print(sys.path.append(os.getcwd()))
 from selenium import webdriver
 #POM
 from PageObject.login_page import Login_page

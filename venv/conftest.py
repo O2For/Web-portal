@@ -1,8 +1,11 @@
+import inspect
+
 import pytest
 from selenium import webdriver
 import base64
 import pytest
 import allure
+import os
 from py.xml import html
 
 driver = None
@@ -19,6 +22,9 @@ def drivers(request):
 
     request.addfinalizer(fn)
     return driver
+
+
+
 
 
 @pytest.hookimpl(hookwrapper=True, tryfirst=True)
@@ -43,41 +49,22 @@ def pytest_runtest_makereport(item, call):
         print('调用失败截图用具')
         if hasattr(driver, "get_screenshot_as_png"):
 
-             allure.attach(driver.get_screenshot_as_png(), "shithis a hh", allure.attachment_type.PNG)
+             allure.attach(driver.get_screenshot_as_png(), "失败截图", allure.attachment_type.PNG)
 
 
-'''
-@pytest.hookimpl(hookwrapper=True)
-def pytest_runtest_makereport(item):
-    """
-    当测试失败的时候，自动截图，展示到html报告中
-    :param item:
-    """
-    pytest_html = item.config.pluginmanager.getplugin('html')
-    outcome = yield
-    report = outcome.get_result()
-    extra = getattr(report, 'extra', [])
+@pytest.hookimpl(tryfirst=True)
+def pytest_assume_fail(lineno, entry):
+    file_name = os.getenv('PYTEST_CURRENT_TEST')
+    print(file_name)
+    for i in inspect.stack():
+        #if file_name in i.filename:
+            try:
+                for k, v in i.frame.f_locals.items():
+                    if hasattr(v, 'driver'):
+                        print(driver.get_screenshot_as_png())
+                        with allure.step('断言失败'):
 
-    if report.when == 'call' or report.when == "setup":
-        xfail = hasattr(report, 'wasxfail')
-        if (report.skipped and xfail) or (report.failed and not xfail):
-            screen_img = _capture_screenshot()
-            if screen_img:
-                html = '<div><img src="data:image/png;base64,%s" alt="screenshot" style="width:1024px;height:768px;" ' \
-                       'onclick="window.open(this.src)" align="right"/></div>' % screen_img
-                extra.append(pytest_html.extras.html(html))
-        report.extra = extra
-        report.description = str(item.function.__doc__)
-
-
-def _capture_screenshot():
-    """截图保存为base64"""
-    now_time, screen_path = cm.screen_file
-    driver.save_screenshot(screen_path)
-    allure.attach.file(screen_path, "测试失败截图...{}".format(
-        now_time), allure.attachment_type.PNG)
-    with open(screen_path, 'rb') as f:
-        imagebase64 = base64.b64encode(f.read())
-    return imagebase64.decode()
-
-'''
+                            allure.attach(driver.get_screenshot_as_png(), "截图", allure.attachment_type.PNG)
+                            break
+            except Exception:
+                pass
