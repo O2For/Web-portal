@@ -11,6 +11,7 @@ from PageObject.subscript import subscript
 from time import sleep
 import pytest
 import allure
+from pytest_assume.plugin import assume
 from conftest import drivers
 import re
 # DBsql
@@ -19,7 +20,7 @@ from Common.db_server import DbMysql
 # 数据准备导入路径
 from Common.config import YamlOperation
 #上jenkins要注释
-os.chdir(os.path.abspath('.') + '/Data')
+os.chdir(os.path.abspath('..') + '/Data')
 # 读取yaml数据文件
 data = YamlOperation(os.getcwd() + "\data.yaml")
 
@@ -41,7 +42,7 @@ class TestCase:
     @pytest.mark.skip()
     def test_T46_RegisterCustomer(self,drivers):
         cut = customer_login_page(drivers)
-        cut.open(data.Environment.url_cur_uat);sleep(3)
+        cut.open(data.Environment.url_cur_qa);sleep(3)
         with allure.step("注册email"):
             cut.sign_up.click()
             cut.email.send_keys(data.indi_user_infor.ind_email)
@@ -65,6 +66,8 @@ class TestCase:
         cut = customer_login_page(drivers)
         cut.open(data.Environment.url_cur_uat);sleep(5)
         cut.email.send_keys(email)
+        with allure.step('输入email'):
+            with assume: assert cut.page_.email_input.get_attribute('value')==password
         cut.password.send_keys(password)
         cut.login.click();sleep(3)
 

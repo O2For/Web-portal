@@ -14,7 +14,10 @@ driver = None
 def drivers(request):
     global driver
     if driver is None:
-        driver = webdriver.Chrome()
+        options=webdriver.ChromeOptions()
+        options.add_argument('--incognito')
+        driver = webdriver.Chrome(chrome_options=options)
+
         driver.maximize_window()
 
     def fn():
@@ -48,21 +51,23 @@ def pytest_runtest_makereport(item, call):
     if rep.when == "call" and rep.failed:
         print('调用失败截图用具')
         if hasattr(driver, "get_screenshot_as_png"):
-
-             allure.attach(driver.get_screenshot_as_png(), "失败截图", allure.attachment_type.PNG)
+            with allure.step("当前case 失败截图"):
+                allure.attach(driver.get_screenshot_as_png(), "case 失败截图", allure.attachment_type.PNG)
 
 
 @pytest.hookimpl(tryfirst=True)
 def pytest_assume_fail(lineno, entry):
     file_name = os.getenv('PYTEST_CURRENT_TEST')
-    print(file_name)
+
     for i in inspect.stack():
         #if file_name in i.filename:
             try:
                 for k, v in i.frame.f_locals.items():
                     if hasattr(v, 'driver'):
                         with allure.step('断言失败'):
-                            allure.attach(driver.get_screenshot_as_png(), "截图", allure.attachment_type.PNG)
-                            break
+                            allure.attach(driver.get_screenshot_as_png(), "断言失败 截图", allure.attachment_type.PNG)
+
+                        break
+
             except Exception:
                 pass

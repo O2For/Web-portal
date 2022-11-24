@@ -1,9 +1,13 @@
 #Qa_environment_demo
-Environment:
-  url_qa : "https://g.demo.hengtiansoft.com/#/login"
+Env:
+  url_devqa : "https://g.demo.hengtiansoft.com/#/login"
+  url_qa : "https://login.qa.valid8me.com/#/login"
   url_cur_qa : "https://g.demo.hengtiansoft.com:8444/#/login"
+  url_demo : "https://demo.valid8me.com/#/login"
   url_uat : "https://login.uat.valid8me.com/#/login"
   url_cur_uat : "https://customer.uat.valid8me.com/#/login"
+  url_pre : "https://login.preprod.valid8me.com/#/dashboard"
+  newqa : "https://customer.qa.valid8me.com/#/dashboard"
   test_mail : "https://www.snapmail.cc/#/"
 
 DB:
@@ -31,12 +35,32 @@ Verfiy_code:
   phone_code : 888888
 
 
-corp_user_infor:
-  corp_email : autotest1@snapmail.cc
+corp_inf:
+  corp_email : auto1
   password : Ht@12345
+  LN : AUT_CORP_18
+  TN : TEST_18
+  Jurisdiction : Ireland
+  Number : 123456261
+  Company_Type : Public Limited Company (PLC)
+  Date : 04/10/2022
+  Address : Address
+  logo : \mazars.png
+  logo1 : \valid8me.png
 
-indi_user_infor:
-  ind_email : autotest1@snapmail.cc
+ind_inf:
+  ind_email : autotest_individual_2
   password : Ht@12345
-  fst : aut_ind
-  lst : test1
+  fst : AUT_IND
+  lst : TEST1
+
+Photo_C:
+  BRD : \Board_Resolution_Document.png
+  MOA : \Memorandum of Association.png
+
+
+
+
+
+
+

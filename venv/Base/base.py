@@ -41,12 +41,6 @@ class BasePage(object):
     def by_xpath(self, xpath_):
         return self.driver.find_element_by_xpath(xpath_)
 
-    def by_css(self, css_):
-        return self.driver.find_element_by_css(css_)
-
-    def js(self, script):
-        return driver.execute_script(script)
-
         # 输入
 
     def send(self, selector, value):
@@ -74,41 +68,6 @@ class BasePage(object):
 
             # 点击元素
 
-    def click(self, selector):
-
-        el = self.find_element(selector)
-        try:
-            el.click()
-            logger.info("The element \'%s\' was clicked." % el.text)
-        except NameError as e:
-            logger.error("Failed to click the element with %s" % e)
-
-        # 鼠标事件（左键点击）
-
-    def move_element(self, loc, sloc):
-        mouse = self.find_element(loc)
-        try:
-            ActionChains(self.driver).move_to_element(mouse).perform()
-            self.click(sloc)
-            pass
-        except Exception as e:
-            logger.error("Failed to click move_element with %s" % e)
-            self.get_windows_img()
-
-        # 强制等待
-
-    def isEmlementexist(self, ele):
-        flag = True
-        try:
-            brow = self.driver
-            brow.find_element_by_xpath(ele)
-            return flag
-
-        except:
-            print("can not find this element!" + ele)
-            flag = False
-            return False
-
     def get_title(self):
         '''获取title'''
         title = self.driver.title
@@ -122,9 +81,9 @@ class BasePage(object):
 
         return self.by_xpath(xpath).text
 
-    @staticmethod
-    def sleep(seconds):
-        time.sleep(seconds)
-        logger.info("Sleep for %d seconds" % seconds)
+class InvalidElementException(Exception):
+    pass
+
+
 
 

@@ -24,7 +24,7 @@ from Common.config import YamlOperation
 #----------------------------------------------
 #上jenkins要打开
 #两个点点pychram 可以用。      一个点点 jenkins可以用
-os.chdir(os.path.abspath('.') + '/Data')
+os.chdir(os.path.abspath('..') + '/Data')
 # 读取yaml数据文件
 data = YamlOperation(os.getcwd() + "\data.yaml")
 
@@ -64,7 +64,7 @@ class TestCase:
         page_.get(data.Environment.url_qa)
         page_.email_input.send_keys(data.Bussiness_acc.Admin_email)
         page_.password_input.send_keys(data.Bussiness_acc.Admin_pwd)
-        with assume:assert page_.email_input.get_attribute('value')==data.Bussiness_acc.Admin_pwd
+        with assume:assert page_.email_input.get_attribute('value')==data.Bussiness_acc.Admin_email
         page_.login_button.click()
 
     @allure.feature('Verify that the status for Connection case is displayed correctly.')

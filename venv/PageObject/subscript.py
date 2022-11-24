@@ -48,11 +48,5 @@ class subscript(Page):
             time.sleep(3)
             save_btu.click()
             pass
-'''
-    def golobe_search_(self,email):
-       
-        connect_btu =  Element(xpath="//button/span[contains(text(),'Connect')]",describe="联结按钮")
-        con_title = Element()
 
-'''
 
