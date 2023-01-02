@@ -15,7 +15,7 @@ def drivers(request):
     global driver
     if driver is None:
         options=webdriver.ChromeOptions()
-        options.add_argument('--incognito')
+        #options.add_argument('--incognito') #无痕
         driver = webdriver.Chrome(chrome_options=options)
 
         driver.maximize_window()

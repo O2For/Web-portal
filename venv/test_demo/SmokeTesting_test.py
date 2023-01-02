@@ -10,6 +10,7 @@ from PageObject.snapmail_page import *
 from PageObject.customer_system_page import *
 from PageObject.business_login import LoginPage
 from PageObject.dashborad_page import *
+from PageObject.customer_connections_companies_page import *
 from PageObject.customer_action_page import *
 from PageObject.message_template_page import Template
 #
@@ -210,93 +211,75 @@ class TestCaes:
     @allure.story('Verify that the portal should be able to search and connect with a new corporate user.')
     #def test_St094(self,drivers,login_username,login_password,newemail,product):
     def test_St094(self,drivers):
-        email='to10@mfk.app';
-        #email = 'hh@snapmail.cc';
+        #email='to10@mfk.app';
+        email = '4c1@snapmail.cc';
         password='Ht@12345'
         porduct_name='AUTO_T'
         #porduct_name = 'corp'
 
         username='to10'
         mail_type=1
+
         doc_photo=os.getcwd() + data.Photo_C.BRD
-
-
         bus = LoginPage(drivers)
-        with allure.step('login_business_portal'):
+        # with allure.step('login_business_portal'):
+        #
+        #
+        #     bus.open(data.Env.url_devqa);sleep(3)
+        #     bus.login_username.send_keys('gulong@snapmail.cc')
+        #     bus.login_password.send_keys('Ht@12345')
+        #     bus.login_button.click()
+        # with allure.step('You will need to select the product/service you are connecting for'):
+        #
+        #     nav=NavigationBar(drivers)
+        #     with allure.step('send invite'):
+        #         nav.global_search_invite(email,porduct_name,'invite-email')
+        #     with allure.step('Check mailbox'):
+        #
+        #         mailbox=MailBox(drivers) # 调用脚本
+        #         mailbox.open_Mail()
+        #         mailbox.create_new_email(username)
+        #     with allure.step('Receive an email to set up a valid8me account.'):
+        #         email_name=mailbox.email_type_call(email, mail_type);
+        #     with allure.step('The user use email link to customer portal'):
+        #         assert email_name==email
+        #
+        #     with allure.step('Customer could register successfully.'):
+        #         cus=customer_login_page(drivers)
+        #         cus.register_password_field.send_keys(password)
+        #         cus.register_passwordRepeat_field.send_keys(password)
+        #
+        #         cus.accept_read.click()
+        #         cus.register_confirm_button.click();
+        #         sleep(3)
+        #         cus.code_input.send_keys("666666")
+        #         cus.confirm_btu.click()
+        #         cus.legalName.send_keys(username)
+        #         cus.tradingName.send_keys(username)
+        #         cus.register_profile_corporate_confirm_button.click();sleep(3)
+        #         with allure.step('close closeProfile_SetUp'):
+        #             page = CustomerHomePage(drivers)
+        #             page.closeProfile_SetUp()  # 关闭弹窗;
+        #             sleep(3)
 
+        '''此处是单独的customer portal 登录脚本'''
+        cuss=customer_login_page(drivers)
+        cuss.open(data.Env.newqa);sleep(3)
+        cuss.email.send_keys(email)
+        cuss.password.send_keys(password)
+        cuss.login.click();sleep(3)
+        #action=ActionPage(drivers)
+        # with allure.step('d. This user will check this action in my action list'):
+        #     action.open_Action_Page()
+        #     action.open_new_prod_action(porduct_name)
 
-            bus.open(data.Env.url_devqa);sleep(3)
-            bus.login_username.send_keys('gulong@snapmail.cc')
-            bus.login_password.send_keys('Ht@12345')
-            bus.login_button.click()
-        with allure.step('You will need to select the product/service you are connecting for'):
-
-            nav=NavigationBar(drivers)
-            with allure.step('send invite'):
-                nav.global_search_invite(email,porduct_name,'invite-email')
-            with allure.step('Check mailbox'):
-
-                mailbox=MailBox(drivers) # 调用脚本
-                mailbox.open_Mail()
-                mailbox.create_new_email(username)
-            with allure.step('Receive an email to set up a valid8me account.'):
-                email_name=mailbox.email_type_call(email, mail_type);
-            with allure.step('The user use email link to customer portal'):
-                assert email_name==email
-
-            with allure.step('Customer could register successfully.'):
-                cus=customer_login_page(drivers)
-                cus.register_password_field.send_keys(password)
-                cus.register_passwordRepeat_field.send_keys(password)
-
-                cus.accept_read.click()
-                cus.register_confirm_button.click();
-                sleep(3)
-                cus.code_input.send_keys("666666")
-                cus.confirm_btu.click()
-                cus.legalName.send_keys(username)
-                cus.tradingName.send_keys(username)
-                cus.register_profile_corporate_confirm_button.click();sleep(3)
-                with allure.step('close closeProfile_SetUp'):
-                    page = CustomerHomePage(drivers)
-                    page.closeProfile_SetUp()  # 关闭弹窗;
-                    sleep(3)
-
-        #cuss=customer_login_page(drivers)
-        #cuss.open(data.Env.url_cur_qa);sleep(3)
-        # cuss.email.send_keys(email)
-        # cuss.password.send_keys(password)
-        # cuss.login.click();sleep(3)
-        action=ActionPage(drivers)
-        with allure.step('d. This user will check this action in my action list'):
-            action.open_Action_Page()
-            action.open_new_prod_action(porduct_name)
-        with allure.step('e. The user uplod all need docs and click consent,'):
-            action.upload_action_doc(doc_photo)
-            action.consent_action()
-        with allure.step('should be able to see who can access them by clicking  Recent Shares' ):
+        # with allure.step('e. The user uplod all need docs and click consent,'):
+        #     action.upload_action_doc(doc_photo)
+        #     action.consent_action()
+        with allure.step('The user uplod all need docs and click consent,should be able to see who can access them and what documents they can see by clicking  ‘Recent Shares’ and companies page'):
             RecentShares(drivers).view_all.click();sleep(3)
-            assert 1==2
-
-
-
-
-
-
-
-
-
-    # def test_one(self,drivers):
-    #
-    #     b=StCv(drivers)
-    #     b.open("https://www.baidu.com/")
-    #     sleep(3)
-    #    # b.news.
-         #b.news.click_and_ctrl()
-    #     b.switch_to_window(1)
-    #     b.ins.send_keys("123")
-    #
-    #     sleep(3)
+            cuss=Companies(drivers)
+            document_list=cuss.ReturnSharedDocuments()
 
 
 
@@ -340,13 +323,3 @@ if __name__ == '__main__':
     pytest.main(['-vs', '../test_demo/SmokeTesting_test.py'])
     #os.system("allure generate ./temp_st -o ./report_st --clean")
 
-
-
-
-
-'''
-
-        
-        
-
-'''

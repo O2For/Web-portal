@@ -2,26 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f707d16d-7ed5-496e-a5e3-532d842b7c34" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/venv/Data/Board_Resolution_Document.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Data/Memorandum of Association.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Data/mazars.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/Data/validme.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/PageObject/business_login.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/PageObject/customer_action_page.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/PageObject/customer_system_page.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/PageObject/message_template_page.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/PageObject/snapmail_page.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/test_demo/SmokeTesting_test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/PageObject/customer_connections_companies_page.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Base/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Base/base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Base/scratch.md" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Base/scratch.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/Data/data.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Data/data.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/PageObject/customer_login.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/PageObject/customer_login.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/PageObject/dashborad_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/PageObject/dashborad_page.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/PageObject/subscript.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/PageObject/subscript.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/PageObject/customer_action_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/PageObject/customer_action_page.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/test_demo/regression_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/test_demo/regression_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/test_demo/smoke_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/test_demo/smoke_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/test_demo/SmokeTesting_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/test_demo/SmokeTesting_test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,8 +20,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/venv/PageObject/customer_login.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="107" column="18" selection-start-line="107" selection-start-column="6" selection-end-line="107" selection-end-column="18" />
+            <state relative-caret-position="364">
+              <caret line="109" selection-start-line="109" selection-end-line="109" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -46,10 +32,24 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/venv/test_demo/SmokeTesting_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="225" column="12" selection-start-line="225" selection-start-column="12" selection-end-line="225" selection-end-column="12" />
+            <state relative-caret-position="133">
+              <caret line="279" column="43" lean-forward="true" selection-start-line="279" selection-start-column="43" selection-end-line="279" selection-end-column="43" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
+                <element signature="e#10590#10634#0" />
+                <element signature="e#12792#12868#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/venv/PageObject/customer_connections_companies_page.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="161">
+              <caret line="7" column="91" selection-start-line="7" selection-start-column="91" selection-end-line="7" selection-end-column="91" />
+              <folding>
+                <element signature="e#0#40#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -58,8 +58,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../pytest_study1/venv/Lib/site-packages/poium/selenium.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2762">
-              <caret line="572" column="44" lean-forward="true" selection-start-line="572" selection-start-column="44" selection-end-line="572" selection-end-column="44" />
+            <state relative-caret-position="187">
+              <caret line="251" selection-start-line="251" selection-end-line="251" />
               <folding>
                 <element signature="e#9197#9352#0" />
                 <element signature="e#10138#10286#0" />
@@ -103,32 +103,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/Data/report_st/index.html">
+        <entry file="file://$PROJECT_DIR$/../pytest_study1/venv/Lib/site-packages/selenium/webdriver/remote/webelement.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="4" column="32" lean-forward="true" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
+            <state relative-caret-position="8740">
+              <caret line="395" selection-start-line="395" selection-end-line="395" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/PageObject/business_login.py">
+        <entry file="file://$PROJECT_DIR$/venv/Data/data.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="4" column="43" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/PageObject/customer_action_page.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="19" column="63" selection-start-line="19" selection-start-column="63" selection-end-line="19" selection-end-column="63" />
-              <folding>
-                <element signature="e#0#40#0" expanded="true" />
-                <element signature="e#631#1125#0" />
-              </folding>
+            <state relative-caret-position="184">
+              <caret line="8" column="55" selection-start-line="8" selection-start-column="55" selection-end-line="8" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -136,8 +123,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/venv/conftest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="66" column="49" lean-forward="true" selection-start-line="66" selection-start-column="49" selection-end-line="66" selection-end-column="49" />
+            <state relative-caret-position="253">
+              <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
                 <element signature="e#642#896#1" />
@@ -147,34 +134,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/PageObject/dashborad_page.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="409">
-              <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="16" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/Data/data.yaml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="9" column="52" selection-start-line="9" selection-start-column="52" selection-end-line="9" selection-end-column="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/PageObject/message_template_page.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
-              <folding>
-                <element signature="e#0#30#0" expanded="true" />
-              </folding>
+        <entry file="file://$PROJECT_DIR$/venv/Base/scratch.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="46">
+                <caret line="2" column="39" lean-forward="true" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="48" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -263,24 +229,25 @@
         <option value="$PROJECT_DIR$/venv/PageObject/subscript.py" />
         <option value="$PROJECT_DIR$/venv/PageObject/test_page.py" />
         <option value="$PROJECT_DIR$/venv/PageObject/business_login.py" />
-        <option value="$PROJECT_DIR$/venv/Base/scratch.md" />
-        <option value="$PROJECT_DIR$/venv/Data/data.yaml" />
         <option value="$PROJECT_DIR$/venv/PageObject/dashborad_page.py" />
-        <option value="$PROJECT_DIR$/venv/conftest.py" />
         <option value="$PROJECT_DIR$/venv/PageObject/snapmail_page.py" />
         <option value="$PROJECT_DIR$/../pytest_study1/venv/Lib/site-packages/poium/selenium.py" />
         <option value="$PROJECT_DIR$/venv/PageObject/message_template_page.py" />
-        <option value="$PROJECT_DIR$/venv/PageObject/customer_action_page.py" />
         <option value="$PROJECT_DIR$/venv/PageObject/customer_login.py" />
+        <option value="$PROJECT_DIR$/venv/PageObject/customer_action_page.py" />
         <option value="$PROJECT_DIR$/venv/test_demo/SmokeTesting_test.py" />
+        <option value="$PROJECT_DIR$/venv/conftest.py" />
+        <option value="$PROJECT_DIR$/venv/Base/scratch.md" />
+        <option value="$PROJECT_DIR$/venv/Data/data.yaml" />
+        <option value="$PROJECT_DIR$/venv/PageObject/customer_connections_companies_page.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-12" />
-    <option name="y" value="-12" />
-    <option name="width" value="2904" />
-    <option name="height" value="1644" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-1616" />
+    <option name="y" value="110" />
+    <option name="width" value="1278" />
+    <option name="height" value="984" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -288,6 +255,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -310,19 +278,37 @@
               <item name="pytest_study" type="b2602c69:ProjectViewProjectNode" />
               <item name="pytest_study" type="462c0819:PsiDirectoryNode" />
               <item name="venv" type="462c0819:PsiDirectoryNode" />
+              <item name="Common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pytest_study" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pytest_study" type="462c0819:PsiDirectoryNode" />
+              <item name="venv" type="462c0819:PsiDirectoryNode" />
               <item name="Data" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pytest_study" type="b2602c69:ProjectViewProjectNode" />
               <item name="pytest_study" type="462c0819:PsiDirectoryNode" />
               <item name="venv" type="462c0819:PsiDirectoryNode" />
-              <item name="PageObject" type="462c0819:PsiDirectoryNode" />
+              <item name="Include" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pytest_study" type="b2602c69:ProjectViewProjectNode" />
               <item name="pytest_study" type="462c0819:PsiDirectoryNode" />
               <item name="venv" type="462c0819:PsiDirectoryNode" />
-              <item name="test_demo" type="462c0819:PsiDirectoryNode" />
+              <item name="Lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pytest_study" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pytest_study" type="462c0819:PsiDirectoryNode" />
+              <item name="venv" type="462c0819:PsiDirectoryNode" />
+              <item name="Logs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pytest_study" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pytest_study" type="462c0819:PsiDirectoryNode" />
+              <item name="venv" type="462c0819:PsiDirectoryNode" />
+              <item name="PageObject" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pytest_study" type="b2602c69:ProjectViewProjectNode" />
@@ -337,7 +323,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -736,7 +721,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665583919725</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="2022 11/23jenkins">
+      <created>1669279667892</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1669279667892</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TodoView">
@@ -749,20 +741,20 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <frame x="-1616" y="110" width="1278" height="984" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22954726" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.29354838" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32874617" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49920508" weight="0.053285968" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49920508" visible="true" weight="0.3070588" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49920508" weight="0.27944574" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32794458" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49841017" weight="0.15856482" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49841017" weight="0.15819861" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.29067245" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50158983" side_tool="true" weight="0.15856482" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.085450344" />
@@ -771,17 +763,17 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22954726" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29354838" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32874617" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49920508" visible="true" weight="0.053285968" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49920508" visible="true" weight="0.26941177" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49920508" weight="0.27944574" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32794458" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49841017" weight="0.15856482" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49841017" weight="0.15819861" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.29067245" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50158983" side_tool="true" weight="0.15856482" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.085450344" />
@@ -845,7 +837,8 @@
     <MESSAGE value="2022 10/11 jenkins 可用修复login_page找不到根目录问题" />
     <MESSAGE value="2022 10/12 jenkins 可用" />
     <MESSAGE value="2022 10/12 jenkins 软断言" />
-    <option name="LAST_COMMIT_MESSAGE" value="2022 10/12 jenkins 软断言" />
+    <MESSAGE value="2022 11/23jenkins" />
+    <option name="LAST_COMMIT_MESSAGE" value="2022 11/23jenkins" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -873,20 +866,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/venv/test_demo/someting_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../pytest_study1/venv/Lib/site-packages/_pytest/runner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="173" selection-start-line="173" selection-end-line="173" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../pytest_study1/venv/Lib/site-packages/pluggy/_manager.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
@@ -1027,16 +1006,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Base/scratch.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="188">
-            <caret line="14" column="52" selection-start-line="14" selection-start-column="52" selection-end-line="14" selection-end-column="52" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../pytest_study1/venv/Lib/site-packages/pluggy/_callers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="193">
@@ -1128,13 +1097,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../pytest_study1/venv/Lib/site-packages/selenium/webdriver/remote/webdriver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="890" selection-start-line="890" selection-end-line="890" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/PageObject/customer_system_page.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
@@ -1169,13 +1131,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../pytest_study1/venv/Lib/site-packages/selenium/webdriver/remote/webelement.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="87" selection-start-line="87" selection-end-line="87" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../pytest_study1/venv/Lib/site-packages/_pytest/python.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="193">
@@ -1193,16 +1148,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/PageObject/customer_login.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="107" column="18" selection-start-line="107" selection-start-column="6" selection-end-line="107" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/PageObject/business_login.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
@@ -1210,23 +1155,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Data/report_st/index.html">
+    <entry file="file://$PROJECT_DIR$/venv/Data/temp_st/a3778dd1-7577-4c4d-9081-f830f21349d8-attachment.png" />
+    <entry file="file://$PROJECT_DIR$/venv/Data/report_st/index.html" />
+    <entry file="file://$PROJECT_DIR$/../pytest_study1/venv/Lib/site-packages/selenium/webdriver/remote/webelement.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="32" lean-forward="true" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
+        <state relative-caret-position="8740">
+          <caret line="395" selection-start-line="395" selection-end-line="395" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Data/data.yaml">
+    <entry file="file://$PROJECT_DIR$/../pytest_study1/venv/Lib/site-packages/selenium/webdriver/remote/webdriver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="52" selection-start-line="9" selection-start-column="52" selection-end-line="9" selection-end-column="52" />
+        <state relative-caret-position="9039">
+          <caret line="430" selection-start-line="430" selection-end-line="431" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/PageObject/dashborad_page.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
+        <state relative-caret-position="552">
           <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="16" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
@@ -1236,19 +1183,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/PageObject/customer_action_page.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="19" column="63" selection-start-line="19" selection-start-column="63" selection-end-line="19" selection-end-column="63" />
+        <state>
+          <caret selection-end-line="1" selection-end-column="11" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
-            <element signature="e#631#1125#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/conftest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="66" column="49" lean-forward="true" selection-start-line="66" selection-start-column="49" selection-end-line="66" selection-end-column="49" />
+        <state relative-caret-position="253">
+          <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
             <element signature="e#642#896#1" />
@@ -1256,10 +1202,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Base/scratch.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="46">
+            <caret line="2" column="39" lean-forward="true" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="48" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/PageObject/customer_login.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="109" selection-start-line="109" selection-end-line="109" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Data/data.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="55" selection-start-line="8" selection-start-column="55" selection-end-line="8" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../pytest_study1/venv/Lib/site-packages/poium/selenium.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2762">
-          <caret line="572" column="44" lean-forward="true" selection-start-line="572" selection-start-column="44" selection-end-line="572" selection-end-column="44" />
+        <state relative-caret-position="187">
+          <caret line="251" selection-start-line="251" selection-end-line="251" />
           <folding>
             <element signature="e#9197#9352#0" />
             <element signature="e#10138#10286#0" />
@@ -1301,12 +1274,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/venv/PageObject/customer_connections_companies_page.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="7" column="91" selection-start-line="7" selection-start-column="91" selection-end-line="7" selection-end-column="91" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/venv/test_demo/SmokeTesting_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="225" column="12" selection-start-line="225" selection-start-column="12" selection-end-line="225" selection-end-column="12" />
+        <state relative-caret-position="133">
+          <caret line="279" column="43" lean-forward="true" selection-start-line="279" selection-start-column="43" selection-end-line="279" selection-end-column="43" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#10590#10634#0" />
+            <element signature="e#12792#12868#0" />
           </folding>
         </state>
       </provider>

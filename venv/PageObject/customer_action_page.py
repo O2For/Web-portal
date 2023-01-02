@@ -12,7 +12,7 @@ class ActionPage(Page):
     def open_new_prod_action(self,prod):
         '''传入 product name 以此来打开对应的product '''
         xpath='//div[contains(text(),"{}")]'.format(prod)
-        Element(xpath=xpath).click();time.sleep(3)
+        Element(xpath=xpath).click();time.sleep(5)
 
     def consent_action(self):
         '''consent button of action'''

@@ -6,8 +6,8 @@ Env:
   url_demo : "https://demo.valid8me.com/#/login"
   url_uat : "https://login.uat.valid8me.com/#/login"
   url_cur_uat : "https://customer.uat.valid8me.com/#/login"
-  url_pre : "https://login.preprod.valid8me.com/#/dashboard"
-  newqa : "https://customer.qa.valid8me.com/#/dashboard"
+  url_pre : "https://login.preprod.valid8me.com/#/login"
+  newqa : "https://customer.qa.valid8me.com/#/login"
   test_mail : "https://www.snapmail.cc/#/"
 
 DB:
