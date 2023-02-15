@@ -1,0 +1,77 @@
+{
+  "uid" : "b1a8273437954620fa374b796ffaacdd",
+  "name" : "behaviors",
+  "children" : [ {
+    "name" : "Somke Testing Valid8Me v2.8.0",
+    "children" : [ {
+      "name" : "Verify that the corporate user could be set up successfully.",
+      "children" : [ {
+        "name" : "test_St089[End user-terms-auto1-@snapmail.cc-Ht@12345-https://www.snapmail.cc/#/-auto1-TEST_18]",
+        "uid" : "da1249a4cf7abc7a",
+        "parentUid" : "3f0e21ef88f5926307df1cc8996e1a09",
+        "status" : "skipped",
+        "time" : {
+          "start" : 1676435106098,
+          "stop" : 1676435106098,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'@snapmail.cc'", "'auto1'", "'https://www.snapmail.cc/#/'", "'auto1'", "'Ht@12345'", "'End user-terms'", "'TEST_18'" ]
+      } ],
+      "uid" : "3f0e21ef88f5926307df1cc8996e1a09"
+    }, {
+      "name" : "When setting up a individual account:",
+      "children" : [ {
+        "name" : "test_St090[End user-terms-@snapmail.cc-Ht@12345-https://www.snapmail.cc/#/-autotest_individual_2-None-None]",
+        "uid" : "bacd3c3a0affae47",
+        "parentUid" : "6f4e93a17aa553861733197384bb7880",
+        "status" : "skipped",
+        "time" : {
+          "start" : 1676435106108,
+          "stop" : 1676435106108,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'@snapmail.cc'", "None", "None", "'https://www.snapmail.cc/#/'", "'autotest_individual_2'", "'Ht@12345'", "'End user-terms'" ]
+      } ],
+      "uid" : "6f4e93a17aa553861733197384bb7880"
+    }, {
+      "name" : "Verify the workflow for register corporate account can be completed successfully.",
+      "children" : [ {
+        "name" : "test_St091[TEST_18-Ireland-123456261-Public Limited Company (PLC)-04/10/2022-Address]",
+        "uid" : "c75a6e841d4d62b8",
+        "parentUid" : "10a834de8d7c249bf86ef5965fecfeb8",
+        "status" : "skipped",
+        "time" : {
+          "start" : 1676435106111,
+          "stop" : 1676435106111,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'Address'", "'Public Limited Company (PLC)'", "'04/10/2022'", "'Ireland'", "123456261", "'TEST_18'" ]
+      } ],
+      "uid" : "10a834de8d7c249bf86ef5965fecfeb8"
+    }, {
+      "name" : "Verify that the portal should be able to search and connect with a new corporate user.",
+      "children" : [ {
+        "name" : "这个是标题",
+        "uid" : "b96ebd13c6ae3430",
+        "parentUid" : "3e3c21383e2ce2f1781e1e3bca477f4e",
+        "status" : "failed",
+        "time" : {
+          "start" : 1676435112231,
+          "stop" : 1676435135810,
+          "duration" : 23579
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "3e3c21383e2ce2f1781e1e3bca477f4e"
+    } ],
+    "uid" : "9b1ff6d208106adb1abdc391c53d9ab3"
+  } ]
+}

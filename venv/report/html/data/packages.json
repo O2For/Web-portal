@@ -1,0 +1,61 @@
+{
+  "uid" : "83edc06c07f9ae9e47eb6dd1b683e4e2",
+  "name" : "packages",
+  "children" : [ {
+    "name" : "test_demo.SmokeTesting_test",
+    "children" : [ {
+      "name" : "test_St089[End user-terms-auto1-@snapmail.cc-Ht@12345-https://www.snapmail.cc/#/-auto1-TEST_18]",
+      "uid" : "da1249a4cf7abc7a",
+      "parentUid" : "be51a538195332d55308910fcbdf4d0e",
+      "status" : "skipped",
+      "time" : {
+        "start" : 1676435106098,
+        "stop" : 1676435106098,
+        "duration" : 0
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "'@snapmail.cc'", "'auto1'", "'https://www.snapmail.cc/#/'", "'auto1'", "'Ht@12345'", "'End user-terms'", "'TEST_18'" ]
+    }, {
+      "name" : "test_St090[End user-terms-@snapmail.cc-Ht@12345-https://www.snapmail.cc/#/-autotest_individual_2-None-None]",
+      "uid" : "bacd3c3a0affae47",
+      "parentUid" : "be51a538195332d55308910fcbdf4d0e",
+      "status" : "skipped",
+      "time" : {
+        "start" : 1676435106108,
+        "stop" : 1676435106108,
+        "duration" : 0
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "'@snapmail.cc'", "None", "None", "'https://www.snapmail.cc/#/'", "'autotest_individual_2'", "'Ht@12345'", "'End user-terms'" ]
+    }, {
+      "name" : "test_St091[TEST_18-Ireland-123456261-Public Limited Company (PLC)-04/10/2022-Address]",
+      "uid" : "c75a6e841d4d62b8",
+      "parentUid" : "be51a538195332d55308910fcbdf4d0e",
+      "status" : "skipped",
+      "time" : {
+        "start" : 1676435106111,
+        "stop" : 1676435106111,
+        "duration" : 0
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "'Address'", "'Public Limited Company (PLC)'", "'04/10/2022'", "'Ireland'", "123456261", "'TEST_18'" ]
+    }, {
+      "name" : "这个是标题",
+      "uid" : "b96ebd13c6ae3430",
+      "parentUid" : "be51a538195332d55308910fcbdf4d0e",
+      "status" : "failed",
+      "time" : {
+        "start" : 1676435112231,
+        "stop" : 1676435135810,
+        "duration" : 23579
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ ]
+    } ],
+    "uid" : "test_demo.SmokeTesting_test"
+  } ]
+}

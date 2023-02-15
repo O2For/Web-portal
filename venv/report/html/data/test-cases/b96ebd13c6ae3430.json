@@ -1,0 +1,174 @@
+{
+  "uid" : "b96ebd13c6ae3430",
+  "name" : "这个是标题",
+  "fullName" : "test_demo.SmokeTesting_test.TestCaes#test_St094",
+  "historyId" : "1925af2e579d7d22395e168a145a29ea",
+  "time" : {
+    "start" : 1676435112231,
+    "stop" : 1676435135810,
+    "duration" : 23579
+  },
+  "status" : "failed",
+  "statusMessage" : "AssertionError: assert 1 != 1",
+  "statusTrace" : "self = <venv.test_demo.SmokeTesting_test.TestCaes object at 0x000001A6F161C288>\ndrivers = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"997f88fa760adb3607ec72147ca865a4\")>\n\n    @allure.story('Verify that the portal should be able to search and connect with a new corporate user.')\n    @allure.title('这个是标题')\n    @allure.step('这个是步骤')\n    \n    #def test_St094(self,drivers,login_username,login_password,newemail,product):\n    def test_St094(self,drivers):\n    \n        #email='to10@mfk.app';\n        email = '4c1@snapmail.cc';\n    \n        password='Ht@12345'\n        porduct_name='AUTO_T'\n        #porduct_name = 'corp'\n    \n        username='to10'\n        mail_type=1\n    \n        doc_photo=os.getcwd() + data.Photo_C.BRD\n        bus = LoginPage(drivers)\n        # with allure.step('login_business_portal'):\n        #\n        #\n        #     bus.open(data.Env.url_devqa);sleep(3)\n        #     bus.login_username.send_keys('gulong@snapmail.cc')\n        #     bus.login_password.send_keys('Ht@12345')\n        #     bus.login_button.click()\n        # with allure.step('You will need to select the product/service you are connecting for'):\n        #\n        #     nav=NavigationBar(drivers)\n        #     with allure.step('send invite'):\n        #         nav.global_search_invite(email,porduct_name,'invite-email')\n        #     with allure.step('Check mailbox'):\n        #\n        #         mailbox=MailBox(drivers) # 调用脚本\n        #         mailbox.open_Mail()\n        #         mailbox.create_new_email(username)\n        #     with allure.step('Receive an email to set up a valid8me account.'):\n        #         email_name=mailbox.email_type_call(email, mail_type);\n        #     with allure.step('The user use email link to customer portal'):\n        #         assert email_name==email\n        #\n        #     with allure.step('Customer could register successfully.'):\n        #         cus=customer_login_page(drivers)\n        #         cus.register_password_field.send_keys(password)\n        #         cus.register_passwordRepeat_field.send_keys(password)\n        #\n        #         cus.accept_read.click()\n        #         cus.register_confirm_button.click();\n        #         sleep(3)\n        #         cus.code_input.send_keys(\"666666\")\n        #         cus.confirm_btu.click()\n        #         cus.legalName.send_keys(username)\n        #         cus.tradingName.send_keys(username)\n        #         cus.register_profile_corporate_confirm_button.click();sleep(3)\n        #         with allure.step('close closeProfile_SetUp'):\n        #             page = CustomerHomePage(drivers)\n        #             page.closeProfile_SetUp()  # 关闭弹窗;\n        #             sleep(3)\n    \n        '''此处是单独的customer portal 登录脚本'''\n        cuss=customer_login_page(drivers)\n        cuss.open(data.Env.newqa);sleep(3)\n        cuss.email.send_keys(email)\n        cuss.password.send_keys(password)\n        cuss.login.click();sleep(3)\n        #action=ActionPage(drivers)\n        # with allure.step('d. This user will check this action in my action list'):\n        #     action.open_Action_Page()\n        #     action.open_new_prod_action(porduct_name)\n    \n        # with allure.step('e. The user uplod all need docs and click consent,'):\n        #     action.upload_action_doc(doc_photo)\n        #     action.consent_action()\n        with allure.step('The user uplod all need docs and click consent,should be able to see who can access them and what documents they can see by clicking  ‘Recent Shares’ and companies page'):\n            RecentShares(drivers).view_all.click();sleep(3)\n            cuss=Companies(drivers)\n            document_list=cuss.ReturnSharedDocuments()\n>           assert 1!=1\nE           assert 1 != 1\n\nD:\\Users\\jianghaodong\\PycharmProjects\\pytest_study\\venv\\test_demo\\SmokeTesting_test.py:289: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "drivers",
+    "time" : {
+      "start" : 1676435106124,
+      "stop" : 1676435112230,
+      "duration" : 6106
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "AssertionError: assert 1 != 1",
+    "statusTrace" : "self = <venv.test_demo.SmokeTesting_test.TestCaes object at 0x000001A6F161C288>\ndrivers = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"997f88fa760adb3607ec72147ca865a4\")>\n\n    @allure.story('Verify that the portal should be able to search and connect with a new corporate user.')\n    @allure.title('这个是标题')\n    @allure.step('这个是步骤')\n    \n    #def test_St094(self,drivers,login_username,login_password,newemail,product):\n    def test_St094(self,drivers):\n    \n        #email='to10@mfk.app';\n        email = '4c1@snapmail.cc';\n    \n        password='Ht@12345'\n        porduct_name='AUTO_T'\n        #porduct_name = 'corp'\n    \n        username='to10'\n        mail_type=1\n    \n        doc_photo=os.getcwd() + data.Photo_C.BRD\n        bus = LoginPage(drivers)\n        # with allure.step('login_business_portal'):\n        #\n        #\n        #     bus.open(data.Env.url_devqa);sleep(3)\n        #     bus.login_username.send_keys('gulong@snapmail.cc')\n        #     bus.login_password.send_keys('Ht@12345')\n        #     bus.login_button.click()\n        # with allure.step('You will need to select the product/service you are connecting for'):\n        #\n        #     nav=NavigationBar(drivers)\n        #     with allure.step('send invite'):\n        #         nav.global_search_invite(email,porduct_name,'invite-email')\n        #     with allure.step('Check mailbox'):\n        #\n        #         mailbox=MailBox(drivers) # 调用脚本\n        #         mailbox.open_Mail()\n        #         mailbox.create_new_email(username)\n        #     with allure.step('Receive an email to set up a valid8me account.'):\n        #         email_name=mailbox.email_type_call(email, mail_type);\n        #     with allure.step('The user use email link to customer portal'):\n        #         assert email_name==email\n        #\n        #     with allure.step('Customer could register successfully.'):\n        #         cus=customer_login_page(drivers)\n        #         cus.register_password_field.send_keys(password)\n        #         cus.register_passwordRepeat_field.send_keys(password)\n        #\n        #         cus.accept_read.click()\n        #         cus.register_confirm_button.click();\n        #         sleep(3)\n        #         cus.code_input.send_keys(\"666666\")\n        #         cus.confirm_btu.click()\n        #         cus.legalName.send_keys(username)\n        #         cus.tradingName.send_keys(username)\n        #         cus.register_profile_corporate_confirm_button.click();sleep(3)\n        #         with allure.step('close closeProfile_SetUp'):\n        #             page = CustomerHomePage(drivers)\n        #             page.closeProfile_SetUp()  # 关闭弹窗;\n        #             sleep(3)\n    \n        '''此处是单独的customer portal 登录脚本'''\n        cuss=customer_login_page(drivers)\n        cuss.open(data.Env.newqa);sleep(3)\n        cuss.email.send_keys(email)\n        cuss.password.send_keys(password)\n        cuss.login.click();sleep(3)\n        #action=ActionPage(drivers)\n        # with allure.step('d. This user will check this action in my action list'):\n        #     action.open_Action_Page()\n        #     action.open_new_prod_action(porduct_name)\n    \n        # with allure.step('e. The user uplod all need docs and click consent,'):\n        #     action.upload_action_doc(doc_photo)\n        #     action.consent_action()\n        with allure.step('The user uplod all need docs and click consent,should be able to see who can access them and what documents they can see by clicking  ‘Recent Shares’ and companies page'):\n            RecentShares(drivers).view_all.click();sleep(3)\n            cuss=Companies(drivers)\n            document_list=cuss.ReturnSharedDocuments()\n>           assert 1!=1\nE           assert 1 != 1\n\nD:\\Users\\jianghaodong\\PycharmProjects\\pytest_study\\venv\\test_demo\\SmokeTesting_test.py:289: AssertionError",
+    "steps" : [ {
+      "name" : "这个是步骤",
+      "time" : {
+        "start" : 1676435112231,
+        "stop" : 1676435135787,
+        "duration" : 23556
+      },
+      "status" : "failed",
+      "statusMessage" : "AssertionError: assert 1 != 1\n",
+      "statusTrace" : "  File \"D:\\Users\\jianghaodong\\PycharmProjects\\pytest_study\\venv\\lib\\site-packages\\allure_commons\\_allure.py\", line 172, in impl\n    return func(*a, **kw)\n  File \"D:\\Users\\jianghaodong\\PycharmProjects\\pytest_study\\venv\\test_demo\\SmokeTesting_test.py\", line 289, in test_St094\n    assert 1!=1\n",
+      "steps" : [ {
+        "name" : "The user uplod all need docs and click consent,should be able to see who can access them and what documents they can see by clicking  ‘Recent Shares’ and companies page",
+        "time" : {
+          "start" : 1676435128572,
+          "stop" : 1676435135787,
+          "duration" : 7215
+        },
+        "status" : "failed",
+        "statusMessage" : "AssertionError: assert 1 != 1\n",
+        "statusTrace" : "  File \"D:\\Users\\jianghaodong\\PycharmProjects\\pytest_study\\venv\\test_demo\\SmokeTesting_test.py\", line 289, in test_St094\n    assert 1!=1\n",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : true,
+        "stepsCount" : 0,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "drivers",
+        "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"997f88fa760adb3607ec72147ca865a4\")>"
+      } ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 1,
+      "hasContent" : true
+    }, {
+      "name" : "当前case 失败截图",
+      "time" : {
+        "start" : 1676435135873,
+        "stop" : 1676435136060,
+        "duration" : 187
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "a3cf2017b2a3fd85",
+        "name" : "case 失败截图",
+        "source" : "a3cf2017b2a3fd85.png",
+        "type" : "image/png",
+        "size" : 56915
+      } ],
+      "parameters" : [ ],
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "stepsCount" : 0,
+      "hasContent" : true
+    } ],
+    "attachments" : [ {
+      "uid" : "eb55da3c7adc89ac",
+      "name" : "log",
+      "source" : "eb55da3c7adc89ac.txt",
+      "type" : "text/plain",
+      "size" : 136
+    } ],
+    "parameters" : [ ],
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "stepsCount" : 3,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "drivers::fn",
+    "time" : {
+      "start" : 1676435136061,
+      "stop" : 1676435139541,
+      "duration" : 3480
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Verify that the portal should be able to search and connect with a new corporate user."
+  }, {
+    "name" : "epic",
+    "value" : "Somke Testing Valid8Me v2.8.0"
+  }, {
+    "name" : "parentSuite",
+    "value" : "test_demo"
+  }, {
+    "name" : "suite",
+    "value" : "SmokeTesting_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestCaes"
+  }, {
+    "name" : "host",
+    "value" : "wswincnhz1692"
+  }, {
+    "name" : "thread",
+    "value" : "36800-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "test_demo.SmokeTesting_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "b96ebd13c6ae3430.json",
+  "parameterValues" : [ ]
+}

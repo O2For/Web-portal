@@ -1,0 +1,26 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "name" : "categories",
+  "children" : [ {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "AssertionError: assert 1 != 1",
+      "children" : [ {
+        "name" : "这个是标题",
+        "uid" : "b96ebd13c6ae3430",
+        "parentUid" : "734b6cc593cc1e6562d1f513ee0b5772",
+        "status" : "failed",
+        "time" : {
+          "start" : 1676435112231,
+          "stop" : 1676435135810,
+          "duration" : 23579
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "734b6cc593cc1e6562d1f513ee0b5772"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  } ]
+}

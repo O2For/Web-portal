@@ -1,0 +1,82 @@
+{
+  "9c97b4b2ada87846593730a522d2398a" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 1,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "c75a6e841d4d62b8",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: skop",
+      "time" : {
+        "start" : 1676435106111,
+        "stop" : 1676435106111,
+        "duration" : 0
+      }
+    } ]
+  },
+  "1925af2e579d7d22395e168a145a29ea" : {
+    "statistic" : {
+      "failed" : 1,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "b96ebd13c6ae3430",
+      "status" : "failed",
+      "statusDetails" : "AssertionError: assert 1 != 1",
+      "time" : {
+        "start" : 1676435112231,
+        "stop" : 1676435135810,
+        "duration" : 23579
+      }
+    } ]
+  },
+  "e31a73ecf6580b82f170140e52a16a1b" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 1,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "bacd3c3a0affae47",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: indivdual 跳过",
+      "time" : {
+        "start" : 1676435106108,
+        "stop" : 1676435106108,
+        "duration" : 0
+      }
+    } ]
+  },
+  "fc182e6898aec11868fbb012517a1110" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 1,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "da1249a4cf7abc7a",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: copr 跳过",
+      "time" : {
+        "start" : 1676435106098,
+        "stop" : 1676435106098,
+        "duration" : 0
+      }
+    } ]
+  }
+}

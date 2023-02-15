@@ -1,0 +1,41 @@
+[ {
+  "uid" : "c75a6e841d4d62b8",
+  "name" : "test_St091[TEST_18-Ireland-123456261-Public Limited Company (PLC)-04/10/2022-Address]",
+  "time" : {
+    "start" : 1676435106111,
+    "stop" : 1676435106111,
+    "duration" : 0
+  },
+  "status" : "skipped",
+  "severity" : "normal"
+}, {
+  "uid" : "b96ebd13c6ae3430",
+  "name" : "这个是标题",
+  "time" : {
+    "start" : 1676435112231,
+    "stop" : 1676435135810,
+    "duration" : 23579
+  },
+  "status" : "failed",
+  "severity" : "normal"
+}, {
+  "uid" : "da1249a4cf7abc7a",
+  "name" : "test_St089[End user-terms-auto1-@snapmail.cc-Ht@12345-https://www.snapmail.cc/#/-auto1-TEST_18]",
+  "time" : {
+    "start" : 1676435106098,
+    "stop" : 1676435106098,
+    "duration" : 0
+  },
+  "status" : "skipped",
+  "severity" : "blocker"
+}, {
+  "uid" : "bacd3c3a0affae47",
+  "name" : "test_St090[End user-terms-@snapmail.cc-Ht@12345-https://www.snapmail.cc/#/-autotest_individual_2-None-None]",
+  "time" : {
+    "start" : 1676435106108,
+    "stop" : 1676435106108,
+    "duration" : 0
+  },
+  "status" : "skipped",
+  "severity" : "normal"
+} ]

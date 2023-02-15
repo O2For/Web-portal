@@ -1,0 +1,5 @@
+"Epic","Feature","Story","FAILED","BROKEN","PASSED","SKIPPED","UNKNOWN"
+"Somke Testing Valid8Me v2.8.0","","Verify that the portal should be able to search and connect with a new corporate user.","1","0","0","0","0"
+"Somke Testing Valid8Me v2.8.0","","Verify that the corporate user could be set up successfully.","0","0","0","1","0"
+"Somke Testing Valid8Me v2.8.0","","When setting up a individual account:","0","0","0","1","0"
+"Somke Testing Valid8Me v2.8.0","","Verify the workflow for register corporate account can be completed successfully.","0","0","0","1","0"

@@ -32,7 +32,7 @@ from selenium.webdriver.common.keys import Keys
 from Common.config import YamlOperation
 
 #----------------------------------------------
-os.chdir(os.path.abspath('..') + '/Data')
+os.chdir(os.path.abspath('.') + '/Data')
 # 读取yaml数据文件
 data = YamlOperation(os.getcwd() + "\data.yaml")
 
@@ -208,11 +208,17 @@ class TestCaes:
             system.upload_logo(os.getcwd() + data.Photo_C.BRD)
 
     #@pytest.mark.skip('skop')
+    #@allure.description('这个是描述')
     @allure.story('Verify that the portal should be able to search and connect with a new corporate user.')
+    @allure.title('这个是标题')
+    @allure.step('这个是步骤')
+
     #def test_St094(self,drivers,login_username,login_password,newemail,product):
     def test_St094(self,drivers):
+
         #email='to10@mfk.app';
         email = '4c1@snapmail.cc';
+
         password='Ht@12345'
         porduct_name='AUTO_T'
         #porduct_name = 'corp'
@@ -280,6 +286,7 @@ class TestCaes:
             RecentShares(drivers).view_all.click();sleep(3)
             cuss=Companies(drivers)
             document_list=cuss.ReturnSharedDocuments()
+            assert 1!=1
 
 
 
@@ -318,8 +325,8 @@ class TestCaes:
 
 
 
-if __name__ == '__main__':
-    #pytest.main(['-vs','../test_demo/SmokeTesting_test.py', "--alluredir=./temp_st"])
-    pytest.main(['-vs', '../test_demo/SmokeTesting_test.py'])
-    #os.system("allure generate ./temp_st -o ./report_st --clean")
+# if __name__ == '__main__':
+#     pytest.main(['-vs','../test_demo/SmokeTesting_test.py', "--alluredir=./temp_st"])
+#     #pytest.main(['-vs', '../test_demo/SmokeTesting_test.py'])
+#     os.system("allure generate ./temp_st -o ./report_st --clean")
 
