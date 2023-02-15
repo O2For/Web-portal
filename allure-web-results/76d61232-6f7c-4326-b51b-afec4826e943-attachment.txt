@@ -1,0 +1,9 @@
+2023-02-15 16:52:44,199 [32mINFO ✅ Find element: xpath=//input[@placeholder='Enter your email'] [0m
+2023-02-15 16:52:45,147 [32mINFO 🖋 input element: 输入邮箱[0m
+2023-02-15 16:52:45,457 [32mINFO ✅ Find element: xpath=//input[@placeholder='Enter password'] [0m
+2023-02-15 16:52:46,398 [32mINFO 🖋 input element: password[0m
+2023-02-15 16:52:46,557 [32mINFO ✅ Find element: xpath=//span[contains(text(),'Login')] [0m
+2023-02-15 16:52:47,500 [32mINFO 🖱 click element: login button[0m
+2023-02-15 16:52:53,731 [32mINFO ✅ Find element: id=hompage-viaw-all-button [0m
+2023-02-15 16:52:54,669 [32mINFO 🖱 click element: undefined[0m
+<class 'poium.page_objects.Element'>

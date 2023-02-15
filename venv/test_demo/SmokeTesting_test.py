@@ -1,18 +1,20 @@
 import os
 import sys
 #校验路径
-sys.path.append(os.getcwd())
+
+#sys.path.append('.')
 
 from selenium import webdriver
 #POB
-from PageObject.customer_login import *
-from PageObject.snapmail_page import *
-from PageObject.customer_system_page import *
-from PageObject.business_login import LoginPage
-from PageObject.dashborad_page import *
-from PageObject.customer_connections_companies_page import *
-from PageObject.customer_action_page import *
-from PageObject.message_template_page import Template
+sys.path.append(os.getcwd())
+from PageView.customer_login import *
+from PageView.snapmail_page import *
+from PageView.customer_system_page import *
+from PageView.business_login import LoginPage
+from PageView.dashborad_page import *
+from PageView.customer_connections_companies_page import *
+from PageView.customer_action_page import *
+from PageView.message_template_page import Template
 #
 from selenium.webdriver.common.by import By
 
@@ -25,16 +27,30 @@ from pytest_assume.plugin import assume
 # DBsql
 from Common.db_server import DbMysql
 
-from PageObject.test_page import *
+from PageView.test_page import *
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 # 数据准备导入路径
 from Common.config import YamlOperation
 
 #----------------------------------------------
-os.chdir(os.path.abspath('.') + '/Data')
+#os.chdir(os.path.abspath('.') + "/Data")
+
+
+# 当前路径(使用 abspath 方法可通过dos窗口执行)
+current_path = os.path.dirname(os.path.abspath(__file__))
+print("当前路径"+current_path)
+# json报告路径
+#json_report_path = os.path.join(current_path, 'report/json')
+
+data = YamlOperation(os.path.abspath('.') + ".\Data\data.yaml")
+
+
+
+
+
 # 读取yaml数据文件
-data = YamlOperation(os.getcwd() + "\data.yaml")
+#data = YamlOperation(os.getcwd() + "\data.yaml")
 
 
 @allure.epic('Somke Testing Valid8Me v2.8.0')
@@ -270,7 +286,7 @@ class TestCaes:
 
         '''此处是单独的customer portal 登录脚本'''
         cuss=customer_login_page(drivers)
-        cuss.open(data.Env.newqa);sleep(3)
+        cuss.get(data.Env.newqa);sleep(3)
         cuss.email.send_keys(email)
         cuss.password.send_keys(password)
         cuss.login.click();sleep(3)
