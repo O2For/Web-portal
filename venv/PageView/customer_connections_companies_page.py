@@ -5,8 +5,8 @@ import time
 class Companies(Page):
 
     def ReturnSharedDocuments(self):
-        shareDocument=Element(xpath='//*[@id="component-toolTip-visibilityChange"]/text()')
-        print(type(shareDocument))
+        shareDocument=Element(xpath='//*[@id="component-toolTip-visibilityChange"]').text
+        print(shareDocument)
 
 
         return shareDocument

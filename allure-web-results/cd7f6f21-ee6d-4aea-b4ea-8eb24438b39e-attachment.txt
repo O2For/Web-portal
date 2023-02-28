@@ -1,9 +1,0 @@
-INFO     poium:logging.py:18 [32mINFO ✅ Find element: xpath=//input[@placeholder='Enter your email'] [0m
-INFO     poium:logging.py:18 [32mINFO 🖋 input element: 输入邮箱[0m
-INFO     poium:logging.py:18 [32mINFO ✅ Find element: xpath=//input[@placeholder='Enter password'] [0m
-INFO     poium:logging.py:18 [32mINFO 🖋 input element: password[0m
-INFO     poium:logging.py:18 [32mINFO ✅ Find element: xpath=//span[contains(text(),'Login')] [0m
-INFO     poium:logging.py:18 [32mINFO 🖱 click element: login button[0m
-WARNING  urllib3.connectionpool:connectionpool.py:308 Connection pool is full, discarding connection: localhost. Connection pool size: 1
-INFO     poium:logging.py:18 [32mINFO ✅ Find element: id=hompage-viaw-all-button [0m
-INFO     poium:logging.py:18 [32mINFO 🖱 click element: undefined[0m

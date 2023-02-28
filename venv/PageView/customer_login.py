@@ -1,8 +1,9 @@
-from poium import Page, Element
+from poium import Page,Element
 from Base.base import InvalidElementException
 from PageView.customer_system_page import *
 from selenium import webdriver
 import allure
+
 import time
 
 
@@ -107,17 +108,4 @@ class CustomerHomePage(Page):
 
 class RecentShares(Page):
     view_all=Element(id_='hompage-viaw-all-button')
-
-
-
-
-
-
-
-
-
-
-
-
-
 

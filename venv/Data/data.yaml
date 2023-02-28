@@ -2,13 +2,14 @@
 Env:
   url_devqa : "https://g.demo.hengtiansoft.com/#/login"
   url_qa : "https://login.qa.valid8me.com/#/login"
-  url_cur_qa : "https://g.demo.hengtiansoft.com:8444/#/login"
+  url_cur_qa : "https://customer.qa.valid8me.com/#/login"
   url_demo : "https://demo.valid8me.com/#/login"
   url_uat : "https://login.uat.valid8me.com/#/login"
   url_cur_uat : "https://customer.uat.valid8me.com/#/login"
   url_pre : "https://login.preprod.valid8me.com/#/login"
   newqa : "https://customer.qa.valid8me.com/#/login"
   test_mail : "https://www.snapmail.cc/#/"
+  dev_customer : "https://customer.dev.valid8me.com/#/login"
 
 DB:
   host : 10.17.15.245
@@ -36,10 +37,10 @@ Verfiy_code:
 
 
 corp_inf:
-  corp_email : auto1
+  corp_email : auto_ma
   password : Ht@12345
-  LN : AUT_CORP_18
-  TN : TEST_18
+  LN : auto_ma
+  TN : auto_ma
   Jurisdiction : Ireland
   Number : 123456261
   Company_Type : Public Limited Company (PLC)
@@ -56,11 +57,4 @@ ind_inf:
 
 Photo_C:
   BRD : \Board_Resolution_Document.png
-  MOA : \Memorandum of Association.png
-
-
-
-
-
-
-
+  MOA : \Memorandum of Associ

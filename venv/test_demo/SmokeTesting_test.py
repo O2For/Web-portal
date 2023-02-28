@@ -1,10 +1,13 @@
 import os
 import sys
+
+
+
 #校验路径
 
 #sys.path.append('.')
 
-from selenium import webdriver
+
 #POB
 sys.path.append(os.getcwd())
 from PageView.customer_login import *
@@ -16,7 +19,7 @@ from PageView.customer_connections_companies_page import *
 from PageView.customer_action_page import *
 from PageView.message_template_page import Template
 #
-from selenium.webdriver.common.by import By
+
 
 
 from time import sleep
@@ -32,6 +35,7 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 # 数据准备导入路径
 from Common.config import YamlOperation
+from Data.test_data import GetData
 
 #----------------------------------------------
 #os.chdir(os.path.abspath('.') + "/Data")
@@ -43,52 +47,58 @@ print("当前路径"+current_path)
 # json报告路径
 #json_report_path = os.path.join(current_path, 'report/json')
 
-data = YamlOperation(os.path.abspath('.') + ".\Data\data.yaml")
-
-
-
-
-
+#data = YamlOperation(os.path.abspath('.') +"\Data\data.yaml")
 # 读取yaml数据文件
 #data = YamlOperation(os.getcwd() + "\data.yaml")
+#得到本次测试数据：
+data=GetData.TestData()
 
-
-@allure.epic('Somke Testing Valid8Me v2.8.0')
+@allure.epic('Somke Testing Valid8Me v2.11.0')
 class TestCaes:
+
     #@allure.feature('Verify that the corporate user could be set up successfully.')
     @allure.severity("blocker")
     @pytest.mark.skip('copr 跳过')
     @pytest.mark.parametrize("terms_title,reg__corp_email,Email_type,reg_pwd,mailbox,legalName,tradingName",
-                             [("End user-terms",data.corp_inf.corp_email,data.Email_type.snapmail,
-                               data.corp_inf.password,data.Env.test_mail,
-                               data.corp_inf.corp_email,data.corp_inf.TN)])
+                             [("End user-terms",
+                               data.corp_inf.corp_email,
+                               data.Email_type.snapmail,
+                               data.corp_inf.password,
+                               data.Env.test_mail,
+                               data.corp_inf.corp_email,
+                               data.corp_inf.TN
+                               )])
 
     @allure.story('Verify that the corporate user could be set up successfully.')
-    def test_St089(self,drivers,terms_title,reg__corp_email,Email_type,
-                   reg_pwd,mailbox,legalName,tradingName):
+    def test_St089(self,drivers,
+                   terms_title,reg__corp_email,Email_type,reg_pwd,mailbox,legalName,tradingName):
         page = customer_login_page(drivers)
+
         with allure.step('You should then read and accept the terms'
                          ' and conditions if you are happy with them.'):
             with allure.step('Open Valid8me customer portal'):
                 page.open(data.Env.url_cur_qa)
+                #page.execute_script("document.body.style.transform='scale(0.5)'")
+                #zoom_out = "document.body.style.zoom='0.5'"
+                #page.execute_script(zoom_out)
 
                 page.sign_up.click();sleep(2)
-                with allure.step('Read and accept the terms'):
-                    page.terms.click()
-                    #
-                    page.switch_to_window(1)
-                    with assume: assert terms_title in page.terms_title.get_attribute('textContent'),'没有条款'
-                    #page.accept_read.click()
+                # with allure.step('Read and accept the terms'):
+                #     page.terms.click()
+                #     #
+                #     page.switch_to_window(1)
+                #     #with assume: assert terms_title in page.terms_title.get_attribute('textContent'),'没有条款'
+                #     #page.accept_read.click()
         with allure.step('You will have to enter your email address '
                          'and password and confirm this password.'):
-            page.switch_to_window(0)
-            with allure.step('Check confirm button is_disenabled without infer'):
-                with assume: assert not page.register_confirm_button.click()
+            #page.switch_to_window(0)
+            # with allure.step('Check confirm button is_disenabled without infer'):
+            #     with assume: assert not page.register_confirm_button.click()
             with allure.step('Input email & password & confirm password'):
                 page.register_email_field.send_keys(reg__corp_email+Email_type)
                 page.register_password_field.send_keys(reg_pwd)
                 page.register_passwordRepeat_field.send_keys(reg_pwd)
-                page.accept_read.click()
+                page.accept_read.click();sleep(1)
                 page.register_confirm_button.click();sleep(1)
         with allure.step('You will then receive a one-time code (OTC) '
                          'to your email, please enter this into the screen, '
@@ -122,13 +132,18 @@ class TestCaes:
 
 
     @pytest.mark.parametrize("terms_title,Email_type,reg_pwd,mailbox_url,reg_ind_email,FN,LN",
-                             [("End user-terms",data.Email_type.snapmail,
-                               data.corp_inf.password,data.Env.test_mail,
-                               data.ind_inf.ind_email,data.ind_inf.FN,data.ind_inf.LN)])
+                             [("End user-terms",
+                               data.Email_type.snapmail,
+                               data.corp_inf.password,
+                               data.Env.test_mail,
+                               data.ind_inf.ind_email,
+                               data.ind_inf.FN,
+                               data.ind_inf.LN
+                               )])
     @allure.story('When setting up a individual account:')
     @pytest.mark.skip('indivdual 跳过')
-    def test_St090(self,drivers,terms_title,reg_ind_email,Email_type,
-                   reg_pwd,mailbox_url,FN,LN):
+    def test_St090(self,drivers,
+                   terms_title,reg_ind_email,Email_type,reg_pwd,mailbox_url,FN,LN):
         page = customer_login_page(drivers)
         with allure.step('You should then read and accept the terms'
                          ' and conditions if you are happy with them.'):
@@ -187,25 +202,34 @@ class TestCaes:
             page.register_profile_individual_confirm_button.click();sleep(3)
 
     @pytest.mark.parametrize("tradingName,Jurisdiction,Number,Company_Type,Date,Address",
-        [(data.corp_inf.TN,data.corp_inf.Jurisdiction,data.corp_inf.
-          Number,data.corp_inf.Company_Type,data.corp_inf.Date,data.
-          corp_inf.Address)])
+        [(data.corp_inf.TN,
+          data.corp_inf.Jurisdiction,
+          data.corp_inf.
+          Number,
+          data.corp_inf.Company_Type,
+          data.corp_inf.Date,
+          data.corp_inf.Address
+          )])
     @allure.story('Verify the workflow for register '
                   'corporate account can be completed successfully.')
     @pytest.mark.skip('skop')
-    def test_St091(self,drivers,tradingName,Jurisdiction,Number,Company_Type,Date,Address):
+    def test_St091(self,drivers,
+                   tradingName,Jurisdiction,Number,Company_Type,Date,Address):
         login=customer_login_page(drivers)
 
         with allure.step('login'):
             login.open(data.Env.url_cur_qa)
+
+
+
             login.email.send_keys(data.corp_inf.corp_email+data.Email_type.snapmail)
-            login.password.send_keys(data.corp_inf.password)
+            login.password.send_keys(data.corp_inf.password);sleep(3)
             login.login_button.click()
             sleep(3)
 
         with allure.step('close closeProfile_SetUp'):
             page=CustomerHomePage(drivers)
-            page.closeProfile_SetUp() #关闭弹窗
+           # page.closeProfile_SetUp() #关闭弹窗
 
         with allure.step('You can complete your corporate identity action successfully'):
 
@@ -230,10 +254,12 @@ class TestCaes:
     @allure.step('这个是步骤')
 
     #def test_St094(self,drivers,login_username,login_password,newemail,product):
+
     def test_St094(self,drivers):
 
+
         #email='to10@mfk.app';
-        email = '4c1@snapmail.cc';
+        email = '6a@snapmail.cc';
 
         password='Ht@12345'
         porduct_name='AUTO_T'
@@ -286,9 +312,12 @@ class TestCaes:
 
         '''此处是单独的customer portal 登录脚本'''
         cuss=customer_login_page(drivers)
-        cuss.get(data.Env.newqa);sleep(3)
+        cuss.get(data.Env.dev_customer);sleep(3)
+
+
         cuss.email.send_keys(email)
         cuss.password.send_keys(password)
+        assert 1==2
         cuss.login.click();sleep(3)
         #action=ActionPage(drivers)
         # with allure.step('d. This user will check this action in my action list'):
@@ -298,15 +327,17 @@ class TestCaes:
         # with allure.step('e. The user uplod all need docs and click consent,'):
         #     action.upload_action_doc(doc_photo)
         #     action.consent_action()
-        with allure.step('The user uplod all need docs and click consent,should be able to see who can access them and what documents they can see by clicking  ‘Recent Shares’ and companies page'):
-            RecentShares(drivers).view_all.click();sleep(3)
-            cuss=Companies(drivers)
-            document_list=cuss.ReturnSharedDocuments()
-            assert 1!=1
+        # with allure.step('The user uplod all need docs and click consent,should be able to see who can access them and what documents they can see by clicking  ‘Recent Shares’ and companies page'):
+        #     RecentShares(drivers).view_all.click();#cuss.implicitly_wait(10)
+        #     cuss=Companies(drivers)
+        #     document_list=cuss.ReturnSharedDocuments()
+        #
+        #     #logging.info("[shared_document_list detail: %s] " % document_list)
+        #    # assert 1!=1
+        #
 
 
-
-
+#恒天天天 打卡
     # def test_myheng(self,drivers):
     #     ht=Ht(drivers)
     #     ht.open("https://cas.hengtiansoft.com:8443/cas/login?service=http%3a%2f%2fmyhengtian%3a8033%2f");sleep(1)
@@ -341,8 +372,13 @@ class TestCaes:
 
 
 
-# if __name__ == '__main__':
-#     pytest.main(['-vs','../test_demo/SmokeTesting_test.py', "--alluredir=./temp_st"])
-#     #pytest.main(['-vs', '../test_demo/SmokeTesting_test.py'])
-#     os.system("allure generate ./temp_st -o ./report_st --clean")
+if __name__ == '__main__':
 
+    #pytest.main(['-vs','../test_demo/SmokeTesting_test.py', "--alluredir=./temp_st"])
+    #pytest.main(['-vs', '../test_demo/SmokeTesting_test.py'])
+    pytest.main(["-vs", current_path+"\SmokeTesting_test.py", '--workers=1', '--tests-per-worker=1'])
+
+
+    #os.system("allure generate ./temp_st -o ./report_st --clean")
+
+#上jenkns:pytest -vs ./test_demo/SmokeTesting_test.py

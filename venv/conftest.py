@@ -1,3 +1,4 @@
+
 import inspect
 
 import pytest
@@ -10,12 +11,13 @@ from py.xml import html
 
 driver = None
 
+
 @pytest.fixture(scope='session', autouse=True)
 def drivers(request):
     global driver
     if driver is None:
-        options=webdriver.ChromeOptions()
-        #options.add_argument('--incognito') #无痕
+        options = webdriver.ChromeOptions()
+        # options.add_argument('--incognito') #无痕
         driver = webdriver.Chrome(chrome_options=options)
 
         driver.maximize_window()
@@ -27,13 +29,9 @@ def drivers(request):
     return driver
 
 
-
-
-
 @pytest.hookimpl(hookwrapper=True, tryfirst=True)
-#此是用例最终结果的截图
+# 此是用例最终结果的截图
 def pytest_runtest_makereport(item, call):
-
     """
        获取每个用例状态的钩子函数
        :param item: 测试用例
@@ -60,14 +58,16 @@ def pytest_assume_fail(lineno, entry):
     file_name = os.getenv('PYTEST_CURRENT_TEST')
 
     for i in inspect.stack():
-        #if file_name in i.filename:
-            try:
-                for k, v in i.frame.f_locals.items():
-                    if hasattr(v, 'driver'):
-                        with allure.step('断言失败'):
-                            allure.attach(driver.get_screenshot_as_png(), "断言失败 截图", allure.attachment_type.PNG)
+        # if file_name in i.filename:
+        try:
+            for k, v in i.frame.f_locals.items():
+                if hasattr(v, 'driver'):
+                    with allure.step('断言失败'):
+                        allure.attach(driver.get_screenshot_as_png(), "断言失败 截图", allure.attachment_type.PNG)
 
-                        break
+                    break
 
-            except Exception:
-                pass
+        except Exception:
+            pass
+
+
