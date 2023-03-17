@@ -1058,11 +1058,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/venv/conftest.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="182">
-              <caret line="64" column="40" lean-forward="true" selection-start-line="64" selection-start-column="40" selection-end-line="64" selection-end-column="40" />
+              <caret line="64" column="40" selection-start-line="64" selection-start-column="40" selection-end-line="64" selection-end-column="40" />
               <folding>
                 <element signature="e#1#15#0" expanded="true" />
               </folding>
@@ -1070,13 +1070,12 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/PageView/Customer_portal/customer_action_page.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/venv/PageView/Invitation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="30" selection-start-line="30" selection-end-line="30" />
+            <state>
               <folding>
-                <element signature="e#0#40#0" expanded="true" />
+                <element signature="e#0#30#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1202,7 +1201,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-1288" />
     <option name="y" value="50" />
     <option name="width" value="863" />
@@ -2218,15 +2217,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/PageView/Invitation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-540">
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/PageView/Mail/snapmail_page.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -2429,9 +2419,18 @@
     <entry file="file://$PROJECT_DIR$/venv/conftest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
-          <caret line="64" column="40" lean-forward="true" selection-start-line="64" selection-start-column="40" selection-end-line="64" selection-end-column="40" />
+          <caret line="64" column="40" selection-start-line="64" selection-start-column="40" selection-end-line="64" selection-end-column="40" />
           <folding>
             <element signature="e#1#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/PageView/Invitation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
           </folding>
         </state>
       </provider>
