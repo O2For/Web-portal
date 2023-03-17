@@ -1,57 +1,41 @@
 import os
 import sys
-
-
-
-#校验路径
-
-#sys.path.append('.')
-
-
-#POB
-sys.path.append(os.getcwd())
-from PageView.customer_login import *
-from PageView.snapmail_page import *
-from PageView.customer_system_page import *
-from PageView.business_login import LoginPage
-from PageView.dashborad_page import *
-from PageView.customer_connections_companies_page import *
-from PageView.customer_action_page import *
-from PageView.message_template_page import Template
-#
-
-
-
 from time import sleep
 import pytest
 import allure
-import re
 from pytest_assume.plugin import assume
-# DBsql
-from Common.db_server import DbMysql
 
-from PageView.test_page import *
-from selenium.webdriver import ActionChains
-from selenium.webdriver.common.keys import Keys
+#POB
+
+sys.path.append(os.getcwd())
+from PageView.Customer_portal.customer_login import *
+from PageView.Customer_portal.customer_system_page import *
+from PageView.Business_portal.business_login import LoginPage
+from PageView.Business_portal.MyWorkPage import *
+
+from PageView.Customer_portal.customer_connections_companies_page import *
+from PageView.Customer_portal.customer_action_page import *
+from PageView.Business_portal.Configuration.Product_services import *
+from Common.config import *
+#
+
 # 数据准备导入路径
-from Common.config import YamlOperation
 from Data.test_data import GetData
 
-#----------------------------------------------
-#os.chdir(os.path.abspath('.') + "/Data")
-
-
-# 当前路径(使用 abspath 方法可通过dos窗口执行)
+''' 当前路径(使用 abspath 方法可通过dos窗口执行)'''
 current_path = os.path.dirname(os.path.abspath(__file__))
 print("当前路径"+current_path)
-# json报告路径
-#json_report_path = os.path.join(current_path, 'report/json')
 
-#data = YamlOperation(os.path.abspath('.') +"\Data\data.yaml")
-# 读取yaml数据文件
-#data = YamlOperation(os.getcwd() + "\data.yaml")
-#得到本次测试数据：
+
+'''得到本次测试配置数据：'''
+sys.path.append(os.getcwd())
 data=GetData.TestData()
+
+
+'''得到本次导入到测试中的excel数据：'''
+FileExecl=FileOperation()
+Test_data=FileExecl.getExecl()
+
 
 @allure.epic('Somke Testing Valid8Me v2.11.0')
 class TestCaes:
@@ -218,7 +202,7 @@ class TestCaes:
         login=customer_login_page(drivers)
 
         with allure.step('login'):
-            login.open(data.Env.url_cur_qa)
+            login.get(data.Env.url_cur_qa)
 
 
 
@@ -247,107 +231,282 @@ class TestCaes:
             system=Profile_Page(drivers)
             system.upload_logo(os.getcwd() + data.Photo_C.BRD)
 
-    #@pytest.mark.skip('skop')
-    #@allure.description('这个是描述')
+    @pytest.mark.skip('skop')
     @allure.story('Verify that the portal should be able to search and connect with a new corporate user.')
-    @allure.title('这个是标题')
-    @allure.step('这个是步骤')
+    @allure.title('From the portal you should be able to search and connect with a new corporate')
+    @pytest.mark.parametrize("InviteEmail,Password,porduct_name,Username",
+                             [(data.ST_account.T94_corp_Email,
+                               data.ST_account.T94_corp_Password,
+                               data.ST_account.T94_corp_porduct_name,
+                               data.ST_account.T94_corp_Username,
+                               )])
+    def test_St094_corporate(self, drivers, InviteEmail, Password, porduct_name, Username):
 
-    #def test_St094(self,drivers,login_username,login_password,newemail,product):
 
-    def test_St094(self,drivers):
+        mail_type=1 #选择需要查看的邮件类型
+        RootPath=PathOperation()
+        doc_photo=RootPath.getOtherPath('\Data')+data.Photo_C.BRD
 
-
-        #email='to10@mfk.app';
-        email = '6a@snapmail.cc';
-
-        password='Ht@12345'
-        porduct_name='AUTO_T'
-        #porduct_name = 'corp'
-
-        username='to10'
-        mail_type=1
-
-        doc_photo=os.getcwd() + data.Photo_C.BRD
         bus = LoginPage(drivers)
-        # with allure.step('login_business_portal'):
-        #
-        #
-        #     bus.open(data.Env.url_devqa);sleep(3)
-        #     bus.login_username.send_keys('gulong@snapmail.cc')
-        #     bus.login_password.send_keys('Ht@12345')
-        #     bus.login_button.click()
-        # with allure.step('You will need to select the product/service you are connecting for'):
-        #
-        #     nav=NavigationBar(drivers)
-        #     with allure.step('send invite'):
-        #         nav.global_search_invite(email,porduct_name,'invite-email')
-        #     with allure.step('Check mailbox'):
-        #
-        #         mailbox=MailBox(drivers) # 调用脚本
-        #         mailbox.open_Mail()
-        #         mailbox.create_new_email(username)
-        #     with allure.step('Receive an email to set up a valid8me account.'):
-        #         email_name=mailbox.email_type_call(email, mail_type);
-        #     with allure.step('The user use email link to customer portal'):
-        #         assert email_name==email
-        #
-        #     with allure.step('Customer could register successfully.'):
-        #         cus=customer_login_page(drivers)
-        #         cus.register_password_field.send_keys(password)
-        #         cus.register_passwordRepeat_field.send_keys(password)
-        #
-        #         cus.accept_read.click()
-        #         cus.register_confirm_button.click();
-        #         sleep(3)
-        #         cus.code_input.send_keys("666666")
-        #         cus.confirm_btu.click()
-        #         cus.legalName.send_keys(username)
-        #         cus.tradingName.send_keys(username)
-        #         cus.register_profile_corporate_confirm_button.click();sleep(3)
-        #         with allure.step('close closeProfile_SetUp'):
-        #             page = CustomerHomePage(drivers)
-        #             page.closeProfile_SetUp()  # 关闭弹窗;
-        #             sleep(3)
-
-        '''此处是单独的customer portal 登录脚本'''
-        cuss=customer_login_page(drivers)
-        cuss.get(data.Env.dev_customer);sleep(3)
+        with allure.step('Precondition: LOGIN_BUSINESS_PORTAL...'):
+            bus.get(data.Env.url_devqa);sleep(3)
+            bus.login_username.send_keys('kiki@snapmail.cc')
+            bus.login_password.send_keys(Password)
+            bus.login_button.click()
 
 
-        cuss.email.send_keys(email)
-        cuss.password.send_keys(password)
-        assert 1==2
-        cuss.login.click();sleep(3)
-        #action=ActionPage(drivers)
-        # with allure.step('d. This user will check this action in my action list'):
-        #     action.open_Action_Page()
-        #     action.open_new_prod_action(porduct_name)
+        with allure.step('A: You will need to select the product/service you are connecting for'):
+            nav=NavigationBar(drivers)
 
-        # with allure.step('e. The user uplod all need docs and click consent,'):
-        #     action.upload_action_doc(doc_photo)
-        #     action.consent_action()
-        # with allure.step('The user uplod all need docs and click consent,should be able to see who can access them and what documents they can see by clicking  ‘Recent Shares’ and companies page'):
-        #     RecentShares(drivers).view_all.click();#cuss.implicitly_wait(10)
-        #     cuss=Companies(drivers)
-        #     document_list=cuss.ReturnSharedDocuments()
-        #
-        #     #logging.info("[shared_document_list detail: %s] " % document_list)
-        #    # assert 1!=1
-        #
+            with allure.step('send invite'):
+                nav.SourceDocuments(InviteEmail,porduct_name,'invite-email')
+
+        with allure.step('B: Check mailbox'):
+            '''snapmail 新增email '''
+            mailbox=MailBox(drivers) # 调用脚本
+            mailbox.open_Mail()
+            mailbox.create_new_email(Username)
+
+            with allure.step('Receive an email to set up a valid8me account.'):
+                ''',打开发送的邮件链接'''
+                invited_user_email=mailbox.email_type_call(InviteEmail, mail_type);
+
+            with allure.step('The user use email link to customer portal'):
+                #验证被邀请的邮件与跳转之后的邮件是否一致
+                assert invited_user_email==InviteEmail,print("验证被邀请的邮件与跳转之后的邮件一致")
+
+        with allure.step('C: Customer could register successfully.'):
+            cus=customer_login_page(drivers)
+            cus.register_password_field.send_keys(Password)
+            cus.register_passwordRepeat_field.send_keys(Password)
+            cus.accept_read.click()
+            cus.register_confirm_button.click();
+            sleep(3)
+            cus.code_input.send_keys("666666")
+            cus.confirm_btu.click()
+            cus.legalName.send_keys(Username)
+            cus.tradingName.send_keys(Username)
+            cus.register_profile_corporate_confirm_button.click();
+            cus.wait_page_load_timeout(5)
+            with allure.step('close closeProfile_SetUp'):
+                page = CustomerHomePage(drivers)
+                page.closeProfile_SetUp()  # 关闭弹窗;
+                sleep(3)
+
+        with allure.step('D: This user will check this action in my action list'):
+            action = ActionPage(drivers)
+            action.open_Action_Page()
+            action.open_new_prod_action(porduct_name)
+
+        with allure.step('E: The user uplod all need docs and click consent,'):
+            action.upload_action_doc(doc_photo)
+            action.consent_action()
+            action.open_Home_Page()
+
+            with allure.step('see who can access them and what documents they can see by clicking ‘Recent Shares’'):
+                RecentShares(drivers).view_all.click();
+                sleep(3)
+            with allure.step('see who can access them and what documents in companies page'):
+                cuss=Companies(drivers)
+                cuss.ReturnSharedDocuments()
+
+    @pytest.mark.skip('skop')
+    @allure.story('Verify that the portal should be able to search and connect with a new corporate user.')
+    @allure.title('From the portal you should be able to search and connect with a new corporate')
+    @pytest.mark.parametrize("InviteEmail, Password, porduct_name, Username",
+                             [(data.ST_account.T94_ind_Email,
+                               data.ST_account.T94_ind_Password,
+                               data.ST_account.T94_ind_porduct_name,
+                               data.ST_account.T94_ind_Username,
+                               )])
+    def test_St094_individual(self, drivers, InviteEmail, Password, porduct_name, Username):
+        mail_type = 1  # 选择需要查看的邮件类型
+        RootPath = PathOperation()
+        doc_photo = RootPath.getOtherPath('\Data') + data.Photo_C.BRD
+
+        bus = LoginPage(drivers)
+        with allure.step('Precondition: LOGIN_BUSINESS_PORTAL...'):
+            bus.get(data.Env.url_devqa);
+            sleep(3)
+            bus.login_username.send_keys('kiki@snapmail.cc')
+            bus.login_password.send_keys(Password)
+            bus.login_button.click()
+
+        with allure.step('A: You will need to select the product/service you are connecting for'):
+            nav = NavigationBar(drivers)
+
+            with allure.step('send invite'):
+                nav.SourceDocuments(InviteEmail, porduct_name, 'invite-email')
+
+        with allure.step('B: Check mailbox'):
+            '''snapmail 新增email '''
+            mailbox = MailBox(drivers)  # 调用脚本
+            mailbox.open_Mail()
+            mailbox.create_new_email(Username)
+
+            with allure.step('Receive an email to set up a valid8me account.'):
+                ''',打开发送的邮件链接'''
+                invited_user_email = mailbox.email_type_call(InviteEmail, mail_type);
+
+            with allure.step('The user use email link to customer portal'):
+                # 验证被邀请的邮件与跳转之后的邮件是否一致
+                assert invited_user_email == InviteEmail, print("验证被邀请的邮件与跳转之后的邮件一致")
+
+        with allure.step('C: Customer could register successfully.'):
+            cus = customer_login_page(drivers)
+            cus.register_password_field.send_keys(Password)
+            cus.register_passwordRepeat_field.send_keys(Password)
+            cus.accept_read.click()
+            cus.register_confirm_button.click();
+            sleep(3)
+            cus.code_input.send_keys("666666")
+            cus.confirm_btu.click()
+            cus.firstName.send_keys(Username)
+            cus.lastName.send_keys(Username)
+            cus.register_profile_individual_confirm_button.click();
+            cus.wait_page_load_timeout(5)
+            with allure.step('close closeProfile_SetUp'):
+                page = CustomerHomePage(drivers)
+                page.closeProfile_SetUp()  # 关闭弹窗;
+                sleep(3)
+
+        with allure.step('D: This user will check this action in my action list'):
+            action = ActionPage(drivers)
+            action.open_Action_Page()
+            action.open_new_prod_action(porduct_name)
+
+        with allure.step('E: The user uplod all need docs and click consent,'):
+            action.upload_action_doc(doc_photo)
+            action.consent_action()
+            action.open_Home_Page()
+
+            with allure.step('see who can access them and what documents they can see by clicking ‘Recent Shares’'):
+                RecentShares(drivers).view_all.click();
+                sleep(3)
+            with allure.step('see who can access them and what documents in companies page'):
+                cuss = Companies(drivers)
+                cuss.ReturnSharedDocuments()
+
+# with allure.step("Login"):
+        #     cus = customer_login_page(drivers)
+        #     cus.open(data.Env.dev_customer);
+        #     cus.Email_Input.send_keys(email)
+        #     cus.Password.send_keys(Password)
+        #     cus.Login.click()
+        #     cus.sleep(5)
+
+    @pytest.mark.parametrize("InviteEmail, Password, porduct_name, Username,business_email,business_password",
+                             [(Test_data['T95_corp_Email'],
+                               Test_data['T95_corp_Password'],
+                               Test_data['T95_corp_porduct_name'],
+                               Test_data['T95_corp_Username'],
+                               Test_data['business_email'],
+                               Test_data['business_password']
+
+                               )])
+    @allure.story('Verify that the portal should be able to search and connect with an existing corporate user..')
+    @allure.title('From the portal you should be able to search and connect with a corporate customer')
+
+    def test_St095_corporate(self, drivers, InviteEmail, Password, porduct_name, Username,business_email,business_password):
+        mail_type = 1  # 选择需要查看的邮件类型
+        RootPath = PathOperation()
+        doc_photo = RootPath.getOtherPath('\Data') + data.Photo_C.BRD
+
+        bus = LoginPage(drivers)
+        with allure.step('Precondition: 1. Sign up a new Corp User...'):
+            cus = customer_login_page(drivers)
+            cus.open(Test_data['customer_url']);
+            cus.sign_up.click()
+            cus.register_email_field.send_keys(InviteEmail)
+            cus.register_password_field.send_keys(Password)
+            cus.register_passwordRepeat_field.send_keys(Password)
+            cus.accept_read.click()
+            cus.SignUpCorp(Username)
+            # #
+            chp=CustomerHomePage(drivers)
+            chp.closeProfile_SetUp()
+            sleep(3)
+            # '''Logout'''
+            chp.Logout()
+            sleep(3)
+            #cus.Login_step(InviteEmail,Password)  #Test
+
+        with allure.step('Precondition: 2. Login in Business Poratl...'):
+            print(Test_data['business_email'])
 
 
-#恒天天天 打卡
-    # def test_myheng(self,drivers):
-    #     ht=Ht(drivers)
-    #     ht.open("https://cas.hengtiansoft.com:8443/cas/login?service=http%3a%2f%2fmyhengtian%3a8033%2f");sleep(1)
-    #     ht.un.send_keys("jianghaodong")
-    #     ht.pd.send_keys(data.My.pd)
-    #     ht.go.click();sleep(3)
-    #     #ht.tt.click();sleep(1)
-    #     ht.dr.click();sleep(3)
-    #     ht.des.send_keys("v8 test")
-    #     ht.commit.click();sleep(3)
+            OpenNew_window = 'window.open("{}")'.format(Test_data['business_url'])
+            chp.execute_script(OpenNew_window);
+
+            chp.switch_to_window(1)
+            chp.wait(10)
+
+
+            bus.login_username.send_keys(business_email)
+            bus.login_password.send_keys(business_password)
+            bus.login_button.click()
+            sleep(3)
+
+        with allure.step('A: You will need to select the product/service you are connecting for'):
+            A1=Product(drivers)
+            A1.OpenProuductPage()
+            A1.CreateOnlyCorp(porduct_name,Note='Autotest create')
+            sleep(3)
+
+            with allure.step('send invite'):
+                A2=NavigationBar(drivers)
+                A2.OpenMyWork();sleep(3)
+                A2.SourceDocuments(InviteEmail, porduct_name, Note='invite-email')
+
+
+        with allure.step('B: The User on the customer portal should receive an action to consent or reject'):
+            '''Reject action '''
+            with allure.step('B1: If the user reject ,the action will disappears'):
+                with allure.step('Open customer portal'):
+
+
+                    cus.switch_to_window(0)
+                    cus.Login_step(InviteEmail,Password)
+                with allure.step('Reject ,the action'):
+                    B1=ActionPage(drivers)
+                    B1.open_Action_Page()
+                    B1.open_new_prod_action(porduct_name)
+                    B1.reject_action()
+                #assert a in b ：判断b包含a
+                with allure.step('ASSERT： action will disappears'):
+                    assert "No find" in B1.open_new_prod_action(porduct_name)
+                    CustomerHomePage(drivers).Logout()
+
+
+            with allure.step('B2  : If the usercon consent, you should be able to see who can access them and what documents they can see by clicking  ‘Recent Shares’ and ’companies’page"   	Customer web'):
+
+                B1.switch_to_window(1)
+                B2=NavigationBar(drivers)
+                B2.SourceDocuments(InviteEmail,porduct_name,Note='Autotest_again_invited')
+
+                with allure.step('consent action'):
+                    B2.switch_to_window(0)
+                    cus.Login_step(InviteEmail, Password)
+                    B3 = ActionPage(drivers)
+                    B3.open_Action_Page()
+                    B3.open_new_prod_action(porduct_name)
+                    B3.upload_action_doc(doc_photo)
+                    #从这里开始写】
+                    B3.consent_action()
+                    B3.open_Home_Page()
+
+                    with allure.step('see who can access them and what documents they can see by clicking ‘Recent Shares’'):
+                        RecentShares(drivers).view_all.click();
+                        sleep(3)
+                    with allure.step('see who can access them and what documents in companies page'):
+                        B4 = Companies(drivers)
+                        shareDocument=B4.ReturnSharedDocuments()
+                        assert len(shareDocument)>=0
+
+
+
+
+
 
 
 
@@ -376,9 +535,11 @@ if __name__ == '__main__':
 
     #pytest.main(['-vs','../test_demo/SmokeTesting_test.py', "--alluredir=./temp_st"])
     #pytest.main(['-vs', '../test_demo/SmokeTesting_test.py'])
-    pytest.main(["-vs", current_path+"\SmokeTesting_test.py", '--workers=1', '--tests-per-worker=1'])
+    pytest.main(["-vs", current_path+"\SmokeTesting_test.py","--alluredir=./temp_st"])
 
 
-    #os.system("allure generate ./temp_st -o ./report_st --clean")
+    os.system("allure generate ./temp_st -o ./report_st --clean")
 
 #上jenkns:pytest -vs ./test_demo/SmokeTesting_test.py
+
+# '--workers=1', '--tests-per-worker=1'

@@ -1,0 +1,276 @@
+{
+  "uid" : "cb20b468fd29f77b",
+  "name" : "From the portal you should be able to search and connect with a corporate customer",
+  "fullName" : "SmokeTesting_test.TestCaes#test_St095_corporate",
+  "historyId" : "35da9331bb7d47bdf453e2395a1e6ff2",
+  "time" : {
+    "start" : 1679033300328,
+    "stop" : 1679033456529,
+    "duration" : 156201
+  },
+  "status" : "broken",
+  "statusMessage" : "selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <button data-v-e43d27dc=\"\" type=\"button\" class=\"el-button sourceBtn el-button--primary\" id=\"layout-navbar-source-documents-button\" style=\"\">...</button> is not clickable at point (1828, 48). Other element would receive the click: <div data-v-28ff8e7e=\"\" data-v-055e6dcc=\"\" class=\"el-dialog__wrapper dialog-form\" stripe=\"\" style=\"z-index: 2017;\">...</div>\n  (Session info: chrome=110.0.5481.100)\nStacktrace:\nBacktrace:\n\t(No symbol) [0x00DF6643]\n\t(No symbol) [0x00D8BE21]\n\t(No symbol) [0x00C8DA9D]\n\t(No symbol) [0x00CC92B2]\n\t(No symbol) [0x00CC6970]\n\t(No symbol) [0x00CC3E0B]\n\t(No symbol) [0x00CC2548]\n\t(No symbol) [0x00CB6B13]\n\t(No symbol) [0x00CDFD7C]\n\t(No symbol) [0x00CB641F]\n\t(No symbol) [0x00CE00D4]\n\t(No symbol) [0x00CF6B09]\n\t(No symbol) [0x00CDFB76]\n\t(No symbol) [0x00CB49C1]\n\t(No symbol) [0x00CB5E5D]\n\tGetHandleVerifier [0x0106A142+2497106]\n\tGetHandleVerifier [0x010985D3+2686691]\n\tGetHandleVerifier [0x0109BB9C+2700460]\n\tGetHandleVerifier [0x00EA3B10+635936]\n\t(No symbol) [0x00D94A1F]\n\t(No symbol) [0x00D9A418]\n\t(No symbol) [0x00D9A505]\n\t(No symbol) [0x00DA508B]\n\tBaseThreadInitThunk [0x76286359+25]\n\tRtlGetAppContainerNamedObjectPath [0x77DB87D4+228]\n\tRtlGetAppContainerNamedObjectPath [0x77DB87A4+180]",
+  "statusTrace" : "self = <venv.test_demo.SmokeTesting_test.TestCaes object at 0x0000026D80125A48>\ndrivers = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"4ef81aa4aa31f77455328395292fdb91\")>\nInviteEmail = '90d@snapmail.cc', Password = 'Ht@12345'\nporduct_name = 'Auto_test_5_T95', Username = '90d'\nbusiness_email = 'chloe@snapmail.cc', business_password = 'Ht@12345'\n\n    @pytest.mark.parametrize(\"InviteEmail, Password, porduct_name, Username,business_email,business_password\",\n                             [(Test_data['T95_corp_Email'],\n                               Test_data['T95_corp_Password'],\n                               Test_data['T95_corp_porduct_name'],\n                               Test_data['T95_corp_Username'],\n                               Test_data['business_email'],\n                               Test_data['business_password']\n    \n                               )])\n    @allure.story('Verify that the portal should be able to search and connect with an existing corporate user..')\n    @allure.title('From the portal you should be able to search and connect with a corporate customer')\n    \n    def test_St095_corporate(self, drivers, InviteEmail, Password, porduct_name, Username,business_email,business_password):\n        mail_type = 1  # 选择需要查看的邮件类型\n        RootPath = PathOperation()\n        doc_photo = RootPath.getOtherPath('\\Data') + data.Photo_C.BRD\n    \n        bus = LoginPage(drivers)\n        with allure.step('Precondition: 1. Sign up a new Corp User...'):\n            cus = customer_login_page(drivers)\n            cus.open(Test_data['customer_url']);\n            cus.sign_up.click()\n            cus.register_email_field.send_keys(InviteEmail)\n            cus.register_password_field.send_keys(Password)\n            cus.register_passwordRepeat_field.send_keys(Password)\n            cus.accept_read.click()\n            cus.SignUpCorp(Username)\n            # #\n            chp=CustomerHomePage(drivers)\n            chp.closeProfile_SetUp()\n            sleep(3)\n            # '''Logout'''\n            chp.Logout()\n            #cus.Login_step(InviteEmail,Password)  #Test\n    \n        with allure.step('Precondition: 2. Login in Business Poratl...'):\n            print(Test_data['business_email'])\n    \n    \n            OpenNew_window = 'window.open(\"{}\")'.format(Test_data['business_url'])\n            chp.execute_script(OpenNew_window);\n    \n            chp.switch_to_window(1)\n            chp.wait(10)\n    \n    \n            bus.login_username.send_keys(business_email)\n            bus.login_password.send_keys(business_password)\n            bus.login_button.click()\n            sleep(3)\n    \n        with allure.step('A: You will need to select the product/service you are connecting for'):\n            A1=Product(drivers)\n            A1.OpenProuductPage()\n            A1.CreateOnlyCorp(porduct_name,Note='Autotest create')\n            sleep(3)\n    \n            with allure.step('send invite'):\n                A2=NavigationBar(drivers)\n                A2.OpenMyWork();sleep(3)\n                A2.SourceDocuments(InviteEmail, porduct_name, Note='invite-email')\n    \n    \n        with allure.step('B: The User on the customer portal should receive an action to consent or reject'):\n            '''Reject action '''\n            with allure.step('B1: If the user reject ,the action will disappears'):\n                with allure.step('Open customer portal'):\n    \n    \n                    cus.switch_to_window(0)\n                    cus.Login_step(InviteEmail,Password)\n                B1=ActionPage(drivers)\n                B1.open_Action_Page()\n                B1.open_new_prod_action(porduct_name)\n                B1.reject_action()\n                #assert a in b ：判断b包含a\n                assert \"No find\" in B1.open_new_prod_action(porduct_name)\n                CustomerHomePage(drivers).Logout()\n    \n    \n            with allure.step('B2  : If the usercon consent, you should be able to see who can access them and what documents they can see by clicking  ‘Recent Shares’ and ’companies’page\"   \tCustomer web'):\n    \n                B1.switch_to_window(1)\n                B2=NavigationBar(drivers)\n>               B2.SourceDocuments(InviteEmail,porduct_name,Note='Autotest_again_invited')\n\nSmokeTesting_test.py:482: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n..\\PageView\\Business_portal\\MyWorkPage.py:23: in SourceDocuments\n    Element(id_='layout-navbar-source-documents-button',describe='点击Soure document').click()\n..\\lib\\site-packages\\poium\\selenium.py:254: in click\n    elem.click()\n..\\lib\\site-packages\\selenium\\webdriver\\remote\\webelement.py:93: in click\n    self._execute(Command.CLICK_ELEMENT)\n..\\lib\\site-packages\\selenium\\webdriver\\remote\\webelement.py:403: in _execute\n    return self._parent.execute(command, params)\n..\\lib\\site-packages\\selenium\\webdriver\\remote\\webdriver.py:440: in execute\n    self.error_handler.check_response(response)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\nself = <selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x0000026D80129748>\nresponse = {'status': 400, 'value': '{\"value\":{\"error\":\"element click intercepted\",\"message\":\"element click intercepted: Element ...\\n\\\\tRtlGetAppContainerNamedObjectPath [0x77DB87D4+228]\\\\n\\\\tRtlGetAppContainerNamedObjectPath [0x77DB87A4+180]\\\\n\"}}'}\n\n    def check_response(self, response: Dict[str, Any]) -> None:\n        \"\"\"Checks that a JSON response from the WebDriver does not have an\n        error.\n    \n        :Args:\n         - response - The JSON response from the WebDriver server as a dictionary\n           object.\n    \n        :Raises: If the response contains an error message.\n        \"\"\"\n        status = response.get(\"status\", None)\n        if not status or status == ErrorCode.SUCCESS:\n            return\n        value = None\n        message = response.get(\"message\", \"\")\n        screen: str = response.get(\"screen\", \"\")\n        stacktrace = None\n        if isinstance(status, int):\n            value_json = response.get(\"value\", None)\n            if value_json and isinstance(value_json, str):\n                import json\n    \n                try:\n                    value = json.loads(value_json)\n                    if len(value.keys()) == 1:\n                        value = value[\"value\"]\n                    status = value.get(\"error\", None)\n                    if not status:\n                        status = value.get(\"status\", ErrorCode.UNKNOWN_ERROR)\n                        message = value.get(\"value\") or value.get(\"message\")\n                        if not isinstance(message, str):\n                            value = message\n                            message = message.get(\"message\")\n                    else:\n                        message = value.get(\"message\", None)\n                except ValueError:\n                    pass\n    \n        exception_class: Type[WebDriverException]\n        if status in ErrorCode.NO_SUCH_ELEMENT:\n            exception_class = NoSuchElementException\n        elif status in ErrorCode.NO_SUCH_FRAME:\n            exception_class = NoSuchFrameException\n        elif status in ErrorCode.NO_SUCH_SHADOW_ROOT:\n            exception_class = NoSuchShadowRootException\n        elif status in ErrorCode.NO_SUCH_WINDOW:\n            exception_class = NoSuchWindowException\n        elif status in ErrorCode.STALE_ELEMENT_REFERENCE:\n            exception_class = StaleElementReferenceException\n        elif status in ErrorCode.ELEMENT_NOT_VISIBLE:\n            exception_class = ElementNotVisibleException\n        elif status in ErrorCode.INVALID_ELEMENT_STATE:\n            exception_class = InvalidElementStateException\n        elif (\n            status in ErrorCode.INVALID_SELECTOR\n            or status in ErrorCode.INVALID_XPATH_SELECTOR\n            or status in ErrorCode.INVALID_XPATH_SELECTOR_RETURN_TYPER\n        ):\n            exception_class = InvalidSelectorException\n        elif status in ErrorCode.ELEMENT_IS_NOT_SELECTABLE:\n            exception_class = ElementNotSelectableException\n        elif status in ErrorCode.ELEMENT_NOT_INTERACTABLE:\n            exception_class = ElementNotInteractableException\n        elif status in ErrorCode.INVALID_COOKIE_DOMAIN:\n            exception_class = InvalidCookieDomainException\n        elif status in ErrorCode.UNABLE_TO_SET_COOKIE:\n            exception_class = UnableToSetCookieException\n        elif status in ErrorCode.TIMEOUT:\n            exception_class = TimeoutException\n        elif status in ErrorCode.SCRIPT_TIMEOUT:\n            exception_class = TimeoutException\n        elif status in ErrorCode.UNKNOWN_ERROR:\n            exception_class = WebDriverException\n        elif status in ErrorCode.UNEXPECTED_ALERT_OPEN:\n            exception_class = UnexpectedAlertPresentException\n        elif status in ErrorCode.NO_ALERT_OPEN:\n            exception_class = NoAlertPresentException\n        elif status in ErrorCode.IME_NOT_AVAILABLE:\n            exception_class = ImeNotAvailableException\n        elif status in ErrorCode.IME_ENGINE_ACTIVATION_FAILED:\n            exception_class = ImeActivationFailedException\n        elif status in ErrorCode.MOVE_TARGET_OUT_OF_BOUNDS:\n            exception_class = MoveTargetOutOfBoundsException\n        elif status in ErrorCode.JAVASCRIPT_ERROR:\n            exception_class = JavascriptException\n        elif status in ErrorCode.SESSION_NOT_CREATED:\n            exception_class = SessionNotCreatedException\n        elif status in ErrorCode.INVALID_ARGUMENT:\n            exception_class = InvalidArgumentException\n        elif status in ErrorCode.NO_SUCH_COOKIE:\n            exception_class = NoSuchCookieException\n        elif status in ErrorCode.UNABLE_TO_CAPTURE_SCREEN:\n            exception_class = ScreenshotException\n        elif status in ErrorCode.ELEMENT_CLICK_INTERCEPTED:\n            exception_class = ElementClickInterceptedException\n        elif status in ErrorCode.INSECURE_CERTIFICATE:\n            exception_class = InsecureCertificateException\n        elif status in ErrorCode.INVALID_COORDINATES:\n            exception_class = InvalidCoordinatesException\n        elif status in ErrorCode.INVALID_SESSION_ID:\n            exception_class = InvalidSessionIdException\n        elif status in ErrorCode.UNKNOWN_METHOD:\n            exception_class = UnknownMethodException\n        else:\n            exception_class = WebDriverException\n        if not value:\n            value = response[\"value\"]\n        if isinstance(value, str):\n            raise exception_class(value)\n        if message == \"\" and \"message\" in value:\n            message = value[\"message\"]\n    \n        screen = None  # type: ignore[assignment]\n        if \"screen\" in value:\n            screen = value[\"screen\"]\n    \n        stacktrace = None\n        st_value = value.get(\"stackTrace\") or value.get(\"stacktrace\")\n        if st_value:\n            if isinstance(st_value, str):\n                stacktrace = st_value.split(\"\\n\")\n            else:\n                stacktrace = []\n                try:\n                    for frame in st_value:\n                        line = frame.get(\"lineNumber\", \"\")\n                        file = frame.get(\"fileName\", \"<anonymous>\")\n                        if line:\n                            file = f\"{file}:{line}\"\n                        meth = frame.get(\"methodName\", \"<anonymous>\")\n                        if \"className\" in frame:\n                            meth = f\"{frame['className']}.{meth}\"\n                        msg = \"    at %s (%s)\"\n                        msg = msg % (meth, file)\n                        stacktrace.append(msg)\n                except TypeError:\n                    pass\n        if exception_class == UnexpectedAlertPresentException:\n            alert_text = None\n            if \"data\" in value:\n                alert_text = value[\"data\"].get(\"text\")\n            elif \"alert\" in value:\n                alert_text = value[\"alert\"].get(\"text\")\n            raise exception_class(message, screen, stacktrace, alert_text)  # type: ignore[call-arg]  # mypy is not smart enough here\n>       raise exception_class(message, screen, stacktrace)\nE       selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <button data-v-e43d27dc=\"\" type=\"button\" class=\"el-button sourceBtn el-button--primary\" id=\"layout-navbar-source-documents-button\" style=\"\">...</button> is not clickable at point (1828, 48). Other element would receive the click: <div data-v-28ff8e7e=\"\" data-v-055e6dcc=\"\" class=\"el-dialog__wrapper dialog-form\" stripe=\"\" style=\"z-index: 2017;\">...</div>\nE         (Session info: chrome=110.0.5481.100)\nE       Stacktrace:\nE       Backtrace:\nE       \t(No symbol) [0x00DF6643]\nE       \t(No symbol) [0x00D8BE21]\nE       \t(No symbol) [0x00C8DA9D]\nE       \t(No symbol) [0x00CC92B2]\nE       \t(No symbol) [0x00CC6970]\nE       \t(No symbol) [0x00CC3E0B]\nE       \t(No symbol) [0x00CC2548]\nE       \t(No symbol) [0x00CB6B13]\nE       \t(No symbol) [0x00CDFD7C]\nE       \t(No symbol) [0x00CB641F]\nE       \t(No symbol) [0x00CE00D4]\nE       \t(No symbol) [0x00CF6B09]\nE       \t(No symbol) [0x00CDFB76]\nE       \t(No symbol) [0x00CB49C1]\nE       \t(No symbol) [0x00CB5E5D]\nE       \tGetHandleVerifier [0x0106A142+2497106]\nE       \tGetHandleVerifier [0x010985D3+2686691]\nE       \tGetHandleVerifier [0x0109BB9C+2700460]\nE       \tGetHandleVerifier [0x00EA3B10+635936]\nE       \t(No symbol) [0x00D94A1F]\nE       \t(No symbol) [0x00D9A418]\nE       \t(No symbol) [0x00D9A505]\nE       \t(No symbol) [0x00DA508B]\nE       \tBaseThreadInitThunk [0x76286359+25]\nE       \tRtlGetAppContainerNamedObjectPath [0x77DB87D4+228]\nE       \tRtlGetAppContainerNamedObjectPath [0x77DB87A4+180]\n\n..\\lib\\site-packages\\selenium\\webdriver\\remote\\errorhandler.py:245: ElementClickInterceptedException",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "drivers",
+    "time" : {
+      "start" : 1679033298183,
+      "stop" : 1679033300327,
+      "duration" : 2144
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  } ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <button data-v-e43d27dc=\"\" type=\"button\" class=\"el-button sourceBtn el-button--primary\" id=\"layout-navbar-source-documents-button\" style=\"\">...</button> is not clickable at point (1828, 48). Other element would receive the click: <div data-v-28ff8e7e=\"\" data-v-055e6dcc=\"\" class=\"el-dialog__wrapper dialog-form\" stripe=\"\" style=\"z-index: 2017;\">...</div>\n  (Session info: chrome=110.0.5481.100)\nStacktrace:\nBacktrace:\n\t(No symbol) [0x00DF6643]\n\t(No symbol) [0x00D8BE21]\n\t(No symbol) [0x00C8DA9D]\n\t(No symbol) [0x00CC92B2]\n\t(No symbol) [0x00CC6970]\n\t(No symbol) [0x00CC3E0B]\n\t(No symbol) [0x00CC2548]\n\t(No symbol) [0x00CB6B13]\n\t(No symbol) [0x00CDFD7C]\n\t(No symbol) [0x00CB641F]\n\t(No symbol) [0x00CE00D4]\n\t(No symbol) [0x00CF6B09]\n\t(No symbol) [0x00CDFB76]\n\t(No symbol) [0x00CB49C1]\n\t(No symbol) [0x00CB5E5D]\n\tGetHandleVerifier [0x0106A142+2497106]\n\tGetHandleVerifier [0x010985D3+2686691]\n\tGetHandleVerifier [0x0109BB9C+2700460]\n\tGetHandleVerifier [0x00EA3B10+635936]\n\t(No symbol) [0x00D94A1F]\n\t(No symbol) [0x00D9A418]\n\t(No symbol) [0x00D9A505]\n\t(No symbol) [0x00DA508B]\n\tBaseThreadInitThunk [0x76286359+25]\n\tRtlGetAppContainerNamedObjectPath [0x77DB87D4+228]\n\tRtlGetAppContainerNamedObjectPath [0x77DB87A4+180]",
+    "statusTrace" : "self = <venv.test_demo.SmokeTesting_test.TestCaes object at 0x0000026D80125A48>\ndrivers = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"4ef81aa4aa31f77455328395292fdb91\")>\nInviteEmail = '90d@snapmail.cc', Password = 'Ht@12345'\nporduct_name = 'Auto_test_5_T95', Username = '90d'\nbusiness_email = 'chloe@snapmail.cc', business_password = 'Ht@12345'\n\n    @pytest.mark.parametrize(\"InviteEmail, Password, porduct_name, Username,business_email,business_password\",\n                             [(Test_data['T95_corp_Email'],\n                               Test_data['T95_corp_Password'],\n                               Test_data['T95_corp_porduct_name'],\n                               Test_data['T95_corp_Username'],\n                               Test_data['business_email'],\n                               Test_data['business_password']\n    \n                               )])\n    @allure.story('Verify that the portal should be able to search and connect with an existing corporate user..')\n    @allure.title('From the portal you should be able to search and connect with a corporate customer')\n    \n    def test_St095_corporate(self, drivers, InviteEmail, Password, porduct_name, Username,business_email,business_password):\n        mail_type = 1  # 选择需要查看的邮件类型\n        RootPath = PathOperation()\n        doc_photo = RootPath.getOtherPath('\\Data') + data.Photo_C.BRD\n    \n        bus = LoginPage(drivers)\n        with allure.step('Precondition: 1. Sign up a new Corp User...'):\n            cus = customer_login_page(drivers)\n            cus.open(Test_data['customer_url']);\n            cus.sign_up.click()\n            cus.register_email_field.send_keys(InviteEmail)\n            cus.register_password_field.send_keys(Password)\n            cus.register_passwordRepeat_field.send_keys(Password)\n            cus.accept_read.click()\n            cus.SignUpCorp(Username)\n            # #\n            chp=CustomerHomePage(drivers)\n            chp.closeProfile_SetUp()\n            sleep(3)\n            # '''Logout'''\n            chp.Logout()\n            #cus.Login_step(InviteEmail,Password)  #Test\n    \n        with allure.step('Precondition: 2. Login in Business Poratl...'):\n            print(Test_data['business_email'])\n    \n    \n            OpenNew_window = 'window.open(\"{}\")'.format(Test_data['business_url'])\n            chp.execute_script(OpenNew_window);\n    \n            chp.switch_to_window(1)\n            chp.wait(10)\n    \n    \n            bus.login_username.send_keys(business_email)\n            bus.login_password.send_keys(business_password)\n            bus.login_button.click()\n            sleep(3)\n    \n        with allure.step('A: You will need to select the product/service you are connecting for'):\n            A1=Product(drivers)\n            A1.OpenProuductPage()\n            A1.CreateOnlyCorp(porduct_name,Note='Autotest create')\n            sleep(3)\n    \n            with allure.step('send invite'):\n                A2=NavigationBar(drivers)\n                A2.OpenMyWork();sleep(3)\n                A2.SourceDocuments(InviteEmail, porduct_name, Note='invite-email')\n    \n    \n        with allure.step('B: The User on the customer portal should receive an action to consent or reject'):\n            '''Reject action '''\n            with allure.step('B1: If the user reject ,the action will disappears'):\n                with allure.step('Open customer portal'):\n    \n    \n                    cus.switch_to_window(0)\n                    cus.Login_step(InviteEmail,Password)\n                B1=ActionPage(drivers)\n                B1.open_Action_Page()\n                B1.open_new_prod_action(porduct_name)\n                B1.reject_action()\n                #assert a in b ：判断b包含a\n                assert \"No find\" in B1.open_new_prod_action(porduct_name)\n                CustomerHomePage(drivers).Logout()\n    \n    \n            with allure.step('B2  : If the usercon consent, you should be able to see who can access them and what documents they can see by clicking  ‘Recent Shares’ and ’companies’page\"   \tCustomer web'):\n    \n                B1.switch_to_window(1)\n                B2=NavigationBar(drivers)\n>               B2.SourceDocuments(InviteEmail,porduct_name,Note='Autotest_again_invited')\n\nSmokeTesting_test.py:482: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n..\\PageView\\Business_portal\\MyWorkPage.py:23: in SourceDocuments\n    Element(id_='layout-navbar-source-documents-button',describe='点击Soure document').click()\n..\\lib\\site-packages\\poium\\selenium.py:254: in click\n    elem.click()\n..\\lib\\site-packages\\selenium\\webdriver\\remote\\webelement.py:93: in click\n    self._execute(Command.CLICK_ELEMENT)\n..\\lib\\site-packages\\selenium\\webdriver\\remote\\webelement.py:403: in _execute\n    return self._parent.execute(command, params)\n..\\lib\\site-packages\\selenium\\webdriver\\remote\\webdriver.py:440: in execute\n    self.error_handler.check_response(response)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\nself = <selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x0000026D80129748>\nresponse = {'status': 400, 'value': '{\"value\":{\"error\":\"element click intercepted\",\"message\":\"element click intercepted: Element ...\\n\\\\tRtlGetAppContainerNamedObjectPath [0x77DB87D4+228]\\\\n\\\\tRtlGetAppContainerNamedObjectPath [0x77DB87A4+180]\\\\n\"}}'}\n\n    def check_response(self, response: Dict[str, Any]) -> None:\n        \"\"\"Checks that a JSON response from the WebDriver does not have an\n        error.\n    \n        :Args:\n         - response - The JSON response from the WebDriver server as a dictionary\n           object.\n    \n        :Raises: If the response contains an error message.\n        \"\"\"\n        status = response.get(\"status\", None)\n        if not status or status == ErrorCode.SUCCESS:\n            return\n        value = None\n        message = response.get(\"message\", \"\")\n        screen: str = response.get(\"screen\", \"\")\n        stacktrace = None\n        if isinstance(status, int):\n            value_json = response.get(\"value\", None)\n            if value_json and isinstance(value_json, str):\n                import json\n    \n                try:\n                    value = json.loads(value_json)\n                    if len(value.keys()) == 1:\n                        value = value[\"value\"]\n                    status = value.get(\"error\", None)\n                    if not status:\n                        status = value.get(\"status\", ErrorCode.UNKNOWN_ERROR)\n                        message = value.get(\"value\") or value.get(\"message\")\n                        if not isinstance(message, str):\n                            value = message\n                            message = message.get(\"message\")\n                    else:\n                        message = value.get(\"message\", None)\n                except ValueError:\n                    pass\n    \n        exception_class: Type[WebDriverException]\n        if status in ErrorCode.NO_SUCH_ELEMENT:\n            exception_class = NoSuchElementException\n        elif status in ErrorCode.NO_SUCH_FRAME:\n            exception_class = NoSuchFrameException\n        elif status in ErrorCode.NO_SUCH_SHADOW_ROOT:\n            exception_class = NoSuchShadowRootException\n        elif status in ErrorCode.NO_SUCH_WINDOW:\n            exception_class = NoSuchWindowException\n        elif status in ErrorCode.STALE_ELEMENT_REFERENCE:\n            exception_class = StaleElementReferenceException\n        elif status in ErrorCode.ELEMENT_NOT_VISIBLE:\n            exception_class = ElementNotVisibleException\n        elif status in ErrorCode.INVALID_ELEMENT_STATE:\n            exception_class = InvalidElementStateException\n        elif (\n            status in ErrorCode.INVALID_SELECTOR\n            or status in ErrorCode.INVALID_XPATH_SELECTOR\n            or status in ErrorCode.INVALID_XPATH_SELECTOR_RETURN_TYPER\n        ):\n            exception_class = InvalidSelectorException\n        elif status in ErrorCode.ELEMENT_IS_NOT_SELECTABLE:\n            exception_class = ElementNotSelectableException\n        elif status in ErrorCode.ELEMENT_NOT_INTERACTABLE:\n            exception_class = ElementNotInteractableException\n        elif status in ErrorCode.INVALID_COOKIE_DOMAIN:\n            exception_class = InvalidCookieDomainException\n        elif status in ErrorCode.UNABLE_TO_SET_COOKIE:\n            exception_class = UnableToSetCookieException\n        elif status in ErrorCode.TIMEOUT:\n            exception_class = TimeoutException\n        elif status in ErrorCode.SCRIPT_TIMEOUT:\n            exception_class = TimeoutException\n        elif status in ErrorCode.UNKNOWN_ERROR:\n            exception_class = WebDriverException\n        elif status in ErrorCode.UNEXPECTED_ALERT_OPEN:\n            exception_class = UnexpectedAlertPresentException\n        elif status in ErrorCode.NO_ALERT_OPEN:\n            exception_class = NoAlertPresentException\n        elif status in ErrorCode.IME_NOT_AVAILABLE:\n            exception_class = ImeNotAvailableException\n        elif status in ErrorCode.IME_ENGINE_ACTIVATION_FAILED:\n            exception_class = ImeActivationFailedException\n        elif status in ErrorCode.MOVE_TARGET_OUT_OF_BOUNDS:\n            exception_class = MoveTargetOutOfBoundsException\n        elif status in ErrorCode.JAVASCRIPT_ERROR:\n            exception_class = JavascriptException\n        elif status in ErrorCode.SESSION_NOT_CREATED:\n            exception_class = SessionNotCreatedException\n        elif status in ErrorCode.INVALID_ARGUMENT:\n            exception_class = InvalidArgumentException\n        elif status in ErrorCode.NO_SUCH_COOKIE:\n            exception_class = NoSuchCookieException\n        elif status in ErrorCode.UNABLE_TO_CAPTURE_SCREEN:\n            exception_class = ScreenshotException\n        elif status in ErrorCode.ELEMENT_CLICK_INTERCEPTED:\n            exception_class = ElementClickInterceptedException\n        elif status in ErrorCode.INSECURE_CERTIFICATE:\n            exception_class = InsecureCertificateException\n        elif status in ErrorCode.INVALID_COORDINATES:\n            exception_class = InvalidCoordinatesException\n        elif status in ErrorCode.INVALID_SESSION_ID:\n            exception_class = InvalidSessionIdException\n        elif status in ErrorCode.UNKNOWN_METHOD:\n            exception_class = UnknownMethodException\n        else:\n            exception_class = WebDriverException\n        if not value:\n            value = response[\"value\"]\n        if isinstance(value, str):\n            raise exception_class(value)\n        if message == \"\" and \"message\" in value:\n            message = value[\"message\"]\n    \n        screen = None  # type: ignore[assignment]\n        if \"screen\" in value:\n            screen = value[\"screen\"]\n    \n        stacktrace = None\n        st_value = value.get(\"stackTrace\") or value.get(\"stacktrace\")\n        if st_value:\n            if isinstance(st_value, str):\n                stacktrace = st_value.split(\"\\n\")\n            else:\n                stacktrace = []\n                try:\n                    for frame in st_value:\n                        line = frame.get(\"lineNumber\", \"\")\n                        file = frame.get(\"fileName\", \"<anonymous>\")\n                        if line:\n                            file = f\"{file}:{line}\"\n                        meth = frame.get(\"methodName\", \"<anonymous>\")\n                        if \"className\" in frame:\n                            meth = f\"{frame['className']}.{meth}\"\n                        msg = \"    at %s (%s)\"\n                        msg = msg % (meth, file)\n                        stacktrace.append(msg)\n                except TypeError:\n                    pass\n        if exception_class == UnexpectedAlertPresentException:\n            alert_text = None\n            if \"data\" in value:\n                alert_text = value[\"data\"].get(\"text\")\n            elif \"alert\" in value:\n                alert_text = value[\"alert\"].get(\"text\")\n            raise exception_class(message, screen, stacktrace, alert_text)  # type: ignore[call-arg]  # mypy is not smart enough here\n>       raise exception_class(message, screen, stacktrace)\nE       selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <button data-v-e43d27dc=\"\" type=\"button\" class=\"el-button sourceBtn el-button--primary\" id=\"layout-navbar-source-documents-button\" style=\"\">...</button> is not clickable at point (1828, 48). Other element would receive the click: <div data-v-28ff8e7e=\"\" data-v-055e6dcc=\"\" class=\"el-dialog__wrapper dialog-form\" stripe=\"\" style=\"z-index: 2017;\">...</div>\nE         (Session info: chrome=110.0.5481.100)\nE       Stacktrace:\nE       Backtrace:\nE       \t(No symbol) [0x00DF6643]\nE       \t(No symbol) [0x00D8BE21]\nE       \t(No symbol) [0x00C8DA9D]\nE       \t(No symbol) [0x00CC92B2]\nE       \t(No symbol) [0x00CC6970]\nE       \t(No symbol) [0x00CC3E0B]\nE       \t(No symbol) [0x00CC2548]\nE       \t(No symbol) [0x00CB6B13]\nE       \t(No symbol) [0x00CDFD7C]\nE       \t(No symbol) [0x00CB641F]\nE       \t(No symbol) [0x00CE00D4]\nE       \t(No symbol) [0x00CF6B09]\nE       \t(No symbol) [0x00CDFB76]\nE       \t(No symbol) [0x00CB49C1]\nE       \t(No symbol) [0x00CB5E5D]\nE       \tGetHandleVerifier [0x0106A142+2497106]\nE       \tGetHandleVerifier [0x010985D3+2686691]\nE       \tGetHandleVerifier [0x0109BB9C+2700460]\nE       \tGetHandleVerifier [0x00EA3B10+635936]\nE       \t(No symbol) [0x00D94A1F]\nE       \t(No symbol) [0x00D9A418]\nE       \t(No symbol) [0x00D9A505]\nE       \t(No symbol) [0x00DA508B]\nE       \tBaseThreadInitThunk [0x76286359+25]\nE       \tRtlGetAppContainerNamedObjectPath [0x77DB87D4+228]\nE       \tRtlGetAppContainerNamedObjectPath [0x77DB87A4+180]\n\n..\\lib\\site-packages\\selenium\\webdriver\\remote\\errorhandler.py:245: ElementClickInterceptedException",
+    "steps" : [ {
+      "name" : "Precondition: 1. Sign up a new Corp User...",
+      "time" : {
+        "start" : 1679033300328,
+        "stop" : 1679033343543,
+        "duration" : 43215
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "Precondition: 2. Login in Business Poratl...",
+      "time" : {
+        "start" : 1679033343543,
+        "stop" : 1679033378577,
+        "duration" : 35034
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "A: You will need to select the product/service you are connecting for",
+      "time" : {
+        "start" : 1679033378577,
+        "stop" : 1679033424789,
+        "duration" : 46212
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "send invite",
+        "time" : {
+          "start" : 1679033408206,
+          "stop" : 1679033424789,
+          "duration" : 16583
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false,
+        "stepsCount" : 0
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true,
+      "stepsCount" : 1
+    }, {
+      "name" : "B: The User on the customer portal should receive an action to consent or reject",
+      "time" : {
+        "start" : 1679033424789,
+        "stop" : 1679033456528,
+        "duration" : 31739
+      },
+      "status" : "broken",
+      "statusMessage" : "selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <button data-v-e43d27dc=\"\" type=\"button\" class=\"el-button sourceBtn el-button--primary\" id=\"layout-navbar-source-documents-button\" style=\"\">...</button> is not clickable at point (1828, 48). Other element would receive the click: <div data-v-28ff8e7e=\"\" data-v-055e6dcc=\"\" class=\"el-dialog__wrapper dialog-form\" stripe=\"\" style=\"z-index: 2017;\">...</div>\n  (Session info: chrome=110.0.5481.100)\nStacktrace:\nBacktrace:\n\t(No symbol) [0x00DF6643]\n\t(No symbol) [0x00D8BE21]\n\t(No symbol) [0x00C8DA9D]\n\t(No symbol) [0x00CC92B2]\n\t(No symbol) [0x00CC6970]\n\t(No symbol) [0x00CC3E0B]\n\t(No symbol) [0x00CC2548]\n\t(No symbol) [0x00CB6B13]\n\t(No symbol) [0x00CDFD7C]\n\t(No symbol) [0x00CB641F]\n\t(No symbol) [0x00CE00D4]\n\t(No symbol) [0x00CF6B09]\n\t(No symbol) [0x00CDFB76]\n\t(No symbol) [0x00CB49C1]\n\t(No symbol) [0x00CB5E5D]\n\tGetHandleVerifier [0x0106A142+2497106]\n\tGetHandleVerifier [0x010985D3+2686691]\n\tGetHandleVerifier [0x0109BB9C+2700460]\n\tGetHandleVerifier [0x00EA3B10+635936]\n\t(No symbol) [0x00D94A1F]\n\t(No symbol) [0x00D9A418]\n\t(No symbol) [0x00D9A505]\n\t(No symbol) [0x00DA508B]\n\tBaseThreadInitThunk [0x76286359+25]\n\tRtlGetAppContainerNamedObjectPath [0x77DB87D4+228]\n\tRtlGetAppContainerNamedObjectPath [0x77DB87A4+180]\n\n",
+      "statusTrace" : "  File \"D:\\Users\\jianghaodong\\PycharmProjects\\pytest_study\\venv\\test_demo\\SmokeTesting_test.py\", line 482, in test_St095_corporate\n    B2.SourceDocuments(InviteEmail,porduct_name,Note='Autotest_again_invited')\n  File \"D:\\Users\\jianghaodong\\PycharmProjects\\pytest_study\\venv\\PageView\\Business_portal\\MyWorkPage.py\", line 23, in SourceDocuments\n    Element(id_='layout-navbar-source-documents-button',describe='点击Soure document').click()\n  File \"D:\\Users\\jianghaodong\\PycharmProjects\\pytest_study\\venv\\lib\\site-packages\\poium\\selenium.py\", line 254, in click\n    elem.click()\n  File \"D:\\Users\\jianghaodong\\PycharmProjects\\pytest_study\\venv\\lib\\site-packages\\selenium\\webdriver\\remote\\webelement.py\", line 93, in click\n    self._execute(Command.CLICK_ELEMENT)\n  File \"D:\\Users\\jianghaodong\\PycharmProjects\\pytest_study\\venv\\lib\\site-packages\\selenium\\webdriver\\remote\\webelement.py\", line 403, in _execute\n    return self._parent.execute(command, params)\n  File \"D:\\Users\\jianghaodong\\PycharmProjects\\pytest_study\\venv\\lib\\site-packages\\selenium\\webdriver\\remote\\webdriver.py\", line 440, in execute\n    self.error_handler.check_response(response)\n  File \"D:\\Users\\jianghaodong\\PycharmProjects\\pytest_study\\venv\\lib\\site-packages\\selenium\\webdriver\\remote\\errorhandler.py\", line 245, in check_response\n    raise exception_class(message, screen, stacktrace)\n",
+      "steps" : [ {
+        "name" : "B1: If the user reject ,the action will disappears",
+        "time" : {
+          "start" : 1679033424789,
+          "stop" : 1679033454399,
+          "duration" : 29610
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Open customer portal",
+          "time" : {
+            "start" : 1679033424789,
+            "stop" : 1679033433200,
+            "duration" : 8411
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false,
+          "stepsCount" : 0
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true,
+        "stepsCount" : 1
+      }, {
+        "name" : "B2  : If the usercon consent, you should be able to see who can access them and what documents they can see by clicking  ‘Recent Shares’ and ’companies’page\"   \tCustomer web",
+        "time" : {
+          "start" : 1679033454400,
+          "stop" : 1679033456488,
+          "duration" : 2088
+        },
+        "status" : "broken",
+        "statusMessage" : "selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <button data-v-e43d27dc=\"\" type=\"button\" class=\"el-button sourceBtn el-button--primary\" id=\"layout-navbar-source-documents-button\" style=\"\">...</button> is not clickable at point (1828, 48). Other element would receive the click: <div data-v-28ff8e7e=\"\" data-v-055e6dcc=\"\" class=\"el-dialog__wrapper dialog-form\" stripe=\"\" style=\"z-index: 2017;\">...</div>\n  (Session info: chrome=110.0.5481.100)\nStacktrace:\nBacktrace:\n\t(No symbol) [0x00DF6643]\n\t(No symbol) [0x00D8BE21]\n\t(No symbol) [0x00C8DA9D]\n\t(No symbol) [0x00CC92B2]\n\t(No symbol) [0x00CC6970]\n\t(No symbol) [0x00CC3E0B]\n\t(No symbol) [0x00CC2548]\n\t(No symbol) [0x00CB6B13]\n\t(No symbol) [0x00CDFD7C]\n\t(No symbol) [0x00CB641F]\n\t(No symbol) [0x00CE00D4]\n\t(No symbol) [0x00CF6B09]\n\t(No symbol) [0x00CDFB76]\n\t(No symbol) [0x00CB49C1]\n\t(No symbol) [0x00CB5E5D]\n\tGetHandleVerifier [0x0106A142+2497106]\n\tGetHandleVerifier [0x010985D3+2686691]\n\tGetHandleVerifier [0x0109BB9C+2700460]\n\tGetHandleVerifier [0x00EA3B10+635936]\n\t(No symbol) [0x00D94A1F]\n\t(No symbol) [0x00D9A418]\n\t(No symbol) [0x00D9A505]\n\t(No symbol) [0x00DA508B]\n\tBaseThreadInitThunk [0x76286359+25]\n\tRtlGetAppContainerNamedObjectPath [0x77DB87D4+228]\n\tRtlGetAppContainerNamedObjectPath [0x77DB87A4+180]\n\n",
+        "statusTrace" : "  File \"D:\\Users\\jianghaodong\\PycharmProjects\\pytest_study\\venv\\test_demo\\SmokeTesting_test.py\", line 482, in test_St095_corporate\n    B2.SourceDocuments(InviteEmail,porduct_name,Note='Autotest_again_invited')\n  File \"D:\\Users\\jianghaodong\\PycharmProjects\\pytest_study\\venv\\PageView\\Business_portal\\MyWorkPage.py\", line 23, in SourceDocuments\n    Element(id_='layout-navbar-source-documents-button',describe='点击Soure document').click()\n  File \"D:\\Users\\jianghaodong\\PycharmProjects\\pytest_study\\venv\\lib\\site-packages\\poium\\selenium.py\", line 254, in click\n    elem.click()\n  File \"D:\\Users\\jianghaodong\\PycharmProjects\\pytest_study\\venv\\lib\\site-packages\\selenium\\webdriver\\remote\\webelement.py\", line 93, in click\n    self._execute(Command.CLICK_ELEMENT)\n  File \"D:\\Users\\jianghaodong\\PycharmProjects\\pytest_study\\venv\\lib\\site-packages\\selenium\\webdriver\\remote\\webelement.py\", line 403, in _execute\n    return self._parent.execute(command, params)\n  File \"D:\\Users\\jianghaodong\\PycharmProjects\\pytest_study\\venv\\lib\\site-packages\\selenium\\webdriver\\remote\\webdriver.py\", line 440, in execute\n    self.error_handler.check_response(response)\n  File \"D:\\Users\\jianghaodong\\PycharmProjects\\pytest_study\\venv\\lib\\site-packages\\selenium\\webdriver\\remote\\errorhandler.py\", line 245, in check_response\n    raise exception_class(message, screen, stacktrace)\n",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : true,
+        "hasContent" : true,
+        "stepsCount" : 0
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true,
+      "stepsCount" : 3
+    }, {
+      "name" : "当前case 失败截图",
+      "time" : {
+        "start" : 1679033456683,
+        "stop" : 1679033456852,
+        "duration" : 169
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ {
+        "uid" : "5734c5ebe38a6096",
+        "name" : "case 失败截图",
+        "source" : "5734c5ebe38a6096.png",
+        "type" : "image/png",
+        "size" : 117413
+      } ],
+      "parameters" : [ ],
+      "attachmentsCount" : 1,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true,
+      "stepsCount" : 0
+    } ],
+    "attachments" : [ {
+      "uid" : "e1db744554286359",
+      "name" : "log",
+      "source" : "e1db744554286359.txt",
+      "type" : "text/plain",
+      "size" : 547
+    } ],
+    "parameters" : [ ],
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true,
+    "stepsCount" : 9
+  },
+  "afterStages" : [ {
+    "name" : "drivers::fn",
+    "time" : {
+      "start" : 1679033456860,
+      "stop" : 1679033462370,
+      "duration" : 5510
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Somke Testing Valid8Me v2.11.0"
+  }, {
+    "name" : "story",
+    "value" : "Verify that the portal should be able to search and connect with an existing corporate user.."
+  }, {
+    "name" : "suite",
+    "value" : "SmokeTesting_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestCaes"
+  }, {
+    "name" : "host",
+    "value" : "wswincnhz1692"
+  }, {
+    "name" : "thread",
+    "value" : "25692-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "SmokeTesting_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "InviteEmail",
+    "value" : "'90d@snapmail.cc'"
+  }, {
+    "name" : "Password",
+    "value" : "'Ht@12345'"
+  }, {
+    "name" : "Username",
+    "value" : "'90d'"
+  }, {
+    "name" : "business_email",
+    "value" : "'chloe@snapmail.cc'"
+  }, {
+    "name" : "business_password",
+    "value" : "'Ht@12345'"
+  }, {
+    "name" : "porduct_name",
+    "value" : "'Auto_test_5_T95'"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "cb20b468fd29f77b.json",
+  "parameterValues" : [ "'90d@snapmail.cc'", "'Ht@12345'", "'90d'", "'chloe@snapmail.cc'", "'Ht@12345'", "'Auto_test_5_T95'" ]
+}

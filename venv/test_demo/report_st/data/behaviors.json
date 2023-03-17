@@ -1,0 +1,120 @@
+{
+  "uid" : "b1a8273437954620fa374b796ffaacdd",
+  "name" : "behaviors",
+  "children" : [ {
+    "name" : "Somke Testing Valid8Me v2.11.0",
+    "children" : [ {
+      "name" : "Verify that the portal should be able to search and connect with an existing corporate user..",
+      "children" : [ {
+        "name" : "From the portal you should be able to search and connect with a corporate customer",
+        "uid" : "cb20b468fd29f77b",
+        "parentUid" : "f3be0620f4b4bff8ef0618934bc46293",
+        "status" : "broken",
+        "time" : {
+          "start" : 1679033300328,
+          "stop" : 1679033456529,
+          "duration" : 156201
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'90d@snapmail.cc'", "'Ht@12345'", "'90d'", "'chloe@snapmail.cc'", "'Ht@12345'", "'Auto_test_5_T95'" ]
+      }, {
+        "name" : "From the portal you should be able to search and connect with a corporate customer",
+        "uid" : "45af38adfa1a92c3",
+        "parentUid" : "f3be0620f4b4bff8ef0618934bc46293",
+        "status" : "passed",
+        "time" : {
+          "start" : 1679034624470,
+          "stop" : 1679034870528,
+          "duration" : 246058
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'89d@snapmail.cc'", "'Ht@12345'", "'89d'", "'chloe@snapmail.cc'", "'Ht@12345'", "'Auto_test_6_T95'" ]
+      } ],
+      "uid" : "f3be0620f4b4bff8ef0618934bc46293"
+    }, {
+      "name" : "Verify that the corporate user could be set up successfully.",
+      "children" : [ {
+        "name" : "test_St089[End user-terms-auto_ma-@snapmail.cc-Ht@12345-https://www.snapmail.cc/#/-auto_ma-auto_ma]",
+        "uid" : "2d019b14c69d0c9b",
+        "parentUid" : "2de7f7ff68c38ae7d6563187138ba842",
+        "status" : "skipped",
+        "time" : {
+          "start" : 1679034622083,
+          "stop" : 1679034622083,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'@snapmail.cc'", "'auto_ma'", "'https://www.snapmail.cc/#/'", "'auto_ma'", "'Ht@12345'", "'End user-terms'", "'auto_ma'" ]
+      } ],
+      "uid" : "2de7f7ff68c38ae7d6563187138ba842"
+    }, {
+      "name" : "When setting up a individual account:",
+      "children" : [ {
+        "name" : "test_St090[End user-terms-@snapmail.cc-Ht@12345-https://www.snapmail.cc/#/-autotest_individual_2-None-None]",
+        "uid" : "c0491008373d04ee",
+        "parentUid" : "4177ad39deb1cb6f51b7110b731394e1",
+        "status" : "skipped",
+        "time" : {
+          "start" : 1679034622089,
+          "stop" : 1679034622089,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'@snapmail.cc'", "None", "None", "'https://www.snapmail.cc/#/'", "'autotest_individual_2'", "'Ht@12345'", "'End user-terms'" ]
+      } ],
+      "uid" : "4177ad39deb1cb6f51b7110b731394e1"
+    }, {
+      "name" : "Verify the workflow for register corporate account can be completed successfully.",
+      "children" : [ {
+        "name" : "test_St091[auto_ma-Ireland-123456261-Public Limited Company (PLC)-04/10/2022-Address]",
+        "uid" : "76088c6926a9fc16",
+        "parentUid" : "9fb3e85949c283f9d673ea3bb13d2590",
+        "status" : "skipped",
+        "time" : {
+          "start" : 1679034622094,
+          "stop" : 1679034622094,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'Address'", "'Public Limited Company (PLC)'", "'04/10/2022'", "'Ireland'", "123456261", "'auto_ma'" ]
+      } ],
+      "uid" : "9fb3e85949c283f9d673ea3bb13d2590"
+    }, {
+      "name" : "Verify that the portal should be able to search and connect with a new corporate user.",
+      "children" : [ {
+        "name" : "From the portal you should be able to search and connect with a new corporate",
+        "uid" : "ee1f0affb357f790",
+        "parentUid" : "62e6ebfddecaad9588259212f34d948d",
+        "status" : "skipped",
+        "time" : {
+          "start" : 1679034622099,
+          "stop" : 1679034622099,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'89a@snapmail.cc'", "'Ht@12345'", "'89a'", "'cop1'" ]
+      }, {
+        "name" : "From the portal you should be able to search and connect with a new corporate",
+        "uid" : "d6d78e4b1b7f3328",
+        "parentUid" : "62e6ebfddecaad9588259212f34d948d",
+        "status" : "skipped",
+        "time" : {
+          "start" : 1679034622103,
+          "stop" : 1679034622103,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'96b@snapmail.cc'", "'Ht@12345'", "'96b'", "'ind2'" ]
+      } ],
+      "uid" : "62e6ebfddecaad9588259212f34d948d"
+    } ],
+    "uid" : "12f74c45befa598c533ff35fd40ba987"
+  } ]
+}

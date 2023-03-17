@@ -1,0 +1,175 @@
+[32m2023-03-17 14:30:33[0m logging.py [1m| INFO | 🔍 Find element: xpath=//span[contains(text(),'Sign Up')]. sign up button[0m
+[32m2023-03-17 14:30:34[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:30:34[0m logging.py [1m| INFO | 🔍 Find element: id=register-email-field. 注册页面输入邮箱[0m
+[32m2023-03-17 14:30:35[0m logging.py [1m| INFO | ✅ send_keys('89d@snapmail.cc').[0m
+[32m2023-03-17 14:30:35[0m logging.py [1m| INFO | 🔍 Find element: id=register-password-field. 注册页面输入密码[0m
+[32m2023-03-17 14:30:36[0m logging.py [1m| INFO | ✅ send_keys('Ht@12345').[0m
+[32m2023-03-17 14:30:36[0m logging.py [1m| INFO | 🔍 Find element: id=register-passwordRepeat-field. 注册页面输入确认密码[0m
+[32m2023-03-17 14:30:38[0m logging.py [1m| INFO | ✅ send_keys('Ht@12345').[0m
+[32m2023-03-17 14:30:38[0m logging.py [1m| INFO | 🔍 Find element: xpath=//a[contains(text(),'END USER-TERMS & CONDITIONS')]/preceding-sibling::label/*[1]. [0m
+[32m2023-03-17 14:30:39[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:30:39[0m logging.py [1m| INFO | 🔍 Find element: id=register-confirm-button. [0m
+[32m2023-03-17 14:30:40[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:30:40[0m logging.py [1m| INFO | 🔍 Find element: xpath=//input[@placeholder='Please enter the code you received']. 验证码[0m
+[32m2023-03-17 14:30:41[0m logging.py [1m| INFO | ✅ send_keys('666666').[0m
+[32m2023-03-17 14:30:41[0m logging.py [1m| INFO | ❓ Find 2 elements through: xpath=//BUTTON/span[contains(text(),'Confirm')]. code confirm button[0m
+[32m2023-03-17 14:30:42[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:30:42[0m logging.py [1m| INFO | 🔍 Find element: id=register-select-type-corporate. [0m
+[32m2023-03-17 14:30:43[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:30:44[0m logging.py [1m| INFO | 🔍 Find element: id=register-profile-legalName-field. [0m
+[32m2023-03-17 14:30:45[0m logging.py [1m| INFO | ✅ send_keys('89d').[0m
+[32m2023-03-17 14:30:45[0m logging.py [1m| INFO | 🔍 Find element: id=register-profile-tradingName-field. [0m
+[32m2023-03-17 14:30:46[0m logging.py [1m| INFO | ✅ send_keys('89d').[0m
+[32m2023-03-17 14:30:46[0m logging.py [1m| INFO | 🔍 Find element: id=handleLoginButton. [0m
+[32m2023-03-17 14:30:47[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:30:52[0m logging.py [1m| INFO | 🔍 Find element: id=setName-modal-dont-ask-checkbox. [0m
+[32m2023-03-17 14:30:53[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:30:53[0m logging.py [1m| INFO | 🔍 Find element: id=setName-modal-skip-button. [0m
+[32m2023-03-17 14:30:54[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:31:00[0m logging.py [1m| INFO | 🔍 Find element: id=navbar-handleAvatarClick-btn. [0m
+[32m2023-03-17 14:31:01[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:31:01[0m logging.py [1m| INFO | 🔍 Find element: xpath=//div[contains(text(),'Logout')]. [0m
+[32m2023-03-17 14:31:02[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:31:05[0m logging.py [1m| INFO | 🔍 Find element: id=login-button. [0m
+[32m2023-03-17 14:31:06[0m logging.py [1m| INFO | ✅ is_displayed() -> True.[0m
+[32m2023-03-17 14:31:06[0m logging.py [1m| INFO | Logout success[0m
+[32m2023-03-17 14:31:17[0m logging.py [33m[1m| WARNING | ❌ Find 0 elements through: id=login-username-input. [0m
+[32m2023-03-17 14:31:58[0m logging.py [1m| INFO | ✅ send_keys('chloe@snapmail.cc').[0m
+[32m2023-03-17 14:31:58[0m logging.py [1m| INFO | 🔍 Find element: id=login-password-input. [0m
+[32m2023-03-17 14:31:59[0m logging.py [1m| INFO | ✅ send_keys('Ht@12345').[0m
+[32m2023-03-17 14:31:59[0m logging.py [1m| INFO | 🔍 Find element: id=login-handleLogin-btn. [0m
+[32m2023-03-17 14:32:00[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:32:03[0m logging.py [1m| INFO | 🔍 Find element: xpath=//span[contains(text(),'Configuration')]. [0m
+[32m2023-03-17 14:32:04[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:32:04[0m logging.py [1m| INFO | 🔍 Find element: id=productsServices. [0m
+[32m2023-03-17 14:32:06[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:32:09[0m logging.py [1m| INFO | 🔍 Find element: id=system-product-edit-button-create. [0m
+[32m2023-03-17 14:32:10[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:32:10[0m logging.py [1m| INFO | 🔍 Find element: id=addProduct-modal-dataForm-name-input-create. [0m
+[32m2023-03-17 14:32:12[0m logging.py [1m| INFO | ✅ send_keys('Auto_test_6_T95').[0m
+[32m2023-03-17 14:32:12[0m logging.py [1m| INFO | 🔍 Find element: id=addProduct-modal-dataForm-type-select-create. [0m
+[32m2023-03-17 14:32:13[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:32:13[0m logging.py [1m| INFO | 🔍 Find element: xpath=//li/span[contains(text(),"Corporate")]. [0m
+[32m2023-03-17 14:32:14[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:32:14[0m logging.py [1m| INFO | 🔍 Find element: id=addProduct-modal-dataForm-status-select. [0m
+[32m2023-03-17 14:32:15[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:32:16[0m logging.py [1m| INFO | 🔍 Find element: xpath=//li/span[contains(text(),"Enabled")]. [0m
+[32m2023-03-17 14:32:17[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:32:17[0m logging.py [1m| INFO | 🔍 Find element: id=addProduct-modal-dataForm-validity-select. [0m
+[32m2023-03-17 14:32:18[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:32:18[0m logging.py [1m| INFO | 🔍 Find element: id=addProduct-modal-dataForm-validity-select-option0. [0m
+[32m2023-03-17 14:32:19[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:32:19[0m logging.py [1m| INFO | 🔍 Find element: id=addProduct-modal-dataForm-jurisdiction-select. [0m
+[32m2023-03-17 14:32:20[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:32:20[0m logging.py [1m| INFO | 🔍 Find element: id=addProduct-modal-dataForm-jurisdiction-select-option0. [0m
+[32m2023-03-17 14:32:21[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:32:21[0m logging.py [1m| INFO | 🔍 Find element: xpath=//span/span[contains(text(),'No')]. [0m
+[32m2023-03-17 14:32:22[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:32:22[0m logging.py [1m| INFO | 🔍 Find element: id=addProduct-modal-dataForm-note-input. [0m
+[32m2023-03-17 14:32:24[0m logging.py [1m| INFO | ✅ send_keys('Autotest create').[0m
+[32m2023-03-17 14:32:24[0m logging.py [1m| INFO | 🔍 Find element: id=addProduct-modal-next-btn. [0m
+[32m2023-03-17 14:32:25[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:32:25[0m logging.py [1m| INFO | 🔍 Find element: id=addProduct-modal-dataForm-handleCheckAllChange-checkbox0. [0m
+[32m2023-03-17 14:32:26[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:32:26[0m logging.py [1m| INFO | ❓ Find 2 elements through: id=addProduct-modal-docTypeList-radio0. [0m
+[32m2023-03-17 14:32:27[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:32:27[0m logging.py [1m| INFO | ❓ Find 2 elements through: id=addProduct-modal-docTypeList-radio2. [0m
+[32m2023-03-17 14:32:28[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:32:28[0m logging.py [1m| INFO | 🔍 Find element: id=addProduct-modal-handleCreate-btn. [0m
+[32m2023-03-17 14:32:29[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:32:32[0m logging.py [1m| INFO | OP ✅ CreateOnlyCorp :Auto_test_6_T95 create success[0m
+[32m2023-03-17 14:32:35[0m logging.py [1m| INFO | 🔍 Find element: xpath=//span[contains(text(),'My Work')]. [0m
+[32m2023-03-17 14:32:37[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:32:40[0m logging.py [1m| INFO | 🔍 Find element: id=layout-navbar-source-documents-button. 点击Soure document[0m
+[32m2023-03-17 14:32:42[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:32:42[0m logging.py [1m| INFO | 🔍 Find element: id=component-tag-input. [0m
+[32m2023-03-17 14:32:43[0m logging.py [1m| INFO | ✅ send_keys('89d@snapmail.cc').[0m
+[32m2023-03-17 14:32:43[0m logging.py [1m| INFO | 🔍 Find element: id=source-documents-product-service-select. [0m
+[32m2023-03-17 14:32:44[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:32:47[0m logging.py [1m| INFO | 🔍 Find element: xpath=//div/div//p[contains(text(),'Auto_test_6_T95')]. [0m
+[32m2023-03-17 14:32:48[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:32:48[0m logging.py [1m| INFO | 🔍 Find element: id=layout-connect-note-input. note[0m
+[32m2023-03-17 14:32:49[0m logging.py [1m| INFO | ✅ send_keys('invite-email').[0m
+[32m2023-03-17 14:32:49[0m logging.py [1m| INFO | 🔍 Find element: id=customer.Confirm.btn.save. Send Request[0m
+[32m2023-03-17 14:32:50[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:32:53[0m logging.py [1m| INFO | 🔍 Find element: id=customer.close.grey.btn. close SourceDocuments[0m
+[32m2023-03-17 14:32:54[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:32:54[0m logging.py [1m| INFO | SourceDocuments success invite: 89d@snapmail.ccthe product is: Auto_test_6_T95[0m
+[32m2023-03-17 14:32:54[0m logging.py [1m| INFO | 🔍 Find element: xpath=//input[@placeholder='Enter your email']. 输入邮箱[0m
+[32m2023-03-17 14:32:55[0m logging.py [1m| INFO | ✅ send_keys('89d@snapmail.cc').[0m
+[32m2023-03-17 14:32:56[0m logging.py [1m| INFO | 🔍 Find element: xpath=//input[@placeholder='Enter password']. password[0m
+[32m2023-03-17 14:32:57[0m logging.py [1m| INFO | ✅ send_keys('Ht@12345').[0m
+[32m2023-03-17 14:32:57[0m logging.py [1m| INFO | 🔍 Find element: xpath=//span[contains(text(),'Login')]. login button[0m
+[32m2023-03-17 14:32:58[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:33:03[0m logging.py [1m| INFO | 🔍 Find element: xpath=//a/li[text()='Actions']. [0m
+[32m2023-03-17 14:33:04[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:33:07[0m logging.py [1m| INFO | OP ✅ OPEN MY ACTIONS PAGE[0m
+[32m2023-03-17 14:33:07[0m logging.py [1m| INFO | 🔍 Find element: xpath=//div[contains(text(),"Auto_test_6_T95")]. [0m
+[32m2023-03-17 14:33:08[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:33:08[0m logging.py [1m| INFO | OP ✅ OPEN new product sever :Auto_test_6_T95[0m
+[32m2023-03-17 14:33:08[0m logging.py [1m| INFO | 🔍 Find element: xpath=//span[contains(text(),'Reject')]. [0m
+[32m2023-03-17 14:33:09[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:33:09[0m logging.py [1m| INFO | 🔍 Find element: xpath=//span[contains(text(),'Yes')]. [0m
+[32m2023-03-17 14:33:10[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:33:13[0m logging.py [1m| INFO | reject_action success[0m
+[32m2023-03-17 14:33:18[0m logging.py [1m| INFO | 🔍 Find element: id=navbar-handleAvatarClick-btn. [0m
+[32m2023-03-17 14:33:19[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:33:19[0m logging.py [1m| INFO | 🔍 Find element: xpath=//div[contains(text(),'Logout')]. [0m
+[32m2023-03-17 14:33:20[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:33:23[0m logging.py [1m| INFO | 🔍 Find element: id=login-button. [0m
+[32m2023-03-17 14:33:24[0m logging.py [1m| INFO | ✅ is_displayed() -> True.[0m
+[32m2023-03-17 14:33:24[0m logging.py [1m| INFO | Logout success[0m
+[32m2023-03-17 14:33:24[0m logging.py [1m| INFO | 🔍 Find element: id=layout-navbar-source-documents-button. 点击Soure document[0m
+[32m2023-03-17 14:33:25[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:33:25[0m logging.py [1m| INFO | 🔍 Find element: id=component-tag-input. [0m
+[32m2023-03-17 14:33:26[0m logging.py [1m| INFO | ✅ send_keys('89d@snapmail.cc').[0m
+[32m2023-03-17 14:33:26[0m logging.py [1m| INFO | 🔍 Find element: id=source-documents-product-service-select. [0m
+[32m2023-03-17 14:33:27[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:33:30[0m logging.py [1m| INFO | 🔍 Find element: xpath=//div/div//p[contains(text(),'Auto_test_6_T95')]. [0m
+[32m2023-03-17 14:33:31[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:33:31[0m logging.py [1m| INFO | 🔍 Find element: id=layout-connect-note-input. note[0m
+[32m2023-03-17 14:33:32[0m logging.py [1m| INFO | ✅ send_keys('Autotest_again_invited').[0m
+[32m2023-03-17 14:33:32[0m logging.py [1m| INFO | 🔍 Find element: id=customer.Confirm.btn.save. Send Request[0m
+[32m2023-03-17 14:33:33[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:33:36[0m logging.py [1m| INFO | 🔍 Find element: id=customer.close.grey.btn. close SourceDocuments[0m
+[32m2023-03-17 14:33:37[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:33:37[0m logging.py [1m| INFO | SourceDocuments success invite: 89d@snapmail.ccthe product is: Auto_test_6_T95[0m
+[32m2023-03-17 14:33:38[0m logging.py [1m| INFO | 🔍 Find element: xpath=//input[@placeholder='Enter your email']. 输入邮箱[0m
+[32m2023-03-17 14:33:39[0m logging.py [1m| INFO | ✅ send_keys('89d@snapmail.cc').[0m
+[32m2023-03-17 14:33:39[0m logging.py [1m| INFO | 🔍 Find element: xpath=//input[@placeholder='Enter password']. password[0m
+[32m2023-03-17 14:33:40[0m logging.py [1m| INFO | ✅ send_keys('Ht@12345').[0m
+[32m2023-03-17 14:33:40[0m logging.py [1m| INFO | 🔍 Find element: xpath=//span[contains(text(),'Login')]. login button[0m
+[32m2023-03-17 14:33:41[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:33:46[0m logging.py [1m| INFO | 🔍 Find element: xpath=//a/li[text()='Actions']. [0m
+[32m2023-03-17 14:33:47[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:33:50[0m logging.py [1m| INFO | OP ✅ OPEN MY ACTIONS PAGE[0m
+[32m2023-03-17 14:33:50[0m logging.py [1m| INFO | 🔍 Find element: xpath=//div[contains(text(),"Auto_test_6_T95")]. [0m
+[32m2023-03-17 14:33:51[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:33:51[0m logging.py [1m| INFO | OP ✅ OPEN new product sever :Auto_test_6_T95[0m
+[32m2023-03-17 14:33:57[0m logging.py [1m| INFO | 🔍 Find element: id=ActionUpload-upload-select. [0m
+[32m2023-03-17 14:33:58[0m logging.py [1m| INFO | ✅ get_property('value') -> Board Resolution Document.[0m
+[32m2023-03-17 14:33:58[0m logging.py [1m| INFO | 🔍 Find element: xpath=//div[@id='ActionUpload-upload-file-button']//input. [0m
+[32m2023-03-17 14:33:59[0m logging.py [1m| INFO | ✅ send_keys('D:\Users\jianghaodong\PycharmProjects\pytest_study\venv\Data\documents\BRD.png').[0m
+[32m2023-03-17 14:34:01[0m logging.py [1m| INFO | 🔍 Find element: id=ActionUpload-submit-button. submit[0m
+[32m2023-03-17 14:34:02[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:34:02[0m logging.py [1m| INFO | upload_doc : D:\Users\jianghaodong\PycharmProjects\pytest_study\venv\Data\documents\BRD.png[0m
+[32m2023-03-17 14:34:07[0m logging.py [1m| INFO | 🔍 Find element: id=ActionUpload-upload-select. [0m
+[32m2023-03-17 14:34:08[0m logging.py [1m| INFO | ✅ get_property('value') -> Certificate of Incorporation.[0m
+[32m2023-03-17 14:34:08[0m logging.py [1m| INFO | 🔍 Find element: xpath=//div[@id='ActionUpload-upload-file-button']//input. [0m
+[32m2023-03-17 14:34:09[0m logging.py [1m| INFO | ✅ send_keys('D:\Users\jianghaodong\PycharmProjects\pytest_study\venv\Data\documents\BRD.png').[0m
+[32m2023-03-17 14:34:11[0m logging.py [1m| INFO | 🔍 Find element: id=ActionUpload-submit-button. submit[0m
+[32m2023-03-17 14:34:12[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:34:12[0m logging.py [1m| INFO | upload_doc : D:\Users\jianghaodong\PycharmProjects\pytest_study\venv\Data\documents\BRD.png[0m
+[32m2023-03-17 14:34:17[0m logging.py [1m| INFO | OP ✅ upload_action_doc success[0m
+[32m2023-03-17 14:34:17[0m logging.py [1m| INFO | 🔍 Find element: xpath=//span[contains(text(),'Consent')]. [0m
+[32m2023-03-17 14:34:18[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:34:18[0m logging.py [1m| INFO | 🔍 Find element: xpath=//span[contains(text(),'Yes')]. [0m
+[32m2023-03-17 14:34:19[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:34:22[0m logging.py [1m| INFO | 🔍 Find element: xpath=//a/li[text()='Home']. [0m
+[32m2023-03-17 14:34:23[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:34:23[0m logging.py [1m| INFO | OP ✅ OPEN MY Home PAGE[0m
+[32m2023-03-17 14:34:25[0m logging.py [1m| INFO | 🔍 Find element: id=hompage-viaw-all-button. [0m
+[32m2023-03-17 14:34:26[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-17 14:34:29[0m logging.py [1m| INFO | 🔍 Find element: xpath=//*[@id="component-toolTip-visibilityChange"]. [0m
+[32m2023-03-17 14:34:30[0m logging.py [1m| INFO | ✅ text: +2 Board Resolution Document,Certificate of Incorporation.[0m
+[32m2023-03-17 14:34:30[0m logging.py [1m| INFO | OP ✅ ReturnSharedDocuments :+2 Board Resolution Document,Certificate of Incorporation[0m

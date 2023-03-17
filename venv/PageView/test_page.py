@@ -20,3 +20,5 @@ class Ht(Page):
 
 
 
+ProductXpath="//div/div//p[contains(text(),'{}')]".format(123)
+print(ProductXpath)

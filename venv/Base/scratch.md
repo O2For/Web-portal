@@ -36,4 +36,30 @@ python 正则化：
             value1 = page.samply1.text  整个文本
             text1 = ''.join(value1) 将文本变成字符串string
             trueass1 = ass1.sub('', text1, count=1) 开始替换，‘’表示需要替换/删除，count最大删除数量。
-            
+ Find 查找多个原元素方法      
+    def find(self, context):
+        for i in range(self.times):
+            elems = Browser.driver.find_elements(*self.locator)
+            if len(elems) == 0:
+                sleep(1)
+            else:
+                break
+        else:
+            elems = []
+            logging.info(f"✨ Find {len(elems)} elements through: {self.k}={self.v}. {self.desc}")
+        return elems
+        
+        判断元素是否存在
+     from selenium.common.exceptions import NoSuchElementException
+     在element 里面修改
+         def is_exist(self) -> bool:
+        """Whether the element is visible to a user."""
+
+        elem = Browser.driver.find_elements(by=self.k, value=self.v)
+        if len(elem)==0:
+
+            logging.info(f"❌ is_exist() -> {elem}. Eelement not exist")
+            return False
+        else:
+            logging.info(f"√ is_exist() -> {elem}. Eelement exist")
+            return True
