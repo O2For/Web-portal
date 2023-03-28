@@ -394,23 +394,30 @@ class TestCaes:
         #     cus.Password.send_keys(Password)
         #     cus.Login.click()
         #     cus.sleep(5)
+    #@pytest.mark.skip('skop')
 
-    @pytest.mark.parametrize("InviteEmail, Password, porduct_name, Username,business_email,business_password",
-                             [(Test_data['T95_corp_Email'],
-                               Test_data['T95_corp_Password'],
-                               Test_data['T95_corp_porduct_name'],
-                               Test_data['T95_corp_Username'],
-                               Test_data['business_email'],
-                               Test_data['business_password']
 
-                               )])
     @allure.story('Verify that the portal should be able to search and connect with an existing corporate user..')
+    @pytest.mark.skip('skop')
     @allure.title('From the portal you should be able to search and connect with a corporate customer')
+    @pytest.mark.parametrize(
+        "InviteEmail, Password, porduct_name, Username,business_email,business_password,business_name",
+        [(Test_data['T95_corp_Email'],
+          Test_data['T95_corp_Password'],
+          Test_data['T95_corp_porduct_name'],
+          Test_data['T95_corp_Username'],
+          Test_data['business_email'],
+          Test_data['business_password'],
+          Test_data['business_name']
 
-    def test_St095_corporate(self, drivers, InviteEmail, Password, porduct_name, Username,business_email,business_password):
+          )])
+    def test_St095_96_corporate(self, drivers, InviteEmail, Password, porduct_name, Username, business_email,
+                                      business_password, business_name):
         mail_type = 1  # 选择需要查看的邮件类型
+        '准备工作-放置文件路径'
         RootPath = PathOperation()
-        doc_photo = RootPath.getOtherPath('\Data') + data.Photo_C.BRD
+        with allure.step('Precondition 0: Doc Type Path Ready....'):
+            DocPath = RootPath.getOtherPath('\Data')
 
         bus = LoginPage(drivers)
         with allure.step('Precondition: 1. Sign up a new Corp User...'):
@@ -422,45 +429,39 @@ class TestCaes:
             cus.register_passwordRepeat_field.send_keys(Password)
             cus.accept_read.click()
             cus.SignUpCorp(Username)
-            # #
+
             chp=CustomerHomePage(drivers)
             chp.closeProfile_SetUp()
             sleep(3)
             # '''Logout'''
             chp.Logout()
-            sleep(3)
             #cus.Login_step(InviteEmail,Password)  #Test
+            sleep(3)
 
         with allure.step('Precondition: 2. Login in Business Poratl...'):
-            print(Test_data['business_email'])
-
 
             OpenNew_window = 'window.open("{}")'.format(Test_data['business_url'])
-            chp.execute_script(OpenNew_window);
-
-            chp.switch_to_window(1)
-            chp.wait(10)
-
-
+            bus.execute_script(OpenNew_window);
+            bus.switch_to_window(1)
+            bus.wait(10);
+            sleep(5)
+            bus.refrash()
             bus.login_username.send_keys(business_email)
             bus.login_password.send_keys(business_password)
             bus.login_button.click()
             sleep(3)
-
         with allure.step('A: You will need to select the product/service you are connecting for'):
-            A1=Product(drivers)
+            A1 = Product(drivers)
             A1.OpenProuductPage()
-            A1.CreateOnlyCorp(porduct_name,Note='Autotest create')
+            A1.CreateOnlyCorp(porduct_name, Note='Autotest create')
+            sleep(3)
+        with allure.step('send invite'):
+            A2 = NavigationBar(drivers)
+            A2.OpenMyWork();
             sleep(3)
 
-            with allure.step('send invite'):
-                A2=NavigationBar(drivers)
-                A2.OpenMyWork();sleep(3)
-                A2.SourceDocuments(InviteEmail, porduct_name, Note='invite-email')
-
-
         with allure.step('B: The User on the customer portal should receive an action to consent or reject'):
-            '''Reject action '''
+        #     '''Reject action '''
             with allure.step('B1: If the user reject ,the action will disappears'):
                 with allure.step('Open customer portal'):
 
@@ -478,10 +479,12 @@ class TestCaes:
                     CustomerHomePage(drivers).Logout()
 
 
-            with allure.step('B2  : If the usercon consent, you should be able to see who can access them and what documents they can see by clicking  ‘Recent Shares’ and ’companies’page"   	Customer web'):
+            with allure.step('B2  : If the usercon consent, you should be able to see who can '
+                             'access them and what documents they can see by clicking  ‘Recent Shares’ and ’companies’page"'
+                             'Customer web'):
 
-                B1.switch_to_window(1)
                 B2=NavigationBar(drivers)
+                B2.switch_to_window(1)
                 B2.SourceDocuments(InviteEmail,porduct_name,Note='Autotest_again_invited')
 
                 with allure.step('consent action'):
@@ -490,8 +493,133 @@ class TestCaes:
                     B3 = ActionPage(drivers)
                     B3.open_Action_Page()
                     B3.open_new_prod_action(porduct_name)
-                    B3.upload_action_doc(doc_photo)
-                    #从这里开始写】
+                    '导入数据'
+                    dataTest = dict(data.Photo_C)
+                    B3.upload_action_doc(DocPath, dataTest)
+                    # 从这里开始写】
+                    B3.consent_action()
+                    B3.open_Home_Page()
+
+
+                #
+                    with allure.step('see who can access them and what documents they can see by clicking ‘Recent Shares’'):
+                        RecentShares(drivers).view_all.click();
+                        sleep(3)
+                    with allure.step('see who can access them and what documents in companies page'):
+                        B4 = Companies(drivers)
+                        share=B4.ReturnSharedDocuments()
+                        assert len(share['shareDocument'])>=0
+
+            with allure.step('ST96-96A: Verify that the corporate user should be able to search for companies successfully'):
+                with allure.step(' a. You will need to select a Product/Service you are connecting for and share you doc with them'):
+                    B4.SearchConnect(business_name,porduct_name)
+                    share = B4.ReturnSharedDocuments()
+                    assert share['Recent_Product']==porduct_name
+
+                with allure.step(' b. Login portal, the status of connection case is Granted.'):
+                    B4.switch_to_window(1)
+                    sleep(3)
+                    B5 = NavigationBar(drivers)
+                    notie = B5.CheckNotifications()
+                    assert notie['Status']=='Granted';
+
+    'st——95--individual'
+
+
+    @allure.story('Verify that the portal should be able to search and connect with an existing individual user..')
+    @allure.title('From the portal you should be able to search and connect with a individual customer')
+    @pytest.mark.parametrize("InviteEmail, Password, porduct_name, Username,business_email,business_password,business_name",
+                             [(Test_data['T95_ind_Email'],
+                               Test_data['T95_ind_Password'],
+                               Test_data['T95_ind_porduct_name'],
+                               Test_data['T95_ind_Username'],
+                               Test_data['business_email'],
+                               Test_data['business_password'],
+                               Test_data['business_name'],
+                               )])
+    @pytest.mark.skip('skop')
+    def test_St095_96_individual(self, drivers, InviteEmail, Password, porduct_name, Username,business_email,business_password,business_name):
+
+        '准备工作-放置文件路径'
+        RootPath = PathOperation()
+        with allure.step('Precondition 0: Doc Type Path Ready....'):
+            DocPath = RootPath.getOtherPath('\Data')
+
+        '准备工作-创建个人用户'
+        cus = customer_login_page(drivers)
+        with allure.step('Precondition: 1. Sign up a new Individual User...'):
+
+            cus.open(Test_data['customer_url']);
+            cus.sign_up.click()
+            cus.register_email_field.send_keys(InviteEmail)
+            cus.register_password_field.send_keys(Password)
+            cus.register_passwordRepeat_field.send_keys(Password)
+            cus.accept_read.click()
+            cus.SignUpInd(Username)
+
+            chp=CustomerHomePage(drivers)
+            chp.closeProfile_SetUp();sleep(3)
+
+            chp.Logout();sleep(3)
+            #cus.Login_step(InviteEmail,Password)  #Test
+
+        bus = LoginPage(drivers)
+        with allure.step('Precondition: 2. Login in Business Poratl...'):
+
+            OpenNew_window = 'window.open("{}")'.format(Test_data['business_url'])
+            bus.execute_script(OpenNew_window);
+            bus.switch_to_window(1)
+            bus.wait(10);
+            sleep(7)
+            #bus.refrash()
+
+            bus.login_username.send_keys(business_email)
+            bus.login_password.send_keys(business_password)
+            bus.login_button.click();sleep(3)
+
+        with allure.step('A: You will need to select the product/service you are connecting for'):
+            A1=Product(drivers)
+            A1.OpenProuductPage()
+            A1.CreateOnlyIndividual(porduct_name,Note='Autotest create')
+            sleep(3)
+            with allure.step('send invite'):
+                A2=NavigationBar(drivers)
+                A2.OpenMyWork();sleep(3)
+                A2.SourceDocuments(InviteEmail, porduct_name, Note='invite-email')
+
+        with allure.step('B: The User on the customer portal should receive an action to consent or reject'):
+            '''Reject action '''
+            with allure.step('B1: If the user reject ,the action will disappears'):
+                with allure.step('Open customer portal'):
+
+                    cus.switch_to_window(0)
+                    cus.Login_step(InviteEmail,Password)
+                with allure.step('Reject ,the action'):
+                    B1=ActionPage(drivers)
+                    B1.open_Action_Page()
+                    B1.open_new_prod_action(porduct_name)
+                    B1.reject_action()
+                                                                               # assert a in b #：判断b包含a
+                with allure.step('ASSERT： action will disappears'):
+                    assert "No find" in B1.open_new_prod_action(porduct_name)
+                    CustomerHomePage(drivers).Logout()
+
+            with allure.step('B2  : If the usercon consent, you should be able to see who can access them and what documents they can see by clicking  ‘Recent Shares’ and ’companies’page"   	Customer web'):
+
+                B1.switch_to_window(1)
+                B2=NavigationBar(drivers)
+                B2.SourceDocuments(InviteEmail,porduct_name,Note='Autotest_again_invited')
+
+                with allure.step('Consent action'):
+                    cus.switch_to_window(0)
+                    cus.Login_step(InviteEmail, Password)
+                    B3 = ActionPage(drivers)
+                    B3.open_Action_Page()
+                    B3.open_new_prod_action(porduct_name)
+                    with allure.step('Upload doc which in action list'):
+                        dataTest=dict(data.Photo_C)
+                        B3.upload_action_doc(DocPath,dataTest)
+
                     B3.consent_action()
                     B3.open_Home_Page()
 
@@ -500,28 +628,69 @@ class TestCaes:
                         sleep(3)
                     with allure.step('see who can access them and what documents in companies page'):
                         B4 = Companies(drivers)
-                        shareDocument=B4.ReturnSharedDocuments()
-                        assert len(shareDocument)>=0
+                        share = B4.ReturnSharedDocuments()
+                        assert len(share['shareDocument']) >= 0
+
+        with allure.step(
+                'ST96-96A: Verify that the individual user should be able to search for companies successfully'):
+            with allure.step(
+                    ' a. You will need to select a Product/Service you are connecting for and share you doc with them'):
+                B4.SearchConnect(business_name, porduct_name)
+                share = B4.ReturnSharedDocuments()
+                assert share['Recent_Product'] == porduct_name
+
+            with allure.step(' b. Login portal, the status of connection case is Granted.'):
+                B4.switch_to_window(1)
+                sleep(3)
+                B5 = NavigationBar(drivers)
+                notie = B5.CheckNotifications()
+                assert notie['Status'] == 'Granted';
 
 
 
 
 
 
+    @allure.story('Verify that the corporate user should be able to upload a document..')
+    #@pytest.mark.skip('skop')
+
+    @pytest.mark.parametrize(
+        "InviteEmail, Password, Username,DocName",
+        [(Test_data['T97_corp_Email'],
+          Test_data['T97_corp_Password'],
+          Test_data['T97_corp_Username'],
+          Test_data['T97_corp_UploadDocName'],
 
 
+          )])
+    def test_St097_98_corporate(self, drivers, InviteEmail, Password, Username,DocName):
 
+        '准备工作-放置文件路径'
+        RootPath = PathOperation()
+        with allure.step('Precondition 0: Doc Type Path Ready....'):
+            DocPath = RootPath.getOtherPath('\Data')
 
+        with allure.step('Precondition: 1. Sign up a new Corp User...'):
+            cus = customer_login_page(drivers)
+            cus.open(Test_data['customer_url']);
+            cus.sign_up.click()
+            cus.register_email_field.send_keys(InviteEmail)
+            cus.register_password_field.send_keys(Password)
+            cus.register_passwordRepeat_field.send_keys(Password)
+            cus.accept_read.click()
+            cus.SignUpInd(Username)
 
+            chp = CustomerHomePage(drivers)
+            chp.closeProfile_SetUp()
+            sleep(3)
 
+            # cus.Login_step(InviteEmail,Password)  #Test
 
-
-
-
-
-
-
-
+        with allure.step('On the customer web you should be able to upload a document.'):
+            with allure.step('Upload doc in home page'):
+                dataTest = dict(data.Photo_C)
+                chp.UploadDocHome(DocPath,dataTest,DocName)
+            #with allure.step('Upload doc in document page'):
 
 
 
@@ -535,10 +704,10 @@ if __name__ == '__main__':
 
     #pytest.main(['-vs','../test_demo/SmokeTesting_test.py', "--alluredir=./temp_st"])
     #pytest.main(['-vs', '../test_demo/SmokeTesting_test.py'])
-    pytest.main(["-vs", current_path+"\SmokeTesting_test.py","--alluredir=./temp_st"])
+    pytest.main(["-vs", current_path+"\SmokeTesting_test.py"])
 
 
-    os.system("allure generate ./temp_st -o ./report_st --clean")
+    #os.system("allure generate ./temp_st -o ./report_st --clean")
 
 #上jenkns:pytest -vs ./test_demo/SmokeTesting_test.py
 

@@ -22,4 +22,19 @@ class GetData(object):
             print("GetData")
 
 
+#
+# da=GetData()
+# a='BRD'
+# data=da.TestData()
+# print(dict(data.Photo_C))
+# ditca=dict(data.Photo_C)
+# print(ditca[a])
 
+def abc():
+    a=1
+    b=2
+    d=dict()
+
+
+    return [a,b]
+print(abc())

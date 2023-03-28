@@ -38,6 +38,22 @@ class NavigationBar(Page):
 
         return print('send request success')
 
+    def CheckNotifications(self):
+        Status = Element(xpath='//td/div',index=1).text
+        ConnectionName = Element(xpath='//td/div', index=2).text
+        CaseRef = Element(xpath='//td/div', index=3).text
+        EmailAddress = Element(xpath='//td/div', index=4).text
+        Type = Element(xpath='//td/div', index=5).text
+        d=dict()
+        d['Status']=Status
+        d['ConnectionName']=ConnectionName
+        d['CaseRef']=CaseRef
+        d['EmailAddress']=EmailAddress
+        d['Type']=Type
+        logging.info(f'Get the first Notifications{d}')
+
+        return d
+
 
 
 
