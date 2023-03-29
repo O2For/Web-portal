@@ -30,11 +30,3 @@ class GetData(object):
 # ditca=dict(data.Photo_C)
 # print(ditca[a])
 
-def abc():
-    a=1
-    b=2
-    d=dict()
-
-
-    return [a,b]
-print(abc())

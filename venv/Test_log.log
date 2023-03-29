@@ -1,0 +1,31 @@
+[32m2023-03-29 16:20:24[0m logging.py [1m| INFO | 🔍 Find element: xpath=//input[@placeholder='Enter your email']. 输入邮箱[0m
+[32m2023-03-29 16:20:25[0m logging.py [1m| INFO | ✅ send_keys('96f@snapmail.cc').[0m
+[32m2023-03-29 16:20:25[0m logging.py [1m| INFO | 🔍 Find element: xpath=//input[@placeholder='Enter password']. password[0m
+[32m2023-03-29 16:20:26[0m logging.py [1m| INFO | ✅ send_keys('Ht@12345').[0m
+[32m2023-03-29 16:20:26[0m logging.py [1m| INFO | 🔍 Find element: xpath=//span[contains(text(),'Login')]. login button[0m
+[32m2023-03-29 16:20:27[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-29 16:20:47[0m logging.py [1m| INFO | 🔍 Find element: xpath=//li[contains(text(),'Documents')]. [0m
+[32m2023-03-29 16:20:48[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-29 16:20:51[0m logging.py [1m| INFO | ❓ Find 2 elements through: id=document-page-updateOne-button381. 点击更新按钮[0m
+[32m2023-03-29 16:20:52[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-29 16:20:52[0m logging.py [1m| INFO | 🔍 Find element: id=document-upload-docVault-select. 获取当前更新的文件名称[0m
+[32m2023-03-29 16:20:53[0m logging.py [1m| INFO | ✅ get_property('value') -> Passport.[0m
+[32m2023-03-29 16:20:53[0m logging.py [1m| INFO | 🔍 Find element: xpath=//em/following-sibling::input. 输入需要上传的文件路径[0m
+[32m2023-03-29 16:20:54[0m logging.py [1m| INFO | ✅ send_keys('D:\Users\jianghaodong\PycharmProjects\pytest_study\venv\Data\documents\Passport.png').[0m
+[32m2023-03-29 16:20:58[0m logging.py [1m| INFO | 🔍 Find element: id=document-upload-local-doc-submit-button. submit[0m
+[32m2023-03-29 16:20:59[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-29 16:21:04[0m logging.py [1m| INFO | 🔍 Find element: id=document-upload-regular-inputList-item-not-513. 修改到期时间[0m
+[32m2023-03-29 16:21:05[0m logging.py [1m| INFO | ✅ clear().[0m
+[32m2023-03-29 16:21:06[0m logging.py [1m| INFO | ✅ send_keys('29/03/2023').[0m
+[32m2023-03-29 16:21:08[0m logging.py [1m| INFO | 🔍 Find element: id=document-upload-regular-inputList-item-not-514. 修改 出生时间[0m
+[32m2023-03-29 16:21:10[0m logging.py [1m| INFO | ✅ clear().[0m
+[32m2023-03-29 16:21:10[0m logging.py [1m| INFO | ✅ send_keys('01/01/1999').[0m
+[32m2023-03-29 16:21:15[0m logging.py [1m| INFO | 🔍 Find element: xpath=//BUTTON/span[contains(text(),'Confirm')]. # 确认regular 证件识别结果[0m
+[32m2023-03-29 16:21:16[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-29 16:21:24[0m logging.py [1m| INFO | ❓ Find 2 elements through: xpath=//span[contains(text(),'Yes, I would')]. [0m
+[32m2023-03-29 16:21:25[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-29 16:21:59[0m logging.py [1m| INFO | ❓ Find 2 elements through: id=document-page-updateOne-button381. 点击删除按钮[0m
+[32m2023-03-29 16:22:00[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-29 16:22:04[0m logging.py [1m| INFO | 🔍 Find element: xpath=//span[contains(text(),"Yes")]. 确认删除按钮[0m
+[32m2023-03-29 16:22:05[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-03-29 16:22:24[0m logging.py [1m| INFO | Delete Passport successfully[0m

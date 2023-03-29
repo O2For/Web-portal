@@ -3,8 +3,9 @@ from PageView.Customer_portal.customer_system_page import *
 from poium.common import logging
 import time
 
-
+'''登陆页面的相关操作'''
 class customer_login_page(Page):
+    '''登陆页面的相关操作'''
 
     '这里是 Customer protal 的 login 和注册页面以及Home page的页面 基础定位'
 
@@ -93,21 +94,115 @@ class customer_login_page(Page):
 
 
 
-
-
-
-
+'''Homepage 的相关操作'''
 class CustomerHomePage(Page):
     'Homepage 的相关操作'
     IdList=[]
     _upload_iconClass = 'uploadCard'
 
-    def _verfiy_Profile_SetUp(self):
-        ''
+    '在Home 页面上传文档,一次传送一个文件类型'
+    def UploadDocHome_Corp(self,DocPath,dataTest,Doc_type):
+        '在Home 页面上传文档,一次传送一个文件类型'
 
-        Element(id_='setName-modal-handleItemClick-btn21881')
-        Element(id_='setName-modal-handleItemClick-btn21882')
-        Element(id_='setName-modal-handleItemClick-btn21883')
+        _docTypeId = 'document-upload-modal-docVault-select'
+        _docName = '//li/span[contains(text(),"{}")]'.format(Doc_type)
+        _confirmUploadDocHomeList = "//p[contains(text(),'{}')]".format(Doc_type)
+
+        DOCPATH = DocPath  # 跟目录
+        AllDoc = dataTest  # 路径
+
+        DocList_AddDateOfIssue = ['Filed Corporate Accounts','Company Ownership Structure',
+                                  'Test for Corp1','Test for Corp2']
+        OrtherInfor=['Test for Corp1']
+
+        Element(class_name=self._upload_iconClass).click()
+        Element(id_=_docTypeId,describe='点击上传文件的下拉框',index=0).click()
+        Element(xpath=_docName, describe='点击下拉列表中需要上传的文件').click()
+        Element(xpath="//em/following-sibling::input").send_keys(DOCPATH + AllDoc[Doc_type]);time.sleep(2)
+
+        if Doc_type in DocList_AddDateOfIssue:
+
+            Element(xpath="//label[contains(text(),'Date of Issue')]/..//input",describe='Date of Issue').send_keys('01/01/1999')
+            if Doc_type not in OrtherInfor:
+                pass
+            else:
+                Element(id_='document-upload-modal-input-doc',describe='input copr name doc need').send_keys('Other')
+        else:
+            pass
+
+        Element(id_='document-upload-local-doc-submit-button', describe='submit', timeout=3).click();time.sleep(3)
+        assert Element(xpath=_confirmUploadDocHomeList)
+
+        logging.info(f"Type is :{Doc_type}-> upload successfully")
+
+
+    '在Home 页面上传文档,一次传送一个文件类型'
+    def UploadDocHome_Ind(self,DocPath,dataTest,Doc_type):
+
+
+        _docTypeId = 'document-upload-docVault-select'
+        _docName = '//li/span[contains(text(),"{}")]'.format(Doc_type)
+        _confirmUploadDocHomeList = "//p[contains(text(),'{}')]".format(Doc_type)
+
+        DOCPATH = DocPath  # 跟目录
+        AllDoc = dataTest  # 路径
+
+        DocList_AddDateOfIssue = ['Certified Document', 'Utility Bill', 'Bank / Financial Statement',
+                                  'Test for Ind1', 'Current Bank Account Statement', 'Current Mortgage Statements',
+                                  'Current Credit Union Statement', 'Current Loan Statements', 'Supplier Statements',
+                                  'Current Social Welfare Payslips', 'Employment earnings summary',
+                                  'Share Certificates or Annual Statements']
+        cur_date = time.strftime("%d/%m/%Y")
+        self.sleep(4)
+
+        Element(class_name=self._upload_iconClass).click()
+        Element(id_=_docTypeId,describe='点击上传文档下拉框',index=0).click()
+        Element(xpath=_docName).click()
+        Element(xpath="//em/following-sibling::input").send_keys(DOCPATH + AllDoc[Doc_type]);time.sleep(2)
+
+        if Doc_type=='Passport':
+
+            Element(id_='document-upload-local-doc-submit-button', describe='submit', timeout=3).click();self.sleep(5)#等待regular
+            Element(id_='document-upload-regular-inputList-item-not-513',describe='#修改到期时间').send_keys(cur_date,clear=True)
+            Element(id_='document-upload-regular-inputList-item-not-514',describe='#修改 出生时间').send_keys('01/01/1999',clear=True)
+            Element(xpath="//BUTTON/span[contains(text(),'Confirm')]",describe='# 确认regular 证件识别结果').click();self.sleep(5)
+
+            if Element(xpath="//span[contains(text(),'Update Profile Details?')]",index=1).is_exist():
+                Element(xpath="//span[contains(text(),'Yes, I would')]",index=1).click();
+            else:
+                pass
+
+        else:
+            if Doc_type == 'National ID Card':
+
+                Element(xpath="//label[contains(text(),'Date of Expiry')]/..//input", describe='Date of Expiry').send_keys(
+                    cur_date)
+
+                Element(id_='document-upload-local-doc-submit-button', describe='submit', timeout=3).click();
+                time.sleep(5)
+
+            elif Doc_type in DocList_AddDateOfIssue:
+
+                Element(xpath="//label[contains(text(),'Date of Issue')]/..//input", describe='Date of Issue').send_keys(
+                    '01/01/1999')
+
+            else:
+                pass
+
+            Element(id_='document-upload-local-doc-submit-button', describe='提交文档', timeout=3).click();time.sleep(5)
+        assert Element(xpath=_confirmUploadDocHomeList,describe='验证上传的文档是否出现在列表中')
+        logging.info(f"Type is :{Doc_type}-> upload successfully")
+
+
+
+
+
+
+
+
+
+
+
 
 
     def closeProfile_SetUp(self):
@@ -117,8 +212,6 @@ class CustomerHomePage(Page):
         Element(id_='setName-modal-dont-ask-checkbox').click()
         Element(id_='setName-modal-skip-button').click()
         self.sleep(3)
-
-
 
     def complete_your_Corporate_Identity(self,Jurisdiction,Number,
                                          Type,Date,Address):
@@ -156,77 +249,9 @@ class CustomerHomePage(Page):
         assert Element(id_="login-button").is_displayed()
         logging.info(f'Logout success')
 
-
     def jumppage_System(self):
         '''POFILE'''
         Element(id_='sidebar-menu-item-one').click();time.sleep(1)
-
-    def UploadDocHome_Ind(self,DocPath,dataTest,Doc_type):
-        '在Home 页面上传文档,一次传送一个文件类型'
-
-        _docTypeId = 'document-upload-docVault-select'
-        _docName = '//li/span[contains(text(),"{}")]'.format(Doc_type)
-        _confimeDoc = "//p[contains(text(),'{}')]".format(Doc_type)
-
-        DOCPATH = DocPath  # 跟目录
-        AllDoc = dataTest  # 路径
-
-        DocList_AddDateOfIssue = ['Certified Document', 'Utility Bill', 'Bank / Financial Statement',
-                                  'Test for Ind1', 'Current Bank Account Statement', 'Current Mortgage Statements',
-                                  'Current Credit Union Statement', 'Current Loan Statements', 'Supplier Statements',
-                                  'Current Social Welfare Payslips', 'Employment earnings summary',
-                                  'Share Certificates or Annual Statements']
-        cur_date = time.strftime("%d/%m/%Y")
-
-        Element(class_name=self._upload_iconClass).click()
-        Element(id_=_docTypeId,describe='选择').click()
-
-        if Doc_type=='Passport':
-
-            'select'
-            Element(xpath='//li/span[contains(text(),"Passport")]').click()
-            Element(xpath="//em/following-sibling::input").send_keys(DOCPATH+AllDoc[Doc_type]);
-            Element(id_='document-upload-local-doc-submit-button', describe='submit', timeout=3).click();
-            self.sleep(5)#等待regular
-            #修改到期时间
-
-            Element(id_='document-upload-regular-inputList-item-not-513').send_keys(cur_date,clear=True)
-            #修改 出生时间
-            Element(id_='document-upload-regular-inputList-item-not-514').send_keys('01/01/1999',clear=True)
-            Element(xpath="//BUTTON/span[contains(text(),'Confirm')]",describe='# 确认regular 证件识别结果').click()# 确认regular 证件识别结果
-            self.sleep(5)
-            assert Element(xpath="//p[contains(text(),'Passport')]")
-            logging.info(f"Type is :{Doc_type} --> Upload successfully")
-        #要具体 定位
-
-        elif Doc_type=='National ID Card':
-            Element(xpath='//li/span[contains(text(),"National ID Card")]').click()
-            Element(xpath="//label[contains(text(),'Date of Expiry')]/..//input",describe='Date of Expiry').send_keys(cur_date)
-
-            Element(xpath="//em/following-sibling::input").send_keys(DOCPATH+AllDoc[Doc_type]);
-            time.sleep(2)
-            Element(id_='document-upload-local-doc-submit-button',describe='submit',timeout=3).click();
-            time.sleep(5)
-            assert Element(xpath="//p[contains(text(),'National ID Card')]")
-            logging.info(f"Type is :{Doc_type}-> upload successfully")
-
-        elif Doc_type in DocList_AddDateOfIssue:
-
-            Element(xpath=_docName).click()
-            Element(xpath="//label[contains(text(),'Date of Issue')]/..//input",describe='Date of Issue').send_keys('01/01/1999')
-            Element(xpath="//em/following-sibling::input").send_keys(DOCPATH+AllDoc[Doc_type]);
-            time.sleep(2)
-            Element(id_='document-upload-local-doc-submit-button',describe='submit',timeout=3).click();
-            assert Element(xpath=_confimeDoc)
-            logging.info(f"Type is :{Doc_type}-> upload successfully")
-
-        else:
-            Element(xpath=_docName).click()
-            Element(xpath="//em/following-sibling::input").send_keys(DOCPATH+AllDoc[Doc_type]);
-            time.sleep(2)
-            Element(id_='document-upload-local-doc-submit-button',describe='submit',timeout=3).click();time.sleep(5)
-            assert Element(xpath=_confimeDoc)
-            logging.info(f"Type is :{Doc_type}-> upload successfully")
 
 
 

@@ -14,6 +14,7 @@ from PageView.Business_portal.business_login import LoginPage
 from PageView.Business_portal.MyWorkPage import *
 
 from PageView.Customer_portal.customer_connections_companies_page import *
+from PageView.Customer_portal.customer_document_page import *
 from PageView.Customer_portal.customer_action_page import *
 from PageView.Business_portal.Configuration.Product_services import *
 from Common.config import *
@@ -41,6 +42,7 @@ Test_data=FileExecl.getExecl()
 class TestCaes:
 
     #@allure.feature('Verify that the corporate user could be set up successfully.')
+# ------------------------------------------------------------------------------------------------#
     @allure.severity("blocker")
     @pytest.mark.skip('copr 跳过')
     @pytest.mark.parametrize("terms_title,reg__corp_email,Email_type,reg_pwd,mailbox,legalName,tradingName",
@@ -113,7 +115,7 @@ class TestCaes:
             page.legalName.send_keys(legalName);page.tradingName.send_keys(tradingName)
             page.register_profile_corporate_confirm_button.click();sleep(3)
 
-
+# ------------------------------------------------------------------------------------------------#
 
     @pytest.mark.parametrize("terms_title,Email_type,reg_pwd,mailbox_url,reg_ind_email,FN,LN",
                              [("End user-terms",
@@ -231,6 +233,8 @@ class TestCaes:
             system=Profile_Page(drivers)
             system.upload_logo(os.getcwd() + data.Photo_C.BRD)
 
+# ------------------------------------------------------------------------------------------------#
+
     @pytest.mark.skip('skop')
     @allure.story('Verify that the portal should be able to search and connect with a new corporate user.')
     @allure.title('From the portal you should be able to search and connect with a new corporate')
@@ -309,6 +313,8 @@ class TestCaes:
             with allure.step('see who can access them and what documents in companies page'):
                 cuss=Companies(drivers)
                 cuss.ReturnSharedDocuments()
+
+# --------------------------------------------------------------------------------------------------------------#
 
     @pytest.mark.skip('skop')
     @allure.story('Verify that the portal should be able to search and connect with a new corporate user.')
@@ -395,7 +401,7 @@ class TestCaes:
         #     cus.Login.click()
         #     cus.sleep(5)
     #@pytest.mark.skip('skop')
-
+# ---------------------------------------------------------------------------------------------------------------#
 
     @allure.story('Verify that the portal should be able to search and connect with an existing corporate user..')
     @pytest.mark.skip('skop')
@@ -525,6 +531,8 @@ class TestCaes:
 
     'st——95--individual'
 
+# ---------------------------------------------------------------------------------------------------------#
+
 
     @allure.story('Verify that the portal should be able to search and connect with an existing individual user..')
     @allure.title('From the portal you should be able to search and connect with a individual customer')
@@ -645,31 +653,27 @@ class TestCaes:
                 B5 = NavigationBar(drivers)
                 notie = B5.CheckNotifications()
                 assert notie['Status'] == 'Granted';
+# ----------------------------------------------------------------------------------------------------------------------#
 
 
-
-
-
-
+#--------------------------------------------------------------------------------------------------------------------------#
     @allure.story('Verify that the corporate user should be able to upload a document..')
-    #@pytest.mark.skip('skop')
-
+    @pytest.mark.skip('skop')
     @pytest.mark.parametrize(
-        "InviteEmail, Password, Username,DocName",
+        "InviteEmail, Password, Username,UploadDocName",
         [(Test_data['T97_corp_Email'],
           Test_data['T97_corp_Password'],
           Test_data['T97_corp_Username'],
           Test_data['T97_corp_UploadDocName'],
-
-
           )])
-    def test_St097_98_corporate(self, drivers, InviteEmail, Password, Username,DocName):
-
+    def test_St097_98_corporate(self, drivers, InviteEmail, Password, Username, UploadDocName):
         '准备工作-放置文件路径'
         RootPath = PathOperation()
         with allure.step('Precondition 0: Doc Type Path Ready....'):
             DocPath = RootPath.getOtherPath('\Data')
+            dataTest = dict(data.Photo_C)# 加载 文档内容
 
+        CustomerHomePage_= CustomerHomePage(drivers)
         with allure.step('Precondition: 1. Sign up a new Corp User...'):
             cus = customer_login_page(drivers)
             cus.open(Test_data['customer_url']);
@@ -678,33 +682,89 @@ class TestCaes:
             cus.register_password_field.send_keys(Password)
             cus.register_passwordRepeat_field.send_keys(Password)
             cus.accept_read.click()
-            cus.SignUpInd(Username)
-
-            chp = CustomerHomePage(drivers)
-            chp.closeProfile_SetUp()
+            cus.SignUpCorp(Username)
+            CustomerHomePage_.closeProfile_SetUp()
             sleep(3)
+            #cus.Login_step(InviteEmail,Password)  #Test
 
-            # cus.Login_step(InviteEmail,Password)  #Test
+        DocumentPage = Document(drivers)
+        with allure.step('St97: On the customer web you should be able to upload a document.'):
 
-        with allure.step('On the customer web you should be able to upload a document.'):
-            with allure.step('Upload doc in home page'):
-                dataTest = dict(data.Photo_C)
-                chp.UploadDocHome(DocPath,dataTest,DocName)
-            #with allure.step('Upload doc in document page'):
+            with allure.step('A: Upload doc in Home page'):
+                CustomerHomePage_.UploadDocHome_Corp(DocPath, dataTest, UploadDocName)
+            with allure.step('B: Upload doc in document page'):
+
+                UploadResult = DocumentPage.UploadDocDocumentPage_Corp(DocPath, dataTest, UploadDocName)
+                assert UploadResult == True
+
+        with allure.step('St98: Verify that corporate user should be able to Update/Delete document'):
+            with allure.step('A1:You should be able update document by click update button next to one document'):
+
+                assert DocumentPage.UpdateDocDocumentPage_Corp(DocPath, dataTest, UploadDocName)
+
+            with allure.step('A2:You should be able update document by click update button next to one document'):
+                assert DocumentPage.DeleteDocDocumentPage_Corp(DocPath, dataTest, UploadDocName)
 
 
+#--------------------------------------------------------------------------------------------------------------------------#
+    @allure.story('Verify that the corporate user should be able to upload a document..')
+    @pytest.mark.skip('skop')
+    @pytest.mark.parametrize(
+        "InviteEmail, Password, Username,UploadDocName",
+        [(Test_data['T97_ind_Email'],
+          Test_data['T97_ind_Password'],
+          Test_data['T97_ind_Username'],
+          Test_data['T97_ind_UploadDocName'],
+          )])
+    def test_St097_98_individual(self, drivers, InviteEmail, Password, Username, UploadDocName):
+        '准备工作-放置文件路径'
+        RootPath = PathOperation()
+        with allure.step('Precondition 0: Doc Type Path Ready....'):
+            DocPath = RootPath.getOtherPath('\Data')
+            dataTest = dict(data.Photo_C)# 加载 文档内容
+
+        CustomerHomePage_= CustomerHomePage(drivers)
+        with allure.step('Precondition: 1. Sign up a new Corp User...'):
+            cus = customer_login_page(drivers)
+            cus.open(Test_data['customer_url']);
+            # cus.sign_up.click()
+            # cus.register_email_field.send_keys(InviteEmail)
+            # cus.register_password_field.send_keys(Password)
+            # cus.register_passwordRepeat_field.send_keys(Password)
+            # cus.accept_read.click()
+            # cus.SignUpInd(Username)
+            # CustomerHomePage_.closeProfile_SetUp()
+            # sleep(3)
+            cus.Login_step(InviteEmail,Password)  #Test
+            cus.wait_page_load_timeout(10)
+
+        DocumentPage = Document(drivers)
+        # with allure.step('St97: On the customer web you should be able to upload a document.'):
+        #
+        #     with allure.step('A: Upload doc in Home page'):
+        #         CustomerHomePage_.UploadDocHome_Ind(DocPath, dataTest, UploadDocName)
+        #     with allure.step('B: Upload doc in document page'):
+        #
+        #         UploadResult = DocumentPage.UploadDocDocumentPage_ind(DocPath, dataTest, UploadDocName)
+        #         assert UploadResult == True
+
+        with allure.step('St98: Verify that individual user should be able to Update/Delete document'):
+            with allure.step('A1:You should be able update document by click update button next to one document'):
+
+                assert DocumentPage.UpdateDocDocumentPage_Ind(DocPath, dataTest, UploadDocName)
+
+            with allure.step('A2:You should be able update document by click update button next to one document'):
+                assert DocumentPage.DeleteDocDocumentPage_IND(DocPath, dataTest, UploadDocName)
 
 
+#--------------------------------------------------------------------------------------------------------------------------#
 
 
-
-
-
-if __name__ == '__main__':
+# if __name__ == '__main__':
 
     #pytest.main(['-vs','../test_demo/SmokeTesting_test.py', "--alluredir=./temp_st"])
     #pytest.main(['-vs', '../test_demo/SmokeTesting_test.py'])
-    pytest.main(["-vs", current_path+"\SmokeTesting_test.py"])
+    # pytest.main(["-vs", current_path+"\SmokeTesting_test.py"])
 
 
     #os.system("allure generate ./temp_st -o ./report_st --clean")

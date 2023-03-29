@@ -10,7 +10,7 @@ json_report_path = os.path.join(current_path, 'report/json')
 html_report_path = os.path.join(current_path, 'report/html')
 
 # 执行pytest下的用例并生成json文件
-pytest.main(['-vs','test_demo/SmokeTesting_test.py', '--alluredir=%s' % json_report_path, '--clean-alluredir'])
-#pytest.main(['./testcase/test_login.py'])
+#pytest.main(['-vs','test_demo/SmokeTesting_test.py', '--alluredir=%s' % json_report_path, '--clean-alluredir'])
+pytest.main(['-vs','./test_demo/SmokeTesting_test.py'])
 # 把json文件转成html报告
-os.system('allure generate %s -o %s --clean' % (json_report_path, html_report_path))
+#os.system('allure generate %s -o %s --clean' % (json_report_path, html_report_path))
