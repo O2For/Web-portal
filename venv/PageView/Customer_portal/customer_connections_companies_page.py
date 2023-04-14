@@ -13,9 +13,6 @@ class Companies(Page):
 
 
 
-
-
-
     def SearchConnect(self,company,product):
 
         _pendingDocsX='//span[contains(text(),"Pending")]'

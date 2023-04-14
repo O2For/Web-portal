@@ -111,4 +111,120 @@ class Product(Page):
         return
 
     def CreateWithReps(self,Num_Rep):
+
         return
+    '''Create Product Step'''
+
+    def Create_Basic_Inforamtion(self,Product_name,Segment,**kwargs):
+
+        Element(id_=self._create_button_id).click()
+        Element(id_=self._name_id).send_keys(Product_name)
+        # Status:
+        Element(id_=self._status_id).click()
+        Element(xpath=self._status_enabled_xpath).click()
+        # Legal Term:
+        Element(id_=self._Legal_Term_id).click()
+        Element(id_=self._Legal_Term_select_id).click()
+        # Jurisdiction:
+        Element(id_=self._Jurisdiction_id).click()
+        Element(id_=self._Jurisdiction_country_id).click()
+        # Searchable on valid8Me
+        Element(xpath=self._Searchable_xpath).click()
+        # Note
+        if kwargs:
+            Element(id_=self._note).send_keys(kwargs['Note'])
+
+        Element(id_=self._segment_id).click()
+        if Segment=='Corporate':
+
+            Element(xpath=self._segment_corp_xpath).click()
+
+        elif Segment=='Individual':
+
+            # Segment:
+            Element(xpath=self._segment_individual_xpath).click()
+
+        Element(id_=self._next_button).click()
+
+
+    def Create_Standard_Due_Diligence_Documents(self,*args):
+
+        Company_Information=['Board Resolution Document','Memorandum of Association']
+
+        Authorised_Representatives=['Authorised Signatory List (Headed Paper)','Official List of Company Directors']
+        Ownership_Information = ['Beneficial Ownership/Control','Details of shareholding/ownership structure']
+
+        _header = 'header-text'
+        _left_caret_icon='left-caret-icon'
+        reps = 'el-radio-button__inner'
+
+
+        for i in range(0,len(args)):
+            if args[i] in Company_Information:
+                Element(class_name = _header,index=0).click()
+            elif args[i] in Authorised_Representatives:
+                Element(class_name=_header, index=1).click()
+            elif args[i] in Ownership_Information:
+                Element(class_name=_header, index=2).click()
+                Element(class_name=_left_caret_icon, index=2).click();
+                self.sleep(3)
+            docNameCheck = '//p[contains(text(),"{}")]'.format(args[i])
+            Element(xpath = docNameCheck).click();self.sleep(1)
+        Element(class_name = reps,index=2).click()
+        return
+
+
+    def Create_Authorised_Representatives(self,RepNumber=0,*args):
+        _CreateID = 'addProduct-modal-handleCreate-btn'
+        _InputRep = '//div[@class="el-input"]/input'
+        _header = 'header-text'
+        _left_caret_icon = 'left-caret-icon'
+
+
+        PhotoID = ['Passport','Driving Licence','National ID Card','Other Proof of Identity Documentation','Certified Document']
+        Proof_of_Address = ['Utility Bill']
+
+        if RepNumber==0:
+
+            Element(ID_=_CreateID).click();self.sleep(3)
+            return
+        else:
+            Element(xpath = _InputRep).send_keys(RepNumber,clear=True)
+            PhotoIDshow=0
+            Proof_of_Address_show=0
+            for i in range(0, len(args)):
+
+                if args[i] in PhotoID:
+                    if PhotoIDshow == 0:
+
+                        Element(class_name=_header, index=0).click()
+                        PhotoID = 1
+                    else: pass
+
+                elif args[i] in Proof_of_Address:
+                    if Proof_of_Address_show==0:
+
+                        Element(class_name=_header, index=1).click()
+                        Proof_of_Address_show=1
+                    else:pass
+
+                docNameCheck = '//p[contains(text(),"{}")]'.format(args[i])
+                Element(xpath=docNameCheck,describe='勾选所选文件').click();
+                self.sleep(1)
+
+                Element(ID_=_CreateID).click();
+                self.sleep(3)
+                logging.info(f'product create successfully')
+                return
+
+
+
+
+
+
+
+
+
+
+
+

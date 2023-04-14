@@ -80,17 +80,41 @@ class customer_login_page(Page):
         self.register_password_field.send_keys(Password)
         self.register_passwordRepeat_field.send_keys(Password)
         self.accept_read.click()
+        self.code_input.send_keys('666666')
+        self.confirm_btu.click(); self.sleep(3)
         self.register_confirm_button.click()
+        self.legalName.send_keys(Username)
+        self.tradingName.send_keys(Username)
+        self.register_profile_corporate_confirm_button.click();self.sleep(3)
+
+
+
+    def FirstSignInd(self,Invite_email,Password,Username):
+        '''前提用户已经被邀请 无需选择用户类型'''
+        self.sign_up.click()
+        self.register_email_field.send_keys(Invite_email)
+        self.register_password_field.send_keys(Password)
+        self.register_passwordRepeat_field.send_keys(Password)
+        self.accept_read.click()
+        self.register_confirm_button.click()
+        self.code_input.send_keys('666666')
+        self.confirm_btu.click(); self.sleep(3)
+        self.firstName.send_keys(Username)
+        self.lastName.send_keys(Username); self.sleep(1)
+        self.confirm_ind_name_but.click();self.sleep(3)
 
     def Login_step(self,Email,Password):
+        """
+        直接登录脚本
+        :param Email:
+        :param Password:
+        :return:
+        """
         self.wait_page_load_timeout(10)
         self.Email_Input.send_keys(Email)
         self.Password.send_keys(Password)
         self.Login.click()
         self.sleep(5)
-
-
-
 
 
 
@@ -100,7 +124,7 @@ class CustomerHomePage(Page):
     IdList=[]
     _upload_iconClass = 'uploadCard'
 
-    '在Home 页面上传文档,一次传送一个文件类型'
+    '传送 在Home 页面上传文档,一次传送一个文件类型'
     def UploadDocHome_Corp(self,DocPath,dataTest,Doc_type):
         '在Home 页面上传文档,一次传送一个文件类型'
 
@@ -136,8 +160,8 @@ class CustomerHomePage(Page):
         logging.info(f"Type is :{Doc_type}-> upload successfully")
 
 
-    '在Home 页面上传文档,一次传送一个文件类型'
-    def UploadDocHome_Ind(self,DocPath,dataTest,Doc_type):
+    '传送 在Home 页面上传文档,一次传送一个文件类型'
+    def UploadDocHome_Ind(self,DocPath,dataTest,Doc_type,username):
 
 
         _docTypeId = 'document-upload-docVault-select'
@@ -165,46 +189,48 @@ class CustomerHomePage(Page):
             Element(id_='document-upload-local-doc-submit-button', describe='submit', timeout=3).click();self.sleep(5)#等待regular
             Element(id_='document-upload-regular-inputList-item-not-513',describe='#修改到期时间').send_keys(cur_date,clear=True)
             Element(id_='document-upload-regular-inputList-item-not-514',describe='#修改 出生时间').send_keys('01/01/1999',clear=True)
+            Element(id_='document-upload-regular-inputList-item-not-518').send_keys(username, clear=True)
+            Element(id_='document-upload-regular-inputList-item-not-517').clear()
             Element(xpath="//BUTTON/span[contains(text(),'Confirm')]",describe='# 确认regular 证件识别结果').click();self.sleep(5)
-
             if Element(xpath="//span[contains(text(),'Update Profile Details?')]",index=1).is_exist():
                 Element(xpath="//span[contains(text(),'Yes, I would')]",index=1).click();
             else:
                 pass
-
         else:
             if Doc_type == 'National ID Card':
 
                 Element(xpath="//label[contains(text(),'Date of Expiry')]/..//input", describe='Date of Expiry').send_keys(
                     cur_date)
-
-                Element(id_='document-upload-local-doc-submit-button', describe='submit', timeout=3).click();
-                time.sleep(5)
-
             elif Doc_type in DocList_AddDateOfIssue:
 
                 Element(xpath="//label[contains(text(),'Date of Issue')]/..//input", describe='Date of Issue').send_keys(
                     '01/01/1999')
-
             else:
                 pass
 
             Element(id_='document-upload-local-doc-submit-button', describe='提交文档', timeout=3).click();time.sleep(5)
         assert Element(xpath=_confirmUploadDocHomeList,describe='验证上传的文档是否出现在列表中')
         logging.info(f"Type is :{Doc_type}-> upload successfully")
+        return
+
+    '获取 文件最新的版本号码'
+    def GetDoclatestVersion(self,Doc_type):
+        """
+
+        :param Doc_type:
+        :return: 得到最新的文件版本号码
+        """
+        _docPhotoX='//p[contains(text(),"{}")]/../../../preceding-sibling::div'.format(Doc_type)
+        _version = 'document-view-modal-select'
+        _closeButtonClass = 'el-dialog__close'
+        Element(xpath = _docPhotoX).click();self.sleep(3)
+        DoclatestVersion = Element(id_ = _version).get_attribute('value')
+        Element(class_name= _closeButtonClass,index=0).click()
+
+        return DoclatestVersion
 
 
-
-
-
-
-
-
-
-
-
-
-
+    '关闭弹出窗口'
     def closeProfile_SetUp(self):
         '关闭customer portal的任务栏弹窗'
         self.wait(5)
@@ -252,8 +278,6 @@ class CustomerHomePage(Page):
     def jumppage_System(self):
         '''POFILE'''
         Element(id_='sidebar-menu-item-one').click();time.sleep(1)
-
-
 
 
 class RecentShares(Page):

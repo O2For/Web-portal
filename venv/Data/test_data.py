@@ -22,7 +22,7 @@ class GetData(object):
             print("GetData")
 
 
-#
+
 # da=GetData()
 # a='BRD'
 # data=da.TestData()

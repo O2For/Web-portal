@@ -1,0 +1,64 @@
+[32m2023-04-14 18:00:42[0m logging.py [1m| INFO | 🔍 Find element: xpath=//span[contains(text(),'Sign Up')]. sign up button[0m
+[32m2023-04-14 18:00:43[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-04-14 18:00:43[0m logging.py [1m| INFO | 🔍 Find element: id=register-email-field. 注册页面输入邮箱[0m
+[32m2023-04-14 18:00:44[0m logging.py [1m| INFO | ✅ send_keys('99hrep1@snapmail.cc').[0m
+[32m2023-04-14 18:00:44[0m logging.py [1m| INFO | 🔍 Find element: id=register-password-field. 注册页面输入密码[0m
+[32m2023-04-14 18:00:45[0m logging.py [1m| INFO | ✅ send_keys('Ht@12345').[0m
+[32m2023-04-14 18:00:45[0m logging.py [1m| INFO | 🔍 Find element: id=register-passwordRepeat-field. 注册页面输入确认密码[0m
+[32m2023-04-14 18:00:46[0m logging.py [1m| INFO | ✅ send_keys('Ht@12345').[0m
+[32m2023-04-14 18:00:46[0m logging.py [1m| INFO | 🔍 Find element: xpath=//a[contains(text(),'END USER-TERMS & CONDITIONS')]/preceding-sibling::label/*[1]. [0m
+[32m2023-04-14 18:00:47[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-04-14 18:00:47[0m logging.py [1m| INFO | 🔍 Find element: id=register-confirm-button. [0m
+[32m2023-04-14 18:00:49[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-04-14 18:00:49[0m logging.py [1m| INFO | 🔍 Find element: xpath=//input[@placeholder='Please enter the code you received']. 验证码[0m
+[32m2023-04-14 18:00:50[0m logging.py [1m| INFO | ✅ send_keys('666666').[0m
+[32m2023-04-14 18:00:50[0m logging.py [1m| INFO | 🔍 Find element: id=register-code-validation-confirm-button. code confirm button[0m
+[32m2023-04-14 18:00:51[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-04-14 18:00:51[0m logging.py [1m| INFO | 🔍 Find element: id=register-select-type-individual. [0m
+[32m2023-04-14 18:00:52[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-04-14 18:00:53[0m logging.py [1m| INFO | 🔍 Find element: id=register-profile-firstName-field. [0m
+[32m2023-04-14 18:00:54[0m logging.py [1m| INFO | ✅ send_keys('99hrep1').[0m
+[32m2023-04-14 18:00:54[0m logging.py [1m| INFO | 🔍 Find element: id=register-profile-lastName-field. [0m
+[32m2023-04-14 18:00:55[0m logging.py [1m| INFO | ✅ send_keys('99hrep1').[0m
+[32m2023-04-14 18:00:56[0m logging.py [1m| INFO | ❓ Find 2 elements through: xpath=//button/span[contains(text(),'Confirm')]. [0m
+[32m2023-04-14 18:00:58[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-04-14 18:01:06[0m logging.py [1m| INFO | 🔍 Find element: id=setName-modal-dont-ask-checkbox. [0m
+[32m2023-04-14 18:01:07[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-04-14 18:01:07[0m logging.py [1m| INFO | 🔍 Find element: id=setName-modal-skip-button. [0m
+[32m2023-04-14 18:01:08[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-04-14 18:01:11[0m logging.py [1m| INFO | 🔍 Find element: id=navbar-handleAvatarClick-btn. [0m
+[32m2023-04-14 18:01:12[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-04-14 18:01:12[0m logging.py [1m| INFO | 🔍 Find element: xpath=//div[contains(text(),'Logout')]. [0m
+[32m2023-04-14 18:01:13[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-04-14 18:01:16[0m logging.py [1m| INFO | 🔍 Find element: id=login-button. [0m
+[32m2023-04-14 18:01:17[0m logging.py [1m| INFO | ✅ is_displayed() -> True.[0m
+[32m2023-04-14 18:01:17[0m logging.py [1m| INFO | Logout success[0m
+[32m2023-04-14 18:01:17[0m logging.py [1m| INFO | 🔍 Find element: xpath=//span[contains(text(),'Sign Up')]. sign up button[0m
+[32m2023-04-14 18:01:18[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-04-14 18:01:18[0m logging.py [1m| INFO | 🔍 Find element: id=register-email-field. 注册页面输入邮箱[0m
+[32m2023-04-14 18:01:19[0m logging.py [1m| INFO | ✅ send_keys('99h@snapmail.cc').[0m
+[32m2023-04-14 18:01:19[0m logging.py [1m| INFO | 🔍 Find element: id=register-password-field. 注册页面输入密码[0m
+[32m2023-04-14 18:01:20[0m logging.py [1m| INFO | ✅ send_keys('Ht@12345').[0m
+[32m2023-04-14 18:01:20[0m logging.py [1m| INFO | 🔍 Find element: id=register-passwordRepeat-field. 注册页面输入确认密码[0m
+[32m2023-04-14 18:01:21[0m logging.py [1m| INFO | ✅ send_keys('Ht@12345').[0m
+[32m2023-04-14 18:01:21[0m logging.py [1m| INFO | 🔍 Find element: xpath=//a[contains(text(),'END USER-TERMS & CONDITIONS')]/preceding-sibling::label/*[1]. [0m
+[32m2023-04-14 18:01:22[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-04-14 18:01:22[0m logging.py [1m| INFO | 🔍 Find element: id=register-confirm-button. [0m
+[32m2023-04-14 18:01:23[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-04-14 18:01:24[0m logging.py [1m| INFO | 🔍 Find element: xpath=//input[@placeholder='Please enter the code you received']. 验证码[0m
+[32m2023-04-14 18:01:25[0m logging.py [1m| INFO | ✅ send_keys('666666').[0m
+[32m2023-04-14 18:01:25[0m logging.py [1m| INFO | 🔍 Find element: id=register-code-validation-confirm-button. code confirm button[0m
+[32m2023-04-14 18:01:26[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-04-14 18:01:26[0m logging.py [1m| INFO | 🔍 Find element: id=register-select-type-corporate. [0m
+[32m2023-04-14 18:01:27[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-04-14 18:01:28[0m logging.py [1m| INFO | 🔍 Find element: id=register-profile-legalName-field. [0m
+[32m2023-04-14 18:01:29[0m logging.py [1m| INFO | ✅ send_keys('99h').[0m
+[32m2023-04-14 18:01:29[0m logging.py [1m| INFO | 🔍 Find element: id=register-profile-tradingName-field. [0m
+[32m2023-04-14 18:01:30[0m logging.py [1m| INFO | ✅ send_keys('99h').[0m
+[32m2023-04-14 18:01:30[0m logging.py [1m| INFO | ❓ Find 2 elements through: xpath=//button/span[contains(text(),'Confirm')]. [0m
+[32m2023-04-14 18:01:31[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-04-14 18:01:36[0m logging.py [1m| INFO | 🔍 Find element: id=setName-modal-dont-ask-checkbox. [0m
+[32m2023-04-14 18:01:37[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-04-14 18:01:37[0m logging.py [1m| INFO | 🔍 Find element: id=setName-modal-skip-button. [0m
+[32m2023-04-14 18:01:38[0m logging.py [1m| INFO | ✅ click().[0m
+[32m2023-04-14 18:01:52[0m logging.py [33m[1m| WARNING | ❌ Find 0 elements through: xpath=//input[@placeholder='Enter your email']. 输入邮箱[0m
