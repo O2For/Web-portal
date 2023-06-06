@@ -1,6 +1,7 @@
 from selenium.webdriver.common.keys import Keys
 from PageView.Mail.snapmail_page import *
 from poium.common import logging
+from poium import Elements,Page,Element
 
 
 class NavigationBar(Page):
@@ -15,7 +16,10 @@ class NavigationBar(Page):
     def OpenMyWork(self):
         self.wait(5)
         Element(xpath="//span[contains(text(),'My Work')]").click()
+        self.sleep(3)
 
+
+        '邀请未在此客户中的人'
     def SourceDocuments(self,invite_email,product,**kwargs):
         '''send request 发送一个新的邀请'''
         self.wait_page_load_timeout(10)
@@ -37,7 +41,7 @@ class NavigationBar(Page):
 
 
         return print('send request success')
-
+        '查看列表中的 通知 并且返回'
     def CheckNotifications(self):
         Status = Element(xpath='//td/div',index=1).text
         ConnectionName = Element(xpath='//td/div', index=2).text
@@ -53,6 +57,62 @@ class NavigationBar(Page):
         logging.info(f'Get the first Notifications{d}')
 
         return d
+    def ClickNotificationsDetail(self,Email):
+        operationIcon = '//div[contains(text(),"{}")]/../../td[8]//span/..'.format(Email)
+        Element(xpath  = operationIcon,index=0,describe='默认只打开第一个').double_click()
+
+    '点击viewcase 并且返回其中的linkname'
+    def showConnection(self,Email):
+        self.ClickNotificationsDetail(Email)
+
+        viewcaseid = 'dashboard.myForms.table.showConnection'
+        LinkedConnectionTitle = '//*[contains(text(),"Linked Connections")]'
+        elelist=Elements(id_ = viewcaseid).find(self)
+        '根据页面只有检索的最后一个为view case的按钮'
+        elelist[-1].click();self.sleep(3)
+        Element(xpath = LinkedConnectionTitle,describe='展开link').click()
+        d=dict()
+        linkname=Element(id_ = 'dashboard.caseModal.picName.goProfile').text
+        d['linkname'] = linkname
+        return d
+
+        '查看被分享的文件内容'
+    def LinkedConnections(self,linkUsername,*args):
+        linknameid='dashboard.caseModal.picName.goProfile'
+
+        ViewDocid = 'dashboard.caseModal.docList.goViewDoc'
+        imgDOCid = 'dashboard.view.img2.contextmenu'
+        closeDocdisplay = '/html/body/div[5]/div/div[1]/button'
+        if Element(id_ =ViewDocid).text ==linkUsername:
+            for i in range(0,len(args)):
+                docname = '//div[contains(text(),"{}")]'.format(args[i])
+                if Element(xpath = docname).is_exist():
+                    Element(id_ = ViewDocid,index=i,describe='查看分享的文件内容').click();self.sleep(3)
+                    if Element(id_ = imgDOCid).is_exist():
+                        logging.info(f'Doc {args[i]} display right')
+                        Element(xpath = closeDocdisplay).click()
+                        self.sleep(3)
+                        pass
+                    else:
+                        logging.warning(f'Doc {args[i]} display error')
+                else:
+                    logging.warning(f'No Find doc {args[i]} in link connections details')
+        else:
+            logging.error(f'Link user error')
+
+        '关闭connection 的 弹窗'
+    def closeConnectioncase(self):
+        xbutton ='/html/body/div[3]/div/div[1]/button/i'
+        Element(xpath = xbutton).click();self.sleep(3)
+
+
+
+
+
+
+
+
+
 
 
 

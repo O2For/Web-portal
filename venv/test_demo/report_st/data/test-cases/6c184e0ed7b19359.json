@@ -1,0 +1,115 @@
+{
+  "uid" : "6c184e0ed7b19359",
+  "name" : "From the portal you should be able to search and connect with a individual customer",
+  "fullName" : "SmokeTesting_test.TestCaes#test_St095_96_individual",
+  "historyId" : "cef5e9ed3e14f60d1a579d67176ccfcc",
+  "time" : {
+    "start" : 1682507070120,
+    "stop" : 1682507070120,
+    "duration" : 0
+  },
+  "description" : "准备工作-放置文件路径",
+  "descriptionHtml" : "<p>准备工作-放置文件路径</p>\n",
+  "status" : "skipped",
+  "statusMessage" : "Skipped: skop",
+  "statusTrace" : "('D:\\\\Users\\\\jianghaodong\\\\PycharmProjects\\\\pytest_study\\\\venv\\\\test_demo\\\\SmokeTesting_test.py', 543, 'Skipped: skop')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "drivers",
+    "time" : {
+      "start" : 1682507070136,
+      "stop" : 1682507094119,
+      "duration" : 23983
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  } ],
+  "afterStages" : [ {
+    "name" : "drivers::fn",
+    "time" : {
+      "start" : 1682507307460,
+      "stop" : 1682507311000,
+      "duration" : 3540
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Verify that the portal should be able to search and connect with an existing individual user.."
+  }, {
+    "name" : "epic",
+    "value" : "Somke Testing Valid8Me v2.11.0"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skip('skop')"
+  }, {
+    "name" : "suite",
+    "value" : "SmokeTesting_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestCaes"
+  }, {
+    "name" : "host",
+    "value" : "wswincnhz1692"
+  }, {
+    "name" : "thread",
+    "value" : "27192-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "SmokeTesting_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "InviteEmail",
+    "value" : "'86ee@snapmail.cc'"
+  }, {
+    "name" : "Password",
+    "value" : "'Ht@12345'"
+  }, {
+    "name" : "Username",
+    "value" : "'86ee'"
+  }, {
+    "name" : "business_email",
+    "value" : "'chloe@snapmail.cc'"
+  }, {
+    "name" : "business_name",
+    "value" : "'ChloeCompany'"
+  }, {
+    "name" : "business_password",
+    "value" : "'Ht@12345'"
+  }, {
+    "name" : "porduct_name",
+    "value" : "'Auto_test_6_T95_ind'"
+  } ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.skip('skop')" ]
+  },
+  "source" : "6c184e0ed7b19359.json",
+  "parameterValues" : [ "'86ee@snapmail.cc'", "'Ht@12345'", "'86ee'", "'chloe@snapmail.cc'", "'ChloeCompany'", "'Ht@12345'", "'Auto_test_6_T95_ind'" ]
+}

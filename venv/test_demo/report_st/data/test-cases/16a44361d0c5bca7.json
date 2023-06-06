@@ -1,0 +1,116 @@
+{
+  "uid" : "16a44361d0c5bca7",
+  "name" : "test_St089[End user-terms-auto_ma-@snapmail.cc-Ht@12345-https://www.snapmail.cc/#/-auto_ma-auto_ma]",
+  "fullName" : "SmokeTesting_test.TestCaes#test_St089",
+  "historyId" : "5cccd63b02ebd8f599b24c59f1cb3dac",
+  "time" : {
+    "start" : 1683282705545,
+    "stop" : 1683282705546,
+    "duration" : 1
+  },
+  "status" : "skipped",
+  "statusMessage" : "Skipped: copr 跳过",
+  "statusTrace" : "('D:\\\\Users\\\\jianghaodong\\\\PycharmProjects\\\\pytest_study\\\\venv\\\\test_demo\\\\SmokeTesting_test.py', 52, 'Skipped: copr 跳过')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "drivers",
+    "time" : {
+      "start" : 1683282705590,
+      "stop" : 1683282720062,
+      "duration" : 14472
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  } ],
+  "afterStages" : [ {
+    "name" : "drivers::fn",
+    "time" : {
+      "start" : 1683282756982,
+      "stop" : 1683282763364,
+      "duration" : 6382
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "Verify that the corporate user could be set up successfully."
+  }, {
+    "name" : "epic",
+    "value" : "Somke Testing Valid8Me v2.11.0"
+  }, {
+    "name" : "severity",
+    "value" : "blocker"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skip('copr 跳过')"
+  }, {
+    "name" : "suite",
+    "value" : "SmokeTesting_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestCaes"
+  }, {
+    "name" : "host",
+    "value" : "wswincnhz1692"
+  }, {
+    "name" : "thread",
+    "value" : "45396-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "SmokeTesting_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "Email_type",
+    "value" : "'@snapmail.cc'"
+  }, {
+    "name" : "legalName",
+    "value" : "'auto_ma'"
+  }, {
+    "name" : "mailbox",
+    "value" : "'https://www.snapmail.cc/#/'"
+  }, {
+    "name" : "reg__corp_email",
+    "value" : "'auto_ma'"
+  }, {
+    "name" : "reg_pwd",
+    "value" : "'Ht@12345'"
+  }, {
+    "name" : "terms_title",
+    "value" : "'End user-terms'"
+  }, {
+    "name" : "tradingName",
+    "value" : "'auto_ma'"
+  } ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.skip('copr 跳过')" ]
+  },
+  "source" : "16a44361d0c5bca7.json",
+  "parameterValues" : [ "'@snapmail.cc'", "'auto_ma'", "'https://www.snapmail.cc/#/'", "'auto_ma'", "'Ht@12345'", "'End user-terms'", "'auto_ma'" ]
+}

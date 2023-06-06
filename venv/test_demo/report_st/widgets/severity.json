@@ -1,0 +1,101 @@
+[ {
+  "uid" : "b23fb6f54247466",
+  "name" : "test_St089[End user-terms-auto_ma-@snapmail.cc-Ht@12345-https://www.snapmail.cc/#/-auto_ma-auto_ma]",
+  "time" : {
+    "start" : 1683282986680,
+    "stop" : 1683282986680,
+    "duration" : 0
+  },
+  "status" : "skipped",
+  "severity" : "blocker"
+}, {
+  "uid" : "cdbe0e8a3ddaa6b6",
+  "name" : "From the portal you should be able to search and connect with a new corporate",
+  "time" : {
+    "start" : 1683282986693,
+    "stop" : 1683282986693,
+    "duration" : 0
+  },
+  "status" : "skipped",
+  "severity" : "normal"
+}, {
+  "uid" : "7e4bf67d842ef80a",
+  "name" : "From the portal you should be able to search and connect with a new corporate",
+  "time" : {
+    "start" : 1683282986697,
+    "stop" : 1683282986697,
+    "duration" : 0
+  },
+  "status" : "skipped",
+  "severity" : "normal"
+}, {
+  "uid" : "f33bbcce07f1d259",
+  "name" : "From the portal you should be able to search and connect with a individual customer",
+  "time" : {
+    "start" : 1683282986705,
+    "stop" : 1683282986705,
+    "duration" : 0
+  },
+  "status" : "skipped",
+  "severity" : "normal"
+}, {
+  "uid" : "524594400f59a431",
+  "name" : "From the portal you should be able to search and connect with a corporate customer",
+  "time" : {
+    "start" : 1683282986701,
+    "stop" : 1683282986701,
+    "duration" : 0
+  },
+  "status" : "skipped",
+  "severity" : "normal"
+}, {
+  "uid" : "37624b04aa7907e2",
+  "name" : "test_St090[End user-terms-@snapmail.cc-Ht@12345-https://www.snapmail.cc/#/-autotest_individual_2-None-None]",
+  "time" : {
+    "start" : 1683282986684,
+    "stop" : 1683282986684,
+    "duration" : 0
+  },
+  "status" : "skipped",
+  "severity" : "normal"
+}, {
+  "uid" : "ce0e82d9b9d7a3eb",
+  "name" : "test_St097_98_individual[96f@snapmail.cc-Ht@12345-96f-Passport]",
+  "time" : {
+    "start" : 1683282986714,
+    "stop" : 1683282986714,
+    "duration" : 0
+  },
+  "status" : "skipped",
+  "severity" : "normal"
+}, {
+  "uid" : "b0ca145e108618f2",
+  "name" : "test_St110[99h@snapmail.cc-99h-99hrep1@snapmail.cc-99hrep1-99hrep2@snapmail.cc-99hrep2-National ID Card-Passport-99hrep3@snapmail.cc-99hrep3-Passport-Ht@12345-ChloeCompany-Link_NewCorp_WithRep_2-chloe@snapmail.cc-Ht@12345]",
+  "time" : {
+    "start" : 1683282720066,
+    "stop" : 1683282756679,
+    "duration" : 36613
+  },
+  "status" : "broken",
+  "severity" : "normal"
+}, {
+  "uid" : "610cfeb1ab1df775",
+  "name" : "test_St097_98_corporate[98g@snapmail.cc-Ht@12345-98g-Board Resolution Document]",
+  "time" : {
+    "start" : 1683282986709,
+    "stop" : 1683282986709,
+    "duration" : 0
+  },
+  "status" : "skipped",
+  "severity" : "normal"
+}, {
+  "uid" : "192ad1beaf26f4b3",
+  "name" : "test_St091[auto_ma-Ireland-123456261-Public Limited Company (PLC)-04/10/2022-Address]",
+  "time" : {
+    "start" : 1683282986690,
+    "stop" : 1683282986690,
+    "duration" : 0
+  },
+  "status" : "skipped",
+  "severity" : "normal"
+} ]

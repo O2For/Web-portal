@@ -11,6 +11,9 @@ class LoginPage(Page):
         self.login_password.send_keys(Password)
         self.login_button.click();
         self.sleep(5)
+    def bussinessLogout(self):
+        Element(xpath='//div[contains(@class,"el-dropdown")]/span/img').click()
+        Element(id_="layout-navbar-logOut-dropdown-item").click();self.sleep(3)
 
 
 

@@ -17,6 +17,10 @@ class Documents_Corp(Page):
     note = Element(id_=_note)
     confirmNote = Element(id_=_confirmNote)
 
+    #样式转换器
+    _gridActive = "document-page-change-type-btn-grid-two"
+    _listActive = 'document-page-change-type-btn-list-one'
+
     '关闭文档展示页面'
     def close_doc_window(self):
         Element(class_name='el-dialog__headerbtn').click();
@@ -62,7 +66,6 @@ class Documents_Corp(Page):
 
             return currentV
         else:
-
             logging.info(f'{doc_type} No Exist')
             return False
 
@@ -79,21 +82,19 @@ class Documents_Corp(Page):
         if Element(xpath = "//div[contains(text(),'No Access')]").is_exist()==True:
             logging.info('Doc Is_NoAccess')
             return True
-        elif self.requestAccessButton.is_exist()==True:
-            logging.info('Doc_Neeed RequestAccess')
-            return True
-        else:
+
+        if Element(xpath ='//*[@class="imageDoc"]',index=1).is_exist()==True:
             logging.info('docHas_Access')
             return False
 
     '判断当前的文件是否带有New的标签 以此来表示其是否具有新上传的版本'
     def check_NewLabel(self,docType):
-        _gridActive = "//*[@class='gridActive svg-icon']"
-        _listActive = 'document-page-change-type-btn-list-one'
+
+
         _Docl_withNewLabel = '//*[@class="docNew svg-icon"]/../.././div[2]//p[contains(text(),"{}")]'.format(docType)
-        Element(xpath = _gridActive).click();self.sleep(3)
+        Element(id_ = self._gridActive).click();self.sleep(3)
         if Element(xpath = _Docl_withNewLabel).is_exist():
-            Element(id_ = _listActive).click();self.sleep(2)
+            Element(id_ = self._listActive).click();self.sleep(2)
             return True
         else:
             return False
@@ -106,12 +107,12 @@ class Documents_Corp(Page):
         :param click: 默认去 请求这个no access 的文档
         :return: 是否有此标签
         """
-        _gridActive = "//*[@class='gridActive svg-icon']"
-        _listActive = 'document-page-change-type-btn-list-one'
+
+
         _Docl_with_NoAccess_Label = '//div[@class="noAccessBox"]/../../../div[2]//p[contains(text(),"{}")]'.format(docType)
 
         _no_access = '//p[contains(text(),"{}")]/../../../div'.format(docType)
-        Element(xpath = _gridActive,describe='点击切换成网格状').click();self.sleep(3)
+        Element(id_= self._gridActive,describe='点击切换成网格状').click();self.sleep(3)
         if Element(xpath = _Docl_with_NoAccess_Label,describe='判断此文档是否有No access 的样式').is_exist():
             if click:
 
@@ -124,13 +125,19 @@ class Documents_Corp(Page):
 
     '''Invidual '''
     def Delete_Doc(self,Doc):
-        DocDelete = '//div[contains(text(),"{}")]/../../td[4]//span[contains(text(),"DELETE")]'.format(Doc)
+
+
+        DocDelete = '//div[contains(text(),"{}")]/../../td[4]//a[2]'.format(Doc)
         Element(xpath = DocDelete).click()
         Element(xpath = '//span[contains(text(),"Y")]').click()
-        Return_text = self.get_alert_text();self.sleep(3)
-        if 'The document has been shared with onboarding' in Return_text:
-            logging.info(f'{Doc} has been shared with onboarding')
-            return False,Return_text
+        _errorM = '//div[contains(@class,"el-message el-message--error")]'
+        if Element(xpath = _errorM).is_exist():
+
+            Return_text= Element(xpath = _errorM).text
+            #Return_text = self.alert_is_display();self.sleep(3)
+            if 'The document has been shared with onboarding' in Return_text:
+                logging.info(f'{Doc} has been shared with onboarding')
+                return False,Return_text
         else:
             if self.check_repDocDetails(Doc)==False:
                 logging.info(f'{Doc} has been delete')

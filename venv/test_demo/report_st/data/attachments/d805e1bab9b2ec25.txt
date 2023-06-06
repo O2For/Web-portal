@@ -1,0 +1,9 @@
+WARNING  urllib3.connectionpool:connectionpool.py:308 Connection pool is full, discarding connection: localhost. Connection pool size: 1
+WARNING  urllib3.connectionpool:connectionpool.py:308 Connection pool is full, discarding connection: localhost. Connection pool size: 1
+WARNING  urllib3.connectionpool:connectionpool.py:308 Connection pool is full, discarding connection: localhost. Connection pool size: 1
+WARNING  urllib3.connectionpool:connectionpool.py:308 Connection pool is full, discarding connection: localhost. Connection pool size: 1
+WARNING  urllib3.connectionpool:connectionpool.py:308 Connection pool is full, discarding connection: localhost. Connection pool size: 1
+WARNING  urllib3.connectionpool:connectionpool.py:308 Connection pool is full, discarding connection: localhost. Connection pool size: 1
+WARNING  urllib3.connectionpool:connectionpool.py:308 Connection pool is full, discarding connection: localhost. Connection pool size: 1
+WARNING  urllib3.connectionpool:connectionpool.py:308 Connection pool is full, discarding connection: localhost. Connection pool size: 1
+WARNING  urllib3.connectionpool:connectionpool.py:308 Connection pool is full, discarding connection: localhost. Connection pool size: 1

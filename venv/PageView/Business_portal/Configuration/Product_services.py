@@ -1,4 +1,4 @@
-from poium import Page, Element
+from poium import Page, Element,Elements
 import time
 
 from poium.common import logging
@@ -175,6 +175,12 @@ class Product(Page):
 
 
     def Create_Authorised_Representatives(self,RepNumber=0,*args):
+        """
+
+        :param RepNumber:
+        :param args: rep 需要创建的文本元祖
+        :return:
+        """
         _CreateID = 'addProduct-modal-handleCreate-btn'
         _InputRep = '//div[@class="el-input"]/input'
         _header = 'header-text'
@@ -186,7 +192,7 @@ class Product(Page):
 
         if RepNumber==0:
 
-            Element(ID_=_CreateID).click();self.sleep(3)
+            Element(id_=_CreateID).click();self.sleep(3)
             return
         else:
             Element(xpath = _InputRep).send_keys(RepNumber,clear=True)
@@ -198,7 +204,7 @@ class Product(Page):
                     if PhotoIDshow == 0:
 
                         Element(class_name=_header, index=0).click()
-                        PhotoID = 1
+                        PhotoIDshow = 1
                     else: pass
 
                 elif args[i] in Proof_of_Address:
@@ -212,10 +218,24 @@ class Product(Page):
                 Element(xpath=docNameCheck,describe='勾选所选文件').click();
                 self.sleep(1)
 
-                Element(ID_=_CreateID).click();
+                Element(id_=_CreateID).click();
                 self.sleep(3)
                 logging.info(f'product create successfully')
                 return
+
+
+
+    def getIndividualDOC(self):
+
+        DOC=Elements(id_='NormalTextTooltipol-visibilityChange').find(self)
+        docc=[]
+        for d in DOC:
+            docc.append(d.text)
+        logging.info(f'list {docc}')
+        print(docc)
+
+
+
 
 
 

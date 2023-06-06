@@ -63,3 +63,15 @@ python 正则化：
         else:
             logging.info(f"√ is_exist() -> {elem}. Eelement exist")
             return True
+            
+            
+                def scrollDownIntoView(self) -> None:
+        """ 向下滚动至-元素可见"""
+        elem = self.__get_element(self.k, self.v)
+        Browser.driver.execute_script("arguments[0].scrollIntoView();", elem)
+
+    def scrollUpIntoView(self) -> None:
+        """ 向下滚动至-元素可见"""
+        elem = self.__get_element(self.k, self.v)
+        Browser.driver.execute_script("arguments[0].scrollIntoView(false);", elem)
+            

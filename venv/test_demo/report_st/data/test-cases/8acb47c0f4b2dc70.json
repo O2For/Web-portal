@@ -1,0 +1,110 @@
+{
+  "uid" : "8acb47c0f4b2dc70",
+  "name" : "test_St091[auto_ma-Ireland-123456261-Public Limited Company (PLC)-04/10/2022-Address]",
+  "fullName" : "SmokeTesting_test.TestCaes#test_St091",
+  "historyId" : "a98b242b1b67650009153013077a98cb",
+  "time" : {
+    "start" : 1683272433558,
+    "stop" : 1683272433558,
+    "duration" : 0
+  },
+  "status" : "skipped",
+  "statusMessage" : "Skipped: skop",
+  "statusTrace" : "('D:\\\\Users\\\\jianghaodong\\\\PycharmProjects\\\\pytest_study\\\\venv\\\\test_demo\\\\SmokeTesting_test.py', 194, 'Skipped: skop')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "drivers",
+    "time" : {
+      "start" : 1683272433634,
+      "stop" : 1683272450905,
+      "duration" : 17271
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  } ],
+  "afterStages" : [ {
+    "name" : "drivers::fn",
+    "time" : {
+      "start" : 1683272558942,
+      "stop" : 1683272563793,
+      "duration" : 4851
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Somke Testing Valid8Me v2.11.0"
+  }, {
+    "name" : "story",
+    "value" : "Verify the workflow for register corporate account can be completed successfully."
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skip('skop')"
+  }, {
+    "name" : "suite",
+    "value" : "SmokeTesting_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestCaes"
+  }, {
+    "name" : "host",
+    "value" : "wswincnhz1692"
+  }, {
+    "name" : "thread",
+    "value" : "26356-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "SmokeTesting_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "Address",
+    "value" : "'Address'"
+  }, {
+    "name" : "Company_Type",
+    "value" : "'Public Limited Company (PLC)'"
+  }, {
+    "name" : "Date",
+    "value" : "'04/10/2022'"
+  }, {
+    "name" : "Jurisdiction",
+    "value" : "'Ireland'"
+  }, {
+    "name" : "Number",
+    "value" : "123456261"
+  }, {
+    "name" : "tradingName",
+    "value" : "'auto_ma'"
+  } ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.skip('skop')" ]
+  },
+  "source" : "8acb47c0f4b2dc70.json",
+  "parameterValues" : [ "'Address'", "'Public Limited Company (PLC)'", "'04/10/2022'", "'Ireland'", "123456261", "'auto_ma'" ]
+}

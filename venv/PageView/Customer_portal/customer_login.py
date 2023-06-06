@@ -161,7 +161,7 @@ class CustomerHomePage(Page):
 
 
     '传送 在Home 页面上传文档,一次传送一个文件类型'
-    def UploadDocHome_Ind(self,DocPath,dataTest,Doc_type,username):
+    def UploadDocHome_Ind(self,DocPath,dataTest,Doc_type,username=None):
 
 
         _docTypeId = 'document-upload-docVault-select'
@@ -189,8 +189,9 @@ class CustomerHomePage(Page):
             Element(id_='document-upload-local-doc-submit-button', describe='submit', timeout=3).click();self.sleep(5)#等待regular
             Element(id_='document-upload-regular-inputList-item-not-513',describe='#修改到期时间').send_keys(cur_date,clear=True)
             Element(id_='document-upload-regular-inputList-item-not-514',describe='#修改 出生时间').send_keys('01/01/1999',clear=True)
-            Element(id_='document-upload-regular-inputList-item-not-518').send_keys(username, clear=True)
-            Element(id_='document-upload-regular-inputList-item-not-517').clear()
+            if username!=None:
+                Element(id_='document-upload-regular-inputList-item-not-518').send_keys(username, clear=True)
+                Element(id_='document-upload-regular-inputList-item-not-517').send_keys(username, clear=True)
             Element(xpath="//BUTTON/span[contains(text(),'Confirm')]",describe='# 确认regular 证件识别结果').click();self.sleep(5)
             if Element(xpath="//span[contains(text(),'Update Profile Details?')]",index=1).is_exist():
                 Element(xpath="//span[contains(text(),'Yes, I would')]",index=1).click();
@@ -211,6 +212,8 @@ class CustomerHomePage(Page):
             Element(id_='document-upload-local-doc-submit-button', describe='提交文档', timeout=3).click();time.sleep(5)
         assert Element(xpath=_confirmUploadDocHomeList,describe='验证上传的文档是否出现在列表中')
         logging.info(f"Type is :{Doc_type}-> upload successfully")
+
+
         return
 
     '获取 文件最新的版本号码'

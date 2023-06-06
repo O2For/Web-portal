@@ -1,0 +1,202 @@
+{
+  "cef5e9ed3e14f60d1a579d67176ccfcc" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 1,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "f33bbcce07f1d259",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: skop",
+      "time" : {
+        "start" : 1683282986705,
+        "stop" : 1683282986705,
+        "duration" : 0
+      }
+    } ]
+  },
+  "cf5907ff598a36305f0f08e83b1d2834" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 1,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "cdbe0e8a3ddaa6b6",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: skop",
+      "time" : {
+        "start" : 1683282986693,
+        "stop" : 1683282986693,
+        "duration" : 0
+      }
+    } ]
+  },
+  "a98b242b1b67650009153013077a98cb" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 1,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "192ad1beaf26f4b3",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: skop",
+      "time" : {
+        "start" : 1683282986690,
+        "stop" : 1683282986690,
+        "duration" : 0
+      }
+    } ]
+  },
+  "f3f6a6beb2089518cf83a98a1667bf80" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "b0ca145e108618f2",
+      "status" : "broken",
+      "statusDetails" : "TypeError: close() takes 1 positional argument but 2 were given",
+      "time" : {
+        "start" : 1683282720066,
+        "stop" : 1683282756679,
+        "duration" : 36613
+      }
+    } ]
+  },
+  "96fd88bf14ea5a69a090ea6803d6a32a" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 1,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "37624b04aa7907e2",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: indivdual 跳过",
+      "time" : {
+        "start" : 1683282986684,
+        "stop" : 1683282986684,
+        "duration" : 0
+      }
+    } ]
+  },
+  "5b142eae1a1fc98c24c2f33648192509" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 1,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "ce0e82d9b9d7a3eb",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: skop",
+      "time" : {
+        "start" : 1683282986714,
+        "stop" : 1683282986714,
+        "duration" : 0
+      }
+    } ]
+  },
+  "3c6aa5ec3a9f5dca6952aab7650a5037" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 1,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "524594400f59a431",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: skop",
+      "time" : {
+        "start" : 1683282986701,
+        "stop" : 1683282986701,
+        "duration" : 0
+      }
+    } ]
+  },
+  "cfd36cbc7cef2ba4d44dde5dcf5b5041" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 1,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "7e4bf67d842ef80a",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: skop",
+      "time" : {
+        "start" : 1683282986697,
+        "stop" : 1683282986697,
+        "duration" : 0
+      }
+    } ]
+  },
+  "5cccd63b02ebd8f599b24c59f1cb3dac" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 1,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "b23fb6f54247466",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: copr 跳过",
+      "time" : {
+        "start" : 1683282986680,
+        "stop" : 1683282986680,
+        "duration" : 0
+      }
+    } ]
+  },
+  "b8ca83710f811e31e1316c86a45667c0" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 1,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "610cfeb1ab1df775",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: skop",
+      "time" : {
+        "start" : 1683282986709,
+        "stop" : 1683282986709,
+        "duration" : 0
+      }
+    } ]
+  }
+}

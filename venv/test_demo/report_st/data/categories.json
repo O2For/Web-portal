@@ -1,0 +1,26 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "name" : "categories",
+  "children" : [ {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "TypeError: close() takes 1 positional argument but 2 were given",
+      "children" : [ {
+        "name" : "test_St110[99h@snapmail.cc-99h-99hrep1@snapmail.cc-99hrep1-99hrep2@snapmail.cc-99hrep2-National ID Card-Passport-99hrep3@snapmail.cc-99hrep3-Passport-Ht@12345-ChloeCompany-Link_NewCorp_WithRep_2-chloe@snapmail.cc-Ht@12345]",
+        "uid" : "b0ca145e108618f2",
+        "parentUid" : "47dfad9768bf271194a3f52b89d21c3b",
+        "status" : "broken",
+        "time" : {
+          "start" : 1683282720066,
+          "stop" : 1683282756679,
+          "duration" : 36613
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'99h@snapmail.cc'", "'99h'", "'National ID Card'", "'Passport'", "'Link_NewCorp_WithRep_2'", "'Ht@12345'", "'99hrep1@snapmail.cc'", "'99hrep1'", "'Passport'", "'99hrep2@snapmail.cc'", "'99hrep2'", "'99hrep3@snapmail.cc'", "'99hrep3'", "'chloe@snapmail.cc'", "'ChloeCompany'", "'Ht@12345'" ]
+      } ],
+      "uid" : "47dfad9768bf271194a3f52b89d21c3b"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ]
+}

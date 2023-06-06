@@ -59,12 +59,14 @@ ind_inf:
   lst : TEST1
 
 Photo_C:
-  Board Resolution Document : \documents\BRD.png
-  Memorandum of Association : \documents\MOA.png
-  Certificate of Incorporation : \documents\COF.png
+  Board Resolution Document : \documents\Corporate\BRD.png
+  Memorandum of Association : \documents\Corporate\MOA.png
+  Certificate of Incorporation : \documents\Corporate\COI.png
 
-  Passport : \documents\Passport.png
-  National ID Card : \documents\NIC.png
+  Certified Photo ID : \documents\Individual\CPI.png
+  Passport : \documents\Individual\Passport.png
+  National ID Card : \documents\Individual\NIC.png
+  Other Proof of Identity Documentation : \documents\Individual\OPOID.png
 
 ST_account:
   T94_corp_Email : 89a@snapmail.cc

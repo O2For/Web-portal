@@ -12,6 +12,7 @@ from PageView.Customer_portal.customer_login import *
 from PageView.Customer_portal.customer_system_page import *
 from PageView.Business_portal.business_login import LoginPage
 from PageView.Business_portal.MyWorkPage import *
+from PageView.Business_portal.VaultHubPage import *
 
 from PageView.Customer_portal.customer_connections_companies_page import *
 from PageView.Customer_portal.customer_connections_corpRep_page import *
@@ -22,6 +23,8 @@ from PageView.Customer_portal.customer_action_page import *
 from PageView.Business_portal.Configuration.Product_services import *
 from Common.config import *
 #
+
+
 
 # 数据准备导入路径
 from Data.test_data import GetData
@@ -770,7 +773,8 @@ class TestCaes:
         "Rep1Email,Rep1Name,"
         "Rep2Email,Rep2Name,DocumentType1,Rep2Doc2,"
         "Rep3Email,Rep3Name,DocumentType2,Password,"
-        "business_name,NewProductName,business_email,business_password",
+        "business_name,NewProductName,NeedUploadDocument,"
+        "business_email,business_password",
         [(Test_data['T110_CorpEmail'],Test_data['T110_CorpName'],
 
           Test_data['T110_Rep1Email'],Test_data['T110_Rep1Name'],
@@ -781,14 +785,16 @@ class TestCaes:
 
           Test_data['T110_Password'],
 
-          Test_data['business_name'], Test_data['T110_NewProductName'], Test_data['business_email'], Test_data['business_password'],
+          Test_data['business_name'], Test_data['T110_NewProductName'], Test_data['T110_UploadDocument'],
+          Test_data['business_email'], Test_data['business_password'],
           )])
     def test_St110(self, drivers, CorpEmail, CorpName,
                    Rep1Email, Rep1Name,
                    Rep2Email, Rep2Name,DocumentType1, Rep2Doc2,
                    Rep3Email, Rep3Name, DocumentType2,
                    Password,
-                   business_name, NewProductName,business_email, business_password):
+                   business_name, NewProductName,NeedUploadDocument,
+                   business_email, business_password):
         RootPath = PathOperation()
         with allure.step('Precondition 0: Doc Type Path Ready....'):
             DocPath = RootPath.getOtherPath('\Data')
@@ -797,367 +803,723 @@ class TestCaes:
         CusHomePage=CustomerHomePage(drivers)
         cus = customer_login_page(drivers)
         cus.open(Test_data['customer_url']);
-        with allure.step('Precondition 1: Sign up a individual user:{}'.format(Rep1Email)):
-            cus.sign_up.click()
-            cus.register_email_field.send_keys(Rep1Email)
-            cus.register_password_field.send_keys(Password)
-            cus.register_passwordRepeat_field.send_keys(Password)
-            cus.accept_read.click()
-            cus.SignUpInd(Rep1Name)
-            sleep(3)
-            CusHomePage.closeProfile_SetUp()
-            # cus.Login_step(InviteEmail,Password)  #Test
-            cus.wait_page_load_timeout(10)
-            CusHomePage.Logout()
-        with allure.step('Precondition 2: Sign up a Corporate user:{}'.format(CorpEmail)):
-            cus.sign_up.click()
-            cus.register_email_field.send_keys(CorpEmail)
-            cus.register_password_field.send_keys(Password)
-            cus.register_passwordRepeat_field.send_keys(Password)
-            cus.accept_read.click()
-            cus.SignUpCorp(CorpName)
-            CusHomePage.closeProfile_SetUp()
-            # cus.Login_step(CorpEmail,Password)  # Test
-
+        # with allure.step('Precondition 1: Sign up a individual user:{}'.format(Rep1Email)):
+        #     cus.sign_up.click()
+        #     cus.register_email_field.send_keys(Rep1Email)
+        #     cus.register_password_field.send_keys(Password)
+        #     cus.register_passwordRepeat_field.send_keys(Password)
+        #     cus.accept_read.click()
+        #     cus.SignUpInd(Rep1Name)
+        #     sleep(3)
+        #     CusHomePage.closeProfile_SetUp()
+        #     # cus.Login_step(InviteEmail,Password)  #Test
+        #     cus.wait_page_load_timeout(10)
+        #     CusHomePage.Logout()
+        #with allure.step('Precondition 2: Sign up a Corporate user:{}'.format(CorpEmail)):
+            # cus.sign_up.click()
+            # cus.register_email_field.send_keys(CorpEmail)
+            # cus.register_password_field.send_keys(Password)
+            # cus.register_passwordRepeat_field.send_keys(Password)
+            # cus.accept_read.click()
+            # cus.SignUpCorp(CorpName)
+            # CusHomePage.closeProfile_SetUp()
+            #cus.Login_step(CorpEmail,Password)  # Test
         ActionOP = ActionPage(drivers)
         corpRep = CorpRep(drivers)
         AuthPage = AuthRep(drivers)
-        with allure.step('A. Verify the workflow of corporate send invite 1 existing user:{}and 2 new users:{},{} as the auth reps at the time.'.format(Rep1Email,Rep2Email,Rep3Email)):
-            with allure.step('1. Click Add Authorised Representatives to add online 3 reps'):
-                ActionOP.AddOnlineRep(Rep1Email,Rep2Email,Rep3Email)
-                CusHomePage.Logout()
-        with allure.step('B. Verify the workflow of individual user become an anthorized representative.'):
-            with allure.step('Scenario 1: The individual user {} has not uploaded any documents.'.format(Rep1Email)):
-                cus.Login_step(Rep1Email,Password)
-
-                with allure.step('Confirm anthorized representative action'):
-                    ActionOP.ConfirmAuteRep_With_No_Doc()
-
-                with allure.step('Corporates I represent has this corporate name:{}'.format(CorpName)):
-                    obtained_Information=corpRep.CheckCorpInformation()
-                    assert obtained_Information['getcorpName']==CorpName
-                    assert len(obtained_Information['getDocWithAccess'])==0 #判断是否为空字符串
-                with allure.step('Logout this user'):
-                    CusHomePage.Logout()
-
-            with allure.step('Scenario 2: The individual user {} has uploaded some documents that with only one version.'.format(Rep2Email)):
-                with allure.step('The individual user sign up successfuly'):
-                    cus.FirstSignInd(Rep2Email,Password,Rep2Name)
-                    CusHomePage.closeProfile_SetUp()
-                    cus.Login_step(Rep2Email,Password) #  test
-
-                with allure.step('Upload one document'):
-                    CusHomePage.UploadDocHome_Ind(DocPath, dataTest, DocumentType1,Rep2Name)
-
-                with allure.step('Confirm anthorized representative action, and shared doc {} to corporate'.format(DocumentType1)):
-                    ActionOP.ConfirmAuteRep_WithDocs(DocumentType1)
-
-                with allure.step('Corporates I represent has this corporate name:{} with shared doc {}'.format(CorpName,DocumentType1)):
-                    obtained_Information=corpRep.CheckCorpInformation()
-                    assert obtained_Information['getcorpName']==CorpName
-                    assert DocumentType1 in obtained_Information['getDocWithAccess']
-
-                with allure.step('Logout this user'):
-                    CusHomePage.Logout()
-
-            with allure.step('Scenario 3 :The user {} has uploaded some documents that with multiple versions.'.format(Rep3Email)):
-                with allure.step('The individual user sign up successfuly'):
-                    cus.FirstSignInd(Rep3Email, Password, Rep3Name)
-                    CusHomePage.closeProfile_SetUp()
-                    #cus.Login_step(Rep3Email,Password) #Test
-
-                with allure.step('Upload multiple docs versions. Version ==2'):
-                    CusHomePage.UploadDocHome_Ind(DocPath, dataTest, DocumentType2,Rep2Name)
-                    CusHomePage.UploadDocHome_Ind(DocPath, dataTest, DocumentType2,Rep2Name)
-                    assert CusHomePage.GetDoclatestVersion(DocumentType2)=='Version 2'
-
-                with allure.step('Confirm anthorized representative action, and shared doc {} to corporate'.format(DocumentType2)):
-                    ActionOP.ConfirmAuteRep_WithDocs(DocumentType2)
-
-                with allure.step('Corporates I represent has this corporate name:{} with shared doc {}'.format(CorpName,DocumentType2)):
-                    obtained_Information=corpRep.CheckCorpInformation()
-                    assert obtained_Information['getcorpName']==CorpName
-                    assert DocumentType2 in obtained_Information['getDocWithAccess']
-
-                with allure.step('Logout this user'):
-                    CusHomePage.Logout()
+        # with allure.step('A. Verify the workflow of corporate send invite 1 existing user:{}and 2 new users:{},{} as the auth reps at the time.'.format(Rep1Email,Rep2Email,Rep3Email)):
+        #     with allure.step('1. Click Add Authorised Representatives to add online 3 reps'):
+        #         ActionOP.AddOnlineRep(Rep1Email,Rep2Email,Rep3Email)
+        #         CusHomePage.Logout()
+        # with allure.step('B. Verify the workflow of individual user become an anthorized representative.'):
+        #     with allure.step('Scenario 1: The individual user {} has not uploaded any documents.'.format(Rep1Email)):
+        #         cus.Login_step(Rep1Email,Password)
         #
+        #         with allure.step('Confirm anthorized representative action'):
+        #             ActionOP.ConfirmAuteRep_With_No_Doc()
         #
+        #         with allure.step('Corporates I represent has this corporate name:{}'.format(CorpName)):
+        #             obtained_Information=corpRep.CheckCorpInformation()
+        #             assert obtained_Information['getcorpName']==CorpName
+        #             assert len(obtained_Information['getDocWithAccess'])==0 #判断是否为空字符串
+        #         with allure.step('Logout this user'):
+        #             CusHomePage.Logout()
+        #
+        #     with allure.step('Scenario 2: The individual user {} has uploaded some documents that with only one version.'.format(Rep2Email)):
+        #         with allure.step('The individual user sign up successfuly'):
+        #             cus.FirstSignInd(Rep2Email,Password,Rep2Name)
+        #             CusHomePage.closeProfile_SetUp()
+        #             #cus.Login_step(Rep2Email,Password) #  test
+        #
+        #         with allure.step('Upload one document'):
+        #             CusHomePage.UploadDocHome_Ind(DocPath, dataTest, DocumentType1,Rep2Name)
+        #
+        #         with allure.step('Confirm anthorized representative action, and shared doc {} to corporate'.format(DocumentType1)):
+        #             ActionOP.ConfirmAuteRep_WithDocs(DocumentType1)
+        #
+        #         with allure.step('Corporates I represent has this corporate name:{} with shared doc {}'.format(CorpName,DocumentType1)):
+        #             obtained_Information=corpRep.CheckCorpInformation()
+        #             assert obtained_Information['getcorpName']==CorpName
+        #             assert DocumentType1 in obtained_Information['getDocWithAccess']
+        #
+        #         with allure.step('Logout this user'):
+        #             CusHomePage.Logout()
+        #
+        #     with allure.step('Scenario 3 :The user {} has uploaded some documents that with multiple versions.'.format(Rep3Email)):
+        #         with allure.step('The individual user sign up successfuly'):
+        #             cus.FirstSignInd(Rep3Email, Password, Rep3Name)
+        #             CusHomePage.closeProfile_SetUp()
+        #             #cus.Login_step(Rep3Email,Password) #Test
+        #
+        #         with allure.step('Upload multiple docs versions. Version ==2'):
+        #             CusHomePage.UploadDocHome_Ind(DocPath, dataTest, DocumentType2,Rep3Name)
+        #             CusHomePage.UploadDocHome_Ind(DocPath, dataTest, DocumentType2,Rep3Name)
+        #             assert CusHomePage.GetDoclatestVersion(DocumentType2)=='Version 2'
+        #
+        #         with allure.step('Confirm anthorized representative action, and shared doc {} to corporate'.format(DocumentType2)):
+        #             ActionOP.ConfirmAuteRep_WithDocs(DocumentType2)
+        #
+        #         with allure.step('Corporates I represent has this corporate name:{} with shared doc {}'.format(CorpName,DocumentType2)):
+        #             obtained_Information=corpRep.CheckCorpInformation()
+        #             assert obtained_Information['getcorpName']==CorpName
+        #             assert DocumentType2 in obtained_Information['getDocWithAccess']
+        #
+        #         with allure.step('Logout this user'):
+        #             CusHomePage.Logout()
+        # #
+        # #
+        #
+        #     document = Documents_Corp(drivers)
+        #     with allure.step('Assert The rep display results'):
+        #         with allure.step('Login corporate'):
+        #             cus.Login_step(CorpEmail,Password)
+        #
+        #         with allure.step('Check Connections/Authorised Representatives page'):
+        #             with allure.step('CHeck rep name and shared doc Coincident'):
+        #                 getAuthInfor = AuthPage.CheckAuthInformation()
+        #                 assert len(getAuthInfor[Rep1Email])==0
+        #                 assert DocumentType1 in getAuthInfor[Rep2Email]
+        #                 assert DocumentType2 in getAuthInfor[Rep3Email]
+        #
+        #             document.open_Documents()
+        #             document.open_Representatives()
+        #             with allure.step('{} has no doc '.format(Rep1Name)):
+        #                 document.open_OnlineRepPage(Rep1Name)
+        #                 assert document.NOdoc_isExist()==True
+        #             with allure.step('{} has one doc {} latest doc is 1'.format(Rep2Name,DocumentType1)):
+        #
+        #                 document.open_OnlineRepPage(Rep2Name)
+        #                 assert document.check_repDocDetails(DocumentType1)=='Version 1'
+        #                 document.close_doc_window()
+        #
+        #             with allure.step('{} has one doc {} latest doc version is 2'.format(Rep3Name,DocumentType2)):
+        #
+        #                 document.open_OnlineRepPage(Rep3Name)
+        #                 assert document.check_repDocDetails(DocumentType2) == 'Version 2';
+        #                 #document.close_doc_window()
+        #             with allure.step('For {} Previous versions of this document will show NO ACCESS in details and cannot request to view'.format(Rep3Name)):
+        #
+        #                 document.latestV.click()
+        #                 document.PreviousV.click();sleep(3)
+        #                 assert document.docIs_NoAccess()==True
+        #                 document.close_doc_window()
+        #                 CusHomePage.Logout()
+        # with allure.step('C: Verify the workflow of the existing rep {} upload new version of the document that has granted access for the corporate company.'.format(Rep2Email)):
+            # with allure.step('Login rep account and Upload new version of document{}'.format(DocumentType1)):
+            #     cus.Login_step(Rep2Email,Password)
+            #     CusHomePage.UploadDocHome_Ind(DocPath,dataTest,DocumentType1)
+            #     with allure.step('Rep Logout'):
+            #         CusHomePage.Logout()
 
-            document = Documents_Corp(drivers)
-            with allure.step('Assert The rep display results'):
-                with allure.step('Login corporate'):
-                    cus.Login_step(CorpEmail,Password)
-
-                with allure.step('Check Connections/Authorised Representatives page'):
-                    with allure.step('CHeck rep name and shared doc Coincident'):
-                        getAuthInfor = AuthPage.CheckAuthInformation()
-                        assert len(getAuthInfor[Rep1Email])==0
-                        assert DocumentType1 in getAuthInfor[Rep2Email]
-                        assert DocumentType2 in getAuthInfor[Rep3Email]
-
-                    document.open_Documents()
-                    document.open_Representatives()
-                    with allure.step('{} has no doc '.format(Rep1Name)):
-                        document.open_OnlineRepPage(Rep1Name)
-                        assert document.NOdoc_isExist()==True
-                    with allure.step('{} has one doc {} latest doc is 1'.format(Rep2Name,DocumentType1)):
-
-                        document.open_OnlineRepPage(Rep2Name)
-                        assert document.check_repDocDetails(DocumentType1)=='Version 1'
-                        document.close_doc_window()
-
-                    with allure.step('{} has one doc {} latest doc version is 2'.format(Rep3Name,DocumentType2)):
-
-                        document.open_OnlineRepPage(Rep3Name)
-                        assert document.check_repDocDetails(DocumentType2) == 'Version 2';
-                        #document.close_doc_window()
-                    with allure.step('For {} Previous versions of this document will show NO ACCESS in details and cannot request to view'.format(Rep3Name)):
-
-                        document.latestV.click()
-                        document.PreviousV.click();sleep(3)
-                        assert document.docIs_NoAccess()==True
-                        document.close_doc_window()
-                        CusHomePage.Logout()
-        with allure.step('C: Verify the workflow of the existing rep {} upload new version of the document that has granted access for the corporate company.'.format(Rep2Email)):
-            with allure.step('Login rep account and Upload new version of document{}'.format(DocumentType1)):
-                cus.Login_step(Rep2Email,Password)
-                CusHomePage.UploadDocHome_Ind(DocPath,dataTest,DocumentType1)
-                with allure.step('Rep Logout'):
-                    CusHomePage.Logout()
-
-            document = Documents_Corp(drivers)
-            with allure.step('Login the corporate account.'):
-
-                cus.Login_step(CorpEmail, Password)
-            with allure.step('Switch to This rep Documents tab page.'):
-
-                document.open_Documents()
-                document.open_Representatives()
-                document.open_OnlineRepPage(Rep2Name)
-            with allure.step(' There is "NEW" at the top-left corner of the document {} '.format(DocumentType1)):
-                assert document.check_NewLabel(DocumentType1)
-            with allure.step('Check Document and has a "Request Access" button at the document.'):
-                latestVersion = document.check_repDocDetails(DocumentType1)
-                document.requestAccessButton.click()
-            with allure.step('Input Note and confirm'):
-                document.note.send_keys('The {} Access Request'.format(latestVersion))
-                document.confirmNote.click();time.sleep(3)
-            with allure.step('The new version will be displayed.'):
-                assert document.docIs_NoAccess()==False
-                document.close_doc_window()
-                CusHomePage.Logout()
-            massageP=MessagesPage(drivers)
-            with allure.step('Login rep account ,in notification named "Important Info" will be displayed.'):
-                cus.Login_step(Rep2Name,Password)
-                massageP.JumpSytemMessage()
-                assert 'The {} Access Request'.format(latestVersion) in massageP.GetLatestMassage()
-                CusHomePage.Logout()
+            # document = Documents_Corp(drivers)
+            # with allure.step('Login the corporate account.'):
+            #
+            #     cus.Login_step(CorpEmail, Password)
+            # with allure.step('Switch to This rep Documents tab page.'):
+            #
+            #     document.open_Documents()
+            #     document.open_Representatives()
+            #     document.open_OnlineRepPage(Rep2Name)
+            # with allure.step(' There is "NEW" at the top-left corner of the document {} '.format(DocumentType1)):
+            #     assert document.check_NewLabel(DocumentType1)
+            #with allure.step('Check Document and has a "Request Access" button at the document.'):
+                #latestVersion = document.check_repDocDetails(DocumentType1)
+                #document.requestAccessButton.click()
+            # with allure.step('Input Note and confirm'):
+            #     document.note.send_keys('The {} Access Request'.format(latestVersion))
+            #     document.confirmNote.click();time.sleep(3)
+            # with allure.step('The new version will be displayed.'):
+            #     assert document.docIs_NoAccess()==False
+            #     document.close_doc_window()
+            #     CusHomePage.Logout()
+            # massageP=MessagesPage(drivers)
+            # with allure.step('Login rep account ,in notification named "Important Info" will be displayed.'):
+            #     cus.Login_step(Rep2Email,Password)
+            #     massageP.JumpSytemMessage()
+            #     assert 'The {} Access Request'.format(latestVersion) in massageP.GetLatestMassage()
+            #     CusHomePage.Logout()
         document = Documents_Corp(drivers)
+        # with allure.step('D: Verify the workflow of the corporate request access to rep {} one document that he without the access before'.format(Rep2Email)):
+            # with allure.step('Rep upload a new type doc name {}'.format(Rep2Doc2)):
+            #     cus.Login_step(Rep2Email,Password)
+            #     CusHomePage.UploadDocHome_Ind(DocPath,dataTest,Rep2Doc2,Rep2Name)
+            #     CusHomePage.Logout()
 
-        with allure.step('D: Verify the workflow of the corporate request access to rep {} one document that he without the access before'.format(Rep2Email)):
-            with allure.step('Rep upload a new type doc name {}'.format(Rep2Doc2)):
-                cus.Login_step(Rep2Email,Password)
-                CusHomePage.UploadDocHome_Ind(DocPath,dataTest,Rep2Doc2)
-                CusHomePage.Logout()
 
+            # with allure.step('Switch to This rep Documents tab page.'):
+            #
+            #     cus.Login_step(CorpEmail,Password)
+            #     document.open_Documents()
+            #     document.open_Representatives()
+            #     document.open_OnlineRepPage(Rep2Name)
+            # with allure.step('There is "No Access" at the top-left corner of the document {} '.format(Rep2Doc2)):
+            #
+            #     assert document.check_NoAccess_Label(Rep2Doc2)
+            # with allure.step('Send Document Permission Request '):
+            #
+            #     document.note.send_keys('The {} Access Request'.format(Rep2Doc2))
+            #     document.confirmNote.click();time.sleep(3)
+            #     CusHomePage.Logout()
 
-            with allure.step('Switch to This rep Documents tab page.'):
-
-                cus.Login_step(CorpEmail,Password)
-                document.open_Documents()
-                document.open_Representatives()
-                document.open_OnlineRepPage(Rep2Name)
-            with allure.step('There is "No Access" at the top-left corner of the document {} '.format(Rep2Doc2)):
-
-                assert document.check_NoAccess_Label(Rep2Doc2)
-            with allure.step('Send Document Permission Request '):
-
-                document.note.send_keys('The {} Access Request'.format(Rep2Doc2))
-                document.confirmNote.click();time.sleep(3)
-                CusHomePage.Logout()
-
-            with allure.step('Rep login and Document Permission Request display in the action list'):
-                cus.Login_step(Rep2Email,document)
+            # with allure.step('Rep login and Document Permission Request display in the action list'):
+                # cus.Login_step(Rep2Email,Password)
                 #后面会修复 为
-                ActionOP.open_Purpose('requested access to the below document(s)')
-                ActionOP.Confirm_DocPermission()
-                with allure.step('Check Corporates I represent displays doc {}'.format(Rep2Doc2)):
-
-                    AccessDoc = CorpRep.CheckCorpInformation()
-                    assert Rep2Doc2 in AccessDoc['getDocWithAccess']
-                    CusHomePage.Logout()
-            with allure.step('Coporate login can see the details of the doc {}'.format(Rep2Doc2)):
-                cus.Login_step(CorpRep,Password)
-                document.open_Documents()
-                document.open_Representatives()
-                document.open_OnlineRepPage(Rep2Name)
-                assert document.check_repDocDetails(Rep2Doc2)
-                CusHomePage.Logout()
-
+                # ActionOP.open_Purpose('requested access to the below document(s)')
+                # ActionOP.Confirm_DocPermission(Rep2Doc2,'The {} Access Request'.format(Rep2Doc2))
+                # with allure.step('Check Corporates I represent displays doc {}'.format(Rep2Doc2)):
+                #
+                #     AccessDoc = corpRep.CheckCorpInformation()
+                #     assert Rep2Doc2 in AccessDoc['getDocWithAccess']
+                #     CusHomePage.Logout()
+            # with allure.step('Coporate login can see the details of the doc {}'.format(Rep2Doc2)):
+                # cus.Login_step(CorpEmail,Password)
+            #     document.open_Documents()
+            #     document.open_Representatives()
+            #     document.open_OnlineRepPage(Rep2Name)
+            #     assert document.check_repDocDetails(Rep2Doc2)
+            #     document.close_doc_window()
+            #     CusHomePage.Logout()
         product_op = Product(drivers)
         bus = LoginPage(drivers)
         nav = NavigationBar(drivers)
-        corpRep = CorpRep(drivers)
+        # with allure.step('Precondition 1: {} create a new product name {}...'.format(business_name, NewProductName)):
+            # with allure.step('Login business portal...'):
+            #     OpenNew_window = 'window.open("{}")'.format(Test_data['business_url'])
+            #     bus.execute_script(OpenNew_window);
+            #     bus.switch_to_window(1)
+            #     bus.wait(10);
+            #     sleep(7)
+            # #
+            # #
+            #     bus.BusLogin(business_email, business_password)
+            # with allure.step('Create a new Product/Services named {}'.format(NewProductName)):
+            #     product_op.OpenProuductPage()
+            #     product_op.Create_Basic_Inforamtion(NewProductName, 'Corporate',
+            #                                         Note='Scenario 1: The corporate company has shared the document to OBC')
+            #     product_op.Create_Standard_Due_Diligence_Documents()
+            #     product_op.Create_Authorised_Representatives(1, NeedUploadDocument)
+            # with allure.step('Send to {} Source documents'.format(CorpEmail)):
+            #     nav.SourceDocuments(CorpEmail, NewProductName,
+            #                         Note='Scenario 1: The corporate company has shared the document to OBC')
+            #     nav.switch_to_window(0)
+            # with allure.step('Corp completed this new product'):
+            #     cus.Login_step(CorpEmail,Password)
+            #     ActionOP.open_Purpose(NewProductName)
+            #
+            #     ActionOP.Next.click();
+            #     ActionOP.Select_rep(Rep2Name,)
+            #     ActionOP.consent_action()
+            #     CusHomePage.Logout()
 
-        with allure.step('Precondition 1: {} create a new product name {}...'.format(business_name, NewProductName)):
-            with allure.step('Login business portal...'):
-                OpenNew_window = 'window.open("{}")'.format(Test_data['business_url'])
-                bus.execute_script(OpenNew_window);
-                bus.switch_to_window(1)
-                bus.wait(10);
-                sleep(7)
-                # bus.refrash()
-                bus.BusLogin(business_email, business_password)
-            with allure.step('Create a new Product/Services named {}'.format(NewProductName)):
-                product_op.OpenProuductPage()
-                product_op.Create_Basic_Inforamtion(NewProductName, 'Corporate',
-                                                    Note='Scenario 1: The corporate company has shared the document to OBC')
-                product_op.Create_Standard_Due_Diligence_Documents()
-                product_op.Create_Authorised_Representatives(1, DocumentType1)
-            with allure.step('Send to {} Source documents'.format(CorpEmail)):
-                nav.SourceDocuments(CorpEmail, NewProductName,
-                                    Note='Scenario 1: The corporate company has shared the document to OBC')
-                nav.switch_to_window(0)
-            with allure.step('Corp completed this new product'):
-                cus.Login_step(CorpEmail,Password)
-                ActionOP.open_Purpose(NewProductName)
-                ActionOP.rep_name.is_exist()
-                ActionOP.Next.click();
-                ActionOP.Select_rep(Rep2Name)
-                ActionOP.consent_action()
-                CusHomePage.Logout()
+        # with allure.step('E: Verify the workflow of the existing rep revoke the document that has granted access for the corporate company.'):
+            # with allure.step('Scenario 1: The corporate company has shared the document to OBC: {}'.format(business_name)):
+            #
+                # with allure.step('Rep login and revoke this doc {}'.format(DocumentType1)):
+                #     cus.Login_step(Rep2Email, Password)
+                    # corpRep.open_CorporatesRepresent()
+                    # with allure.step('The document has been shared with onboarding company, please revoke access first.'):
+                    #
+                    #     assert corpRep.PermissReovkeDoc(CorpName,DocumentType1) ==False
 
-        with allure.step('E: Verify the workflow of the existing rep revoke the document that has granted access for the corporate company.'):
-            with allure.step('Scenario 1: The corporate company has shared the document to OBC: {}'.format(business_name)):
+            # with allure.step('Scenario 2: The corporate company has not shared the document to any OBC: {}'.format(business_name)):
 
-                with allure.step('Rep login and revoke this doc {}'.format(Rep2Doc2)):
-                    cus.Login_step(Rep2Email, Password)
-                    corpRep.open_CorporatesRepresent()
-                    with allure.step('The document has been shared with onboarding company, please revoke access first.'):
-                        assert corpRep.reovkeDoc(Rep2Doc2) ==False
+                # with allure.step('Rep login and revoke this doc {}'.format(Rep2Doc2)):
 
-            with allure.step('Scenario 2: The corporate company has not shared the document to any OBC: {}'.format(business_name)):
+                    # with allure.step( 'Revoke button will be disappeared next the document.'):
+                    #     assert corpRep.PermissReovkeDoc(CorpName,Rep2Doc2) == True
+                    #     CusHomePage.Logout()
+                    # with allure.step(' Login the corporate account ->Switch to Documents tab page.'):
+                    #     cus.Login_step(CorpEmail, Password)
+                    # with allure.step('There is "No Access" at the document {} '.format(Rep2Doc2)):
+                    #
+                    #     document.open_Documents()
+                    #     document.open_Representatives()
+                    #     with allure.step('{} has no doc '.format(Rep2Doc2)):
+                    #         document.open_OnlineRepPage(Rep2Name)
+                    #         assert document.check_NoAccess_Label(Rep2Doc2,click=False)==True
+                    #         CusHomePage.Logout()
 
-                with allure.step('Rep login and revoke this doc {}'.format(DocumentType1)):
+        # with allure.step('F: Verify the workflow of the existing rep delete the document that has granted access for the corporate company'):
+            # with allure.step('Scenario 1: The corporate company has shared the document{} to OBC.'.format(DocumentType1)):
+            #     with allure.step('1. Login the rep account'):
+            #         cus.Login_step(Rep2Email,Password)
+            #     with allure.step('2. Switch to Documents tab page.'):
+            #         document.open_Documents()
+            #     with allure.step('3. Delete the document that has been shared to OBC.'):
+            #         daleteResult = document.Delete_Doc(DocumentType1)
+            #     with allure.step('One info pop up will be displayed: The document has been shared with onboarding company, please revoke access first.'):
+            #         assert daleteResult[0]==False
+            #         assert 'The document has been shared' in daleteResult[1]
 
-                    with allure.step( 'Revoke button will be disappeared next the document.'):
-                        assert corpRep.reovkeDoc(DocumentType1) == True
-                    with allure.step(' Login the corporate account ->Switch to Documents tab page.'):
-                        cus.Login_step(CorpEmail, Password)
-                    with allure.step('There is "No Access" at the document {} '.format(DocumentType1)):
+            # with allure.step('Scenario 2: The corporate company has no shared the document{} to OBC.'.format(Rep2Doc2)):
+            #
+            #     with allure.step('1 Delete the document {} that not shared to OBC.'.format(Rep2Doc2)):
+            #
+            #         daleteResult = document.Delete_Doc(Rep2Doc2)
+            #     with allure.step(' The document will be disappeared in My Document page.'):
+            #         assert daleteResult==True
+                     #CusHomePage.Logout()
 
-                        document.open_Documents()
-                        document.open_Representatives()
-                        with allure.step('{} has no doc '.format(DocumentType1)):
-                            document.open_OnlineRepPage(Rep1Name)
-                            assert document.check_NoAccess_Label(DocumentType1,click=False)==True
-                            CusHomePage.Logout()
+        # with allure.step('G:  Verify the workflow of the corporate company remove the existing rep and invite he as the rep again.'):
+            # with allure.step('Scenario 1: The corporate company has shared the rep document to OBC.'):
+                # with allure.step('1. Login the corp account'):
+                    # cus.Login_step(CorpEmail, Password)
+                # with allure.step('2. Navigate to connections/Authorised Representative'):
+                #     AuthPage.open_AuthorisedRepresent()
+                # with allure.step('3. Choose a Rep and click the delete button Click the CONFIRM button  Refresh the list'):
+                #     assert AuthPage.Remove_onlineRep(Rep2Email)==True
+                # with allure.step('4. Check the in Document-Inactive'):
+                #
+                #     document.open_Documents()
+                #     document.open_Representatives()
+                #     document.open_InactiveRepPage(Rep2Name)
+                #     CusHomePage.Logout()
+                # with allure.step('5.Rep login and Switch to connections-Corporates Represent'):
+                #
+                #     cus.Login_step(Rep2Email,Password)
+                #     corpRep.open_CorporatesRepresent()
+                # with allure.step('6 The documents which has be shared to OBC are displayed in the documents permission page.'):
+                #
+                #     corpRep.PermissionSetting.click()
+                # with allure.step('7 Pop up warning:You are no longger the representative of the Corporates I represent and cannot modify the document permission'):
+                #
+                #     assert 'You are no longger the representative of' in corpRep.warning.text
+                #     corpRep.okay.click()
+                #
+                # with allure.step('8.Login the corp account and Invite the individual as the rep again.'):
+                #
+                #     AuthPage.open_AuthorisedRepresent()
+                #     AuthPage.InviteRep(Rep2Email)
+                #     CusHomePage.Logout()
+                # with allure.step('9.Rep Login and accept this invite'):
+                #
+                #     cus.Login_step(Rep2Email, Password)
+                #     ActionOP.open_Purpose('Confirmation needed as an Authorised representative')
+                #     ActionOP.confirmBeRepFirstConsent.click()
+                # with allure.step('10.Check if there is version information for previously shared files:This version of document {} has already been shared with this company'.format(Rep2Doc2)):
+                #
+                #     result = ActionOP.assertDocHasBeenShared(DocumentType1)
+                #     assert 'This version of document {} has already been shared with this company'.format(DocumentType1) in result[1]
+                #     ActionOP.docPermissionConfirm.click() ;ActionOP.sleep(3)
+                #     CusHomePage.Logout()
+                # with allure.step('11.Login corp ,Switch to the Document page.Expand the corresponding rep to check the documents.'):
+                #     cus.Login_step(CorpEmail,Password)
+                #     document.open_Documents()
+                #     document.open_Representatives()
+                #     document.open_OnlineRepPage(Rep2Name)
+                # with allure.step('12. The documents which selected and the documents that has shared with OBC are all with the access.'):
+                #     document.check_repDocDetails(DocumentType1)
+                #     document.close_doc_window()
+                #     CusHomePage.Logout()
 
-        with allure.step('F: Verify the workflow of the existing rep delete the document that has granted access for the corporate company'):
-            with allure.step('Scenario 1: The corporate company has shared the document{} to OBC.'.format(Rep2Doc2)):
-                with allure.step('1. Login the rep account'):
-                    cus.Login_step(Rep2Email,Password)
-                with allure.step('2. Switch to Documents tab page.'):
-                    document.open_Documents()
-                with allure.step('3. Delete the document that has been shared to OBC.'):
-                    daleteResult = document.Delete_Doc(Rep2Doc2)
-                with allure.step('One info pop up will be displayed: The document has been shared with onboarding company, please revoke access first.'):
-                    assert daleteResult[0]==False
-                    assert daleteResult[1] in 'The document has been shared with onboarding company,'
+            # with allure.step('Scenario 2: The corporate company has not shared the document to any OBC.'):
+                # cus.Login_step(CorpEmail, Password)
+                # with allure.step('2. Navigate to connections/Authorised Representative'):
+                #     AuthPage.open_AuthorisedRepresent()
+                # with allure.step('3. Choose a Rep and click the delete button Click the CONFIRM button  Refresh the list'):
+                #
+                #     assert AuthPage.Remove_onlineRep(Rep1Email) == True
+                #     CusHomePage.Logout()
+                # with allure.step('4 Login the rep account,Switch to connections-Corporates Represent,Find the corp you just matched'):
+                #
+                #     cus.Login_step(Rep1Email, Password)
+                #     result_ = corpRep.CheckCorpInformation()
+                #     assert result_== ''
+                #     CusHomePage.Logout()
+                # with allure.step('5.Login the corp account and Invite the individual as the rep again.'):
+                #
+                #     cus.Login_step(CorpEmail, Password)
+                #     AuthPage.open_AuthorisedRepresent()
+                #     AuthPage.InviteRep(Rep1Email)
+                #     CusHomePage.Logout()
+                # with allure.step('6.Rep Login and accept this invite'):
+                #
+                #     cus.Login_step(Rep1Email, Password)
+                #     ActionOP.ConfirmAuteRep_With_No_Doc()
+                #     CusHomePage.Logout()
+                # with allure.step('7.Login corp ,Switch to the Document page.Expand the corresponding rep to check the documents.'):
+                #
+                #     cus.Login_step(CorpEmail, Password)
+                #     document.open_Documents()
+                #     document.open_Representatives()
+                #     assert document.open_OnlineRepPage(Rep1Name)==True
+                #     CusHomePage.Logout()
+        companyshare = Companies(drivers)
 
-            with allure.step('Scenario 2: The corporate company has no shared the document{} to OBC.'.format(DocumentType1)):
+        with allure.step('H. Verify the workflow of the corporate company share documents for one OBC via one existing Product/Service that need some rep documents.'):
 
-                with allure.step('1 Delete the document {} that not shared to OBC.'.format(DocumentType1)):
-                    daleteResult = document.Delete_Doc(DocumentType1)
-                with allure.step(' The document will be disappeared in My Document page.'):
-                    assert daleteResult[0]==True
-            CusHomePage.Logout()
+            # with allure.step('Scenario 1: The selected rep has not granted the document access for the corporate.'):
+            #     with allure.step('1.Corp click the share buttonEnter the OBC company name to search,Select the product that requires REP documentation'):
+            #         cus.Login_step(CorpEmail,Password)
+            #         companyshare.JumpCompanies()
+            #         needrepnum = companyshare.SearchConnect(business_name,NewProductName)
+            #         assert needrepnum>0
+            #         RepPendingDoc = companyshare.ProductSelectRep(Rep1Name)
+            #         companyshare.XButton.click()
+            #         CusHomePage.Logout()
+            #     with allure.step('Rep Upload the doc required for the product'):
+            #         cus.Login_step(Rep1Email,Password)
+            #         for doc in RepPendingDoc:
+            #             CusHomePage.UploadDocHome_Ind(DocPath,dataTest,doc)
+            #         CusHomePage.Logout()
+            #     with allure.step('3..Corp share this OBC company again'):
+            #         cus.Login_step(CorpEmail, Password)
+            #         companyshare.JumpCompanies()
+            #         needrepnum = companyshare.SearchConnect(business_name, NewProductName)
+            #         assert needrepnum > 0
+            #         RepNoaccessDoc = companyshare.ProductSelectRep(Rep1Name)
+            #     with allure.step('4. Corp select the rep and NoAccess documents,The status of the document is NoAccess'):
+            #         assert DocumentType1 in RepNoaccessDoc
+            #     with allure.step('5.Click confirm button ,pop up You dont have permission for this document, please request permission first.'):
+            #         Message = companyshare.confirmShare()
+            #         assert  'please request permission first'in Message
+            #         companyshare.XButton.click()
+            #         CusHomePage.Logout()
 
-        with allure.step('G:  Verify the workflow of the corporate company remove the existing rep and invite he as the rep again.'):
-            with allure.step('Scenario 1: The corporate company has shared the rep document to OBC.'):
-                with allure.step('1. Login the corp account'):
-                    cus.Login_step(CorpEmail, Password)
-                with allure.step('2. Navigate to connections/Authorised Representative'):
-                    AuthPage.open_AuthorisedRepresent()
-                with allure.step('3. Choose a Rep and click the delete button Click the CONFIRM button  Refresh the list'):
-                    assert AuthPage.Remove_onlineRep(Rep2Email)==True
-                with allure.step('4. Check the in Document-Inactive'):
+            vaulhub = VaultHub(drivers)
+            drawer = Drawer(drivers)
+            # with allure.step('Scenario 2: The selected rep has granted the document access for the corporate;'):
+                # with allure.step( '1.Corp click the share buttonEnter the OBC company name to search,Select the product that requires REP documentation'):
+                #     cus.Login_step(CorpEmail, Password)
+                #     companyshare.JumpCompanies()
+                #     needrepnum = companyshare.SearchConnect(business_name, NewProductName)
+                #     assert needrepnum > 0
+                #     DocNOcompleteStatue = companyshare.ProductSelectRep(Rep2Name)
+                # with allure.step('2.Corp select the rep and documents with permissions'):
+                #     assert DocNOcompleteStatue==0
+                # with allure.step('3. Click the CONFIRM button,and Reminder: Success'):
+                #     Message = companyshare.confirmShare()
+                #     assert 'Share Success!' in Message
+                #     CusHomePage.Logout()
+                # with allure.step('The obc user can see the reps document'):
+                #     with allure.step('Login business portal...'):
+                #         OpenNew_window = 'window.open("{}")'.format(Test_data['business_url'])
+                #         bus.execute_script(OpenNew_window);
+                #         bus.switch_to_window(1)
+                #
+                #         bus.wait(10);
+                #         sleep(7)
+                #         bus.BusLogin(business_email, business_password)
+                #
+                #     with allure.step('Check the vault hub can find {} link case'.format(CorpEmail)):
+                #
+                #         vaulhub.openVaultHub();
+                #         vaulhub.searchCustomer(Email=CorpEmail)
+                #         vaulhub.ClickSearchList(CorpEmail)
+                #         drawer.checkConnectionCases()
+                #         drawer.ClickCase(NewProductName)
+                #         drawer.showConnection()
+                #     with allure.step('OBC can check shared doc img'):
+                #         drawer.LinkedConnections(DocumentType1)
+                #         drawer.closeConnectioncase()
+                #         drawer.close()
+                #         drawer.switch_to_window(0)
 
-                    document.open_Documents()
-                    document.open_InactiveRepPage(Rep2Email)
+        # with allure.step('I.  Verify the workflow of the OBC to send request to the corporate company via one Product/ Service that need rep document.'):
+        #     with allure.step('Scenario 1: The selected rep has not granted the document access for the corporate;'):
+        #         with allure.step('Corporate login'):
+        #
+        #             cus.Login_step(CorpEmail,Password)
+        #         with allure.step('OBC company shares a product with rep to CORP'):
+        #             with allure.step('Login business portal...'):
+        #
+        #                 OpenNew_window = 'window.open("{}")'.format(Test_data['business_url'])
+        #                 bus.execute_script(OpenNew_window);
+        #                 bus.switch_to_window(1); bus.wait(10);sleep(7)
+        #                 bus.BusLogin(business_email, business_password)
+        #             with allure.step('OBC send new pordocut to this corp in Vault Hub page'):
+        #
+        #                 vaulhub.openVaultHub();
+        #                 vaulhub.searchCustomer(Email=CorpEmail)
+        #                 vaulhub.ClickSearchList(CorpEmail)
+        #                 drawer.checkOnlineVault()
+        #                 drawer.Query('New Product/Service',NewProductName)
+        #                 drawer.QuerySend()
+        #                 drawer.switch_to_window(0)
+        #             with allure.step('Corp check action and select one rep to complete action'):
+        #
+        #                 ActionOP.open_Purpose(NewProductName)
+        #
+        #                 with allure.step('The corp does not have the file permissions required by this rep in the action'):
+        #                     ActionOP.Next.click()
+        #                     ActionOP.Select_rep(Rep1Name)
+        #                     with allure.step('Assert the document for this rep displays no access '):
+        #
+        #                         DocStatus = ActionOP.returnDocStatus(NeedUploadDocument)
+        #                         assert DocStatus[NeedUploadDocument] == 'No Access'
+        #                         assert  ActionOP.consent_action()==False
+        #                         ActionOP.action_close()
+        #                         CusHomePage.Logout()
+        #                 with allure.step('Rep click the consent button to finish the action'):
+        #
+        #                     cus.Login_step(Rep1Email,Password)
+        #                     ActionOP.open_Purpose(NewProductName)
+        #                     ActionOP.consent_action()
+        #                     CusHomePage.Logout()
+        #                 with allure.step('Check the status of Corp action'):
+        #
+        #                     cus.Login_step(CorpEmail,Password)
+        #                     ActionOP.open_Purpose(NewProductName)
+        #                     DocStatus = ActionOP.returnDocStatus(NeedUploadDocument)
+        #                     assert DocStatus[NeedUploadDocument] == 'Completed'
+        #                     ActionOP.consent_action()
+        #                     ActionOP.switch_to_window(1)
+        #                 with allure.step('Check the vault hub can find {} link case'.format(CorpEmail)):
+        #
+        #                     drawer.checkConnectionCases()
+        #                     drawer.ClickCase(NewProductName)
+        #                     drawer.showConnection()
+        #                     with allure.step('OBC can check shared doc img'):
+        #                         drawer.LinkedConnections(NeedUploadDocument)
+        #                         drawer.closeConnectioncase()
+        #
+        #
+        #     with allure.step('Scenario 2: The selected rep has granted the document access for the corporate;'):
+        #
+        #         with allure.step('OBC company shares a product with rep to CORP'):
+        #
+        #             with allure.step('OBC send new pordocut to this corp in Vault Hub page'):
+        #
+        #                 drawer.checkOnlineVault()
+        #                 drawer.Query('New Product/Service',NewProductName)
+        #                 drawer.QuerySend()
+        #                 drawer.switch_to_window(0)
+        #             with allure.step('Corp check action and select one rep to complete action'):
+        #                 ActionOP.open_Purpose(NewProductName)
+        #                 ActionOP.Next.click()
+        #                 with allure.step('The corp does have the file permissions required by this rep in the action'):
+        #                     ActionOP.Select_rep(Rep2Name)
+        #                     with allure.step('Assert the document for this rep displays access '):
+        #                         DocStatus = ActionOP.returnDocStatus(NeedUploadDocument)
+        #                         assert DocStatus[NeedUploadDocument] == 'Completed'
+        #                         ActionOP.consent_action()
+        #                         ActionOP.switch_to_window(1)
+        #                     with allure.step('Check the vault hub can find {} link case'.format(CorpEmail)):
+        #
+        #                         drawer.checkConnectionCases()
+        #                         drawer.ClickCase(NewProductName)
+        #                         drawer.showConnection()
+        #                         with allure.step('OBC can check shared doc img'):
+        #                             drawer.LinkedConnections(NeedUploadDocument)
+        #                             drawer.closeConnectioncase()
+
+        # with allure.step("I.  Verify the workflow of the OBC to send the 'Document(s) is/are not listed' request to the corporate company."):
+            # with allure.step('Scenarios 1:Corp has connection a connection with OBC, and there is an online rep in Corp.'):
+            #
+            #     with allure.step('1.Select this company and click query'):
+            #
+            #         drawer.checkOnlineVault()
+            #
+            #     with allure.step('2.Purpose select document (s) is/are not listed'):
+            #         drawer.Query('Document(s) is/are not listed', NewProductName)
+            #
+            #         Docname = 'Certified Photo ID'
+            #     with allure.step('3.Select the file {} not uploaded by rep to request'.format(Docname)):
+            #         drawer.QueryInfo_WithRep(Individual=[[Rep1Name], [Docname]])
+            #         drawer.QuerySend()
+            #         drawer.switch_to_window(0)
+            #     with allure.step('4. Corp Log in to check this action,'):
+            #         ActionOP.open_Purpose('Document(s) is/are not listed')
+            #         DocStatus=ActionOP.returnDocStatus(Docname)
+            #         assert DocStatus[Docname]=='Pending'
+            #         assert ActionOP.consent_action()==False
+            #         ActionOP.action_close()
+            #         CusHomePage.Logout()
+            #     with allure.step('5. Log in to rep to view this action'):
+            #
+            #         cus.Login_step(Rep1Email,Password)
+            #         ActionOP.open_Purpose('Document(s) is/are not listed')
+            #     with allure.step('6. Rep uploads required files'):
+            #
+            #         ActionOP.upload_action_doc(DocPath, dataTest, Rep1Name)
+            #     with allure.step('7. Click the consent button'):
+            #
+            #         ActionOP.consent_action()
+            #         CusHomePage.Logout()
+            #     with allure.step('8. Corp login click action'):
+            #
+            #         cus.Login_step(CorpEmail,Password)
+            #         ActionOP.open_Purpose('Document(s) is/are not listed')
+            #     with allure.step('9. Check rep file status is Completed'):
+            #
+            #         DocStatus=ActionOP.returnDocStatus(Docname)
+            #         assert DocStatus[Docname]=='Completed'
+            #     with allure.step('10. Corp click consent'):
+            #
+            #         ActionOP.consent_action()
+            #     with allure.step('11.Files are shared, and OBC can view the required file contents'):
+            #
+            #         ActionOP.switch_to_window(1)
+            #         with allure.step('OBC can check shared doc img'):
+            #             drawer.checkOnlineVault()
+            #             drawer.selectUserType('Authorised Representatives')
+            #             drawer.switchRepDocPage(Rep1Name)
+            #             Category=drawer.IndividualDocumentCategory(Docname)
+            #             assert drawer.is_ExistDoc(Category,Docname)
+            #             assert drawer.clickDoc(Docname)
+            #             drawer.closeViewDocument()
+            #             drawer.switch_to_window(0)
+            #         with allure.step('corp logout'):
+            #             CusHomePage.Logout()
+
+        with allure.step("J. Verify the workflow of the OBC to send the 'Access required to another document' request to the corporate company."):
+            with allure.step('Scenarios 1:Corp has connection a connection with OBC, and there is an online rep in Corp.'):
+
+                Docname = 'Other Proof of Identity Documentation'
+                with allure.step('Prerequisite: rep uploads a new document'):
+
+                    cus.Login_step(Rep1Email,Password)
+                    CusHomePage.UploadDocHome_Ind(DocPath, dataTest, Docname)
                     CusHomePage.Logout()
-                with allure.step('5.Rep login and Switch to connections-Corporates Represent'):
-
-                    cus.Login_step(Rep2Email,Password)
-                    corpRep.open_CorporatesRepresent()
-                with allure.step('6 The documents which has be shared to OBC are displayed in the documents permission page.'):
-
-                    corpRep.PermissionSetting.click()
-                with allure.step('7 Pop up warning:You are no longger the representative of the Corporates I represent and cannot modify the document permission'):
-
-                    assert 'You are no longger the representative of' in corpRep.warning.text
-                    corpRep.okay.click()
-                    CusHomePage.Logout()
-                with allure.step('8.Login the corp account and Invite the individual as the rep again.'):
-
-                    cus.Login_step(CorpEmail, Password)
-                    AuthRep.open_AuthorisedRepresent()
-                    AuthRep.InviteRep(Rep2Email)
-                    CusHomePage.Logout()
-                with allure.step('9.Rep Login and accept this invite'):
-
-                    cus.Login_step(Rep2Email, Password)
-                    ActionOP.open_Purpose('Confirmation needed as an Authorised representative')
-                    ActionOP.confirmBeRepFirstConsent.click()
-                with allure.step('10.Check if there is version information for previously shared files:This version of document {} has already been shared with this company'.format(Rep2Doc2)):
-
-                    result = ActionOP.assertDocHasBeenShared(Rep2Doc2)
-                    assert 'This version of document {} has already been shared with this company'.format(Rep2Doc2) in result[1]
-                    ActionOP.docPermissionConfirm();ActionOP.sleep(3)
-                    CusHomePage.Logout()
-                with allure.step('11.Login corp ,Switch to the Document page.Expand the corresponding rep to check the documents.'):
+                with allure.step('Corp login '):
                     cus.Login_step(CorpEmail,Password)
-                    document.open_Documents()
-                    document.open_Representatives()
-                    document.open_OnlineRepPage(Rep2Name)
-                with allure.step('12. The documents which selected and the documents that has shared with OBC are all with the access.'):
-                    document.check_repDocDetails(Rep2Doc2)
-                    assert document.close_doc_window()
-                    CusHomePage.Logout()
+                    cus.switch_to_window(1)
 
-            with allure.step('Scenario 2: The corporate company has not shared the document to any OBC.'):
-                cus.Login_step(CorpEmail, Password)
-                with allure.step('2. Navigate to connections/Authorised Representative'):
-                    AuthPage.open_AuthorisedRepresent()
-                with allure.step('3. Choose a Rep and click the delete button Click the CONFIRM button  Refresh the list'):
+                with allure.step('1.Select this company and click query'):
 
-                    assert AuthPage.Remove_onlineRep(Rep1Email) == True
+                    drawer.checkOnlineVault()
+
+                with allure.step('2.Purpose select Access required to another document'):
+                    drawer.Query('Access required to another document', NewProductName)
+                #
+                with allure.step('3.Select the file {} not uploaded by rep to request'.format(Docname)):
+
+                    drawer.QueryInfo_WithRep(Individual=[[Rep1Name], [Docname]])
+                    drawer.QuerySend()
+                    drawer.switch_to_window(0)
+                with allure.step('4. Corp Log in to check this action,'):
+
+                    ActionOP.open_Purpose('Access required to another document')
+                    DocStatus=ActionOP.returnDocStatus(Docname)
+                    assert DocStatus[Docname]=='No Access'
+                    assert ActionOP.consent_action()==False
+                    ActionOP.action_close()
                     CusHomePage.Logout()
-                with allure.step('4 Login the rep account,Switch to connections-Corporates Represent,Find the corp you just matched'):
+                with allure.step('5. Log in to rep to view this action'):
+
+                    cus.Login_step(Rep1Email,Password)
+                    ActionOP.open_Purpose('Access required to another document')
+
+                with allure.step('6. Click the consent button'):
+
+                    ActionOP.consent_action()
+                    CusHomePage.Logout()
+                with allure.step('7. Corp login click action'):
+
+                    cus.Login_step(CorpEmail,Password)
+                    ActionOP.open_Purpose('Access required to another document')
+                with allure.step('8. Check rep file status is Completed'):
+
+                    DocStatus=ActionOP.returnDocStatus(Docname)
+                    assert DocStatus[Docname]=='Completed'
+                with allure.step('9. Corp click consent'):
+
+                    ActionOP.consent_action()
+                with allure.step('10.Files are shared, and OBC can view the required file contents'):
+
+                    ActionOP.switch_to_window(1)
+                    with allure.step('OBC can check shared doc img'):
+
+                        drawer.checkOnlineVault()
+                        drawer.selectUserType('Authorised Representatives')
+                        drawer.switchRepDocPage(Rep1Name)
+                        Category=drawer.IndividualDocumentCategory(Docname)
+                        assert drawer.is_ExistDoc(Category,Docname)
+                        assert drawer.clickDoc(Docname)
+                        drawer.closeViewDocument()
+                        drawer.switch_to_window(0)
+                        CusHomePage.Logout()
+
+        with allure.step("K. Verify the workflow of the OBC to send the 'Document Out of Date' request to the corporate company."):
+            with allure.step(
+                    'Scenarios 1:Corp has connection a connection with OBC, and there is an online rep in Corp.'):
+                Docname = 'Other Proof of Identity Documentation'
+
+                with allure.step('Corp login '):
+                    cus.Login_step(CorpEmail, Password)
+                    cus.switch_to_window(1)
+
+                # 后面删掉
+                with allure.step('Sing up....'):
+                    OpenNew_window = 'window.open("{}")'.format(Test_data['business_url'])
+                    bus.execute_script(OpenNew_window);
+                    bus.switch_to_window(1)
+                    bus.wait(10);
+                    sleep(7)
+                    bus.BusLogin(business_email, business_password)
+                with allure.step('1.Select this company and click query'):
+                    drawer.checkOnlineVault()
+
+                with allure.step('2.Purpose select Document Out of Date'):
+                    drawer.Query('Document Out of Date', NewProductName)
+                #
+                with allure.step('3.Select the file {} not uploaded by rep to request'.format(Docname)):
+                    drawer.QueryInfo_WithRep(Individual=[[Rep1Name], [Docname]])
+                    drawer.QuerySend()
+                    drawer.switch_to_window(0)
+                with allure.step('4. Corp Log in to check this action,The rep document is displayed as The page shows '
+                                 'the document image that rep currently needs to update, '
+                                 'with the update and reject buttons below'):
+
+                    ActionOP.open_Purpose('Document Out of Date')
+                    with allure.step('Reject button is exist'):
+                        assert ActionOP.reject_button
+                    assert ActionOP.consent_action() in "The Authorised representative has not handled the action."
+                    CusHomePage.Logout()
+                with allure.step('5. Log in to rep to view this action'):
 
                     cus.Login_step(Rep1Email, Password)
-                    result_ = CorpRep.CheckCorpInformation()
-                    assert result_['getcorpName']==''
-                    CusHomePage.Logout()
-                with allure.step('5.Login the corp account and Invite the individual as the rep again.'):
+                    ActionOP.open_Purpose('Document Out of Date')
+                with allure.step('6. The page shows the document image that rep currently needs to update, with the update button below'):
 
+                    ActionOP.consent_action()
+                    CusHomePage.Logout()
+                with allure.step('7. Corp login click action'):
                     cus.Login_step(CorpEmail, Password)
-                    AuthRep.open_AuthorisedRepresent()
-                    AuthRep.InviteRep(Rep1Email)
-                    CusHomePage.Logout()
-                with allure.step('6.Rep Login and accept this invite'):
+                    ActionOP.open_Purpose('Access required to another document')
+                with allure.step('8. Check rep file status is Completed'):
+                    DocStatus = ActionOP.returnDocStatus(Docname)
+                    assert DocStatus[Docname] == 'Completed'
+                with allure.step('9. Corp click consent'):
+                    ActionOP.consent_action()
+                with allure.step('10.Files are shared, and OBC can view the required file contents'):
+                    ActionOP.switch_to_window(1)
+                    with allure.step('OBC can check shared doc img'):
+                        drawer.checkOnlineVault()
+                        drawer.selectUserType('Authorised Representatives')
+                        drawer.switchRepDocPage(Rep1Name)
+                        Category = drawer.IndividualDocumentCategory(Docname)
+                        assert drawer.is_ExistDoc(Category, Docname)
+                        assert drawer.clickDoc(Docname)
+                        drawer.closeViewDocument()
 
-                    cus.Login_step(Rep1Email, Password)
-                    ActionOP.ConfirmAuteRep_With_No_Doc()
-                    CusHomePage.Logout()
-                with allure.step('7.Login corp ,Switch to the Document page.Expand the corresponding rep to check the documents.'):
 
-                    cus.Login_step(CorpEmail, Password)
-                    document.open_Documents()
-                    document.open_Representatives()
-                    assert document.open_OnlineRepPage(Rep1Name)==True
-                    CusHomePage.Logout()
+
+
+
+
+
+
 
 
 
@@ -1256,7 +1618,7 @@ if __name__ == '__main__':
     pytest.main(["-vs", current_path+"\SmokeTesting_test.py"])
 #
 #
-#     os.system("allure generate ./temp_st -o ./report_st --clean")
+    #os.system("allure generate ./temp_st -o ./report_st --clean")
 
 
 

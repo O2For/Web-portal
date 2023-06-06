@@ -1,0 +1,74 @@
+{
+  "uid" : "41c5709c2564d2cd",
+  "name" : "From the portal you should be able to search and connect with a new corporate",
+  "fullName" : "SmokeTesting_test.TestCaes#test_St094_corporate",
+  "historyId" : "cf5907ff598a36305f0f08e83b1d2834",
+  "time" : {
+    "start" : 1683273929890,
+    "stop" : 1683273929890,
+    "duration" : 0
+  },
+  "status" : "skipped",
+  "statusMessage" : "Skipped: skop",
+  "statusTrace" : "('D:\\\\Users\\\\jianghaodong\\\\PycharmProjects\\\\pytest_study\\\\venv\\\\test_demo\\\\SmokeTesting_test.py', 242, 'Skipped: skop')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Somke Testing Valid8Me v2.11.0"
+  }, {
+    "name" : "story",
+    "value" : "Verify that the portal should be able to search and connect with a new corporate user."
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skip('skop')"
+  }, {
+    "name" : "suite",
+    "value" : "SmokeTesting_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestCaes"
+  }, {
+    "name" : "host",
+    "value" : "wswincnhz1692"
+  }, {
+    "name" : "thread",
+    "value" : "23600-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "SmokeTesting_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "InviteEmail",
+    "value" : "'89a@snapmail.cc'"
+  }, {
+    "name" : "Password",
+    "value" : "'Ht@12345'"
+  }, {
+    "name" : "Username",
+    "value" : "'89a'"
+  }, {
+    "name" : "porduct_name",
+    "value" : "'cop1'"
+  } ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.skip('skop')" ]
+  },
+  "source" : "41c5709c2564d2cd.json",
+  "parameterValues" : [ "'89a@snapmail.cc'", "'Ht@12345'", "'89a'", "'cop1'" ]
+}

@@ -1,0 +1,304 @@
+{
+  "uid" : "37624b04aa7907e2",
+  "name" : "test_St090[End user-terms-@snapmail.cc-Ht@12345-https://www.snapmail.cc/#/-autotest_individual_2-None-None]",
+  "fullName" : "SmokeTesting_test.TestCaes#test_St090",
+  "historyId" : "96fd88bf14ea5a69a090ea6803d6a32a",
+  "time" : {
+    "start" : 1683282986684,
+    "stop" : 1683282986684,
+    "duration" : 0
+  },
+  "status" : "skipped",
+  "statusMessage" : "Skipped: indivdual 跳过",
+  "statusTrace" : "('D:\\\\Users\\\\jianghaodong\\\\PycharmProjects\\\\pytest_study\\\\venv\\\\test_demo\\\\SmokeTesting_test.py', 126, 'Skipped: indivdual 跳过')",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "drivers",
+    "time" : {
+      "start" : 1683282986720,
+      "stop" : 1683283021225,
+      "duration" : 34505
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  } ],
+  "afterStages" : [ {
+    "name" : "drivers::fn",
+    "time" : {
+      "start" : 1683283061583,
+      "stop" : 1683283067328,
+      "duration" : 5745
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  } ],
+  "labels" : [ {
+    "name" : "story",
+    "value" : "When setting up a individual account:"
+  }, {
+    "name" : "epic",
+    "value" : "Somke Testing Valid8Me v2.11.0"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.skip('indivdual 跳过')"
+  }, {
+    "name" : "suite",
+    "value" : "SmokeTesting_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestCaes"
+  }, {
+    "name" : "host",
+    "value" : "wswincnhz1692"
+  }, {
+    "name" : "thread",
+    "value" : "29932-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "SmokeTesting_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "Email_type",
+    "value" : "'@snapmail.cc'"
+  }, {
+    "name" : "FN",
+    "value" : "None"
+  }, {
+    "name" : "LN",
+    "value" : "None"
+  }, {
+    "name" : "mailbox_url",
+    "value" : "'https://www.snapmail.cc/#/'"
+  }, {
+    "name" : "reg_ind_email",
+    "value" : "'autotest_individual_2'"
+  }, {
+    "name" : "reg_pwd",
+    "value" : "'Ht@12345'"
+  }, {
+    "name" : "terms_title",
+    "value" : "'End user-terms'"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "ac1005ba79c544fb",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: indivdual 跳过",
+      "time" : {
+        "start" : 1683282886000,
+        "stop" : 1683282886000,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "cd363e3aaa23ace3",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: indivdual 跳过",
+      "time" : {
+        "start" : 1683282705550,
+        "stop" : 1683282705550,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "7e81fff8baf7674d",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: indivdual 跳过",
+      "time" : {
+        "start" : 1683282583340,
+        "stop" : 1683282583340,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "49afedb5732f27a9",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: indivdual 跳过",
+      "time" : {
+        "start" : 1683282348281,
+        "stop" : 1683282348281,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "b3b2cb39afaeb129",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: indivdual 跳过",
+      "time" : {
+        "start" : 1683275386592,
+        "stop" : 1683275386592,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "983a759062ff6b1e",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: indivdual 跳过",
+      "time" : {
+        "start" : 1683274825707,
+        "stop" : 1683274825707,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "55643a6c57774196",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: indivdual 跳过",
+      "time" : {
+        "start" : 1683274553264,
+        "stop" : 1683274553264,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "3cd9a5116b234cf7",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: indivdual 跳过",
+      "time" : {
+        "start" : 1683273929873,
+        "stop" : 1683273929873,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "bdb3deb328ebca83",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: indivdual 跳过",
+      "time" : {
+        "start" : 1683273475661,
+        "stop" : 1683273475661,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "eb43b02747436214",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: indivdual 跳过",
+      "time" : {
+        "start" : 1683272433540,
+        "stop" : 1683272433540,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "3ffe6591e54ad2b",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: indivdual 跳过",
+      "time" : {
+        "start" : 1682575010949,
+        "stop" : 1682575010949,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "2676b50bb6755ae8",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: indivdual 跳过",
+      "time" : {
+        "start" : 1682574922129,
+        "stop" : 1682574922129,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "8e7249f85a7500ed",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: indivdual 跳过",
+      "time" : {
+        "start" : 1682574650478,
+        "stop" : 1682574650478,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "9dd54f815ecd05c0",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: indivdual 跳过",
+      "time" : {
+        "start" : 1682574233931,
+        "stop" : 1682574233931,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "12b8a87c7bc43c58",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: indivdual 跳过",
+      "time" : {
+        "start" : 1682573517737,
+        "stop" : 1682573517737,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "36128bed2399956f",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: indivdual 跳过",
+      "time" : {
+        "start" : 1682573277542,
+        "stop" : 1682573277542,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "212cc9a704c96c2c",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: indivdual 跳过",
+      "time" : {
+        "start" : 1682564601556,
+        "stop" : 1682564601556,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "23575590ad8dc9e8",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: indivdual 跳过",
+      "time" : {
+        "start" : 1682563317436,
+        "stop" : 1682563317436,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "fe3d5d1ad77001f7",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: indivdual 跳过",
+      "time" : {
+        "start" : 1682562654957,
+        "stop" : 1682562654957,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "c07c2f2b15b1e5cc",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: indivdual 跳过",
+      "time" : {
+        "start" : 1682507070101,
+        "stop" : 1682507070101,
+        "duration" : 0
+      }
+    }, {
+      "uid" : "3080623861a75815",
+      "status" : "skipped",
+      "statusDetails" : "Skipped: indivdual 跳过",
+      "time" : {
+        "start" : 1682506539372,
+        "stop" : 1682506539372,
+        "duration" : 0
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.skip('indivdual 跳过')" ]
+  },
+  "source" : "37624b04aa7907e2.json",
+  "parameterValues" : [ "'@snapmail.cc'", "None", "None", "'https://www.snapmail.cc/#/'", "'autotest_individual_2'", "'Ht@12345'", "'End user-terms'" ]
+}
